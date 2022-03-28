@@ -45,9 +45,9 @@
 
 @include('includes.partials.read-only')
 @include('includes.partials.logged-in-as')
-@include('includes.partials.announcements')
+{{--@include('includes.partials.announcements')--}}
   <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top mt-3">
+  <header id="header" class="header fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
       <a href="/" class="logo d-flex align-items-center">
@@ -94,19 +94,21 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-6 d-flex flex-column justify-content-center">
-          <h1 data-aos="fade-up">We offer modern solutions for growing your business</h1>
-          <h2 data-aos="fade-up" data-aos-delay="400">We are team of talented designers making websites with Bootstrap</h2>
+            <h1 style="color: #9b9a9d" data-aos="fade-up">A <span style="color: #fc8a18">TO</span> B
+              BUSINESS
+              SOLUTIONS</h1>
+          <h2 data-aos="fade-up" data-aos-delay="400">Local & International Delivery</h2>
           <div data-aos="fade-up" data-aos-delay="600">
             <div class="text-center text-lg-start">
               <a href="#about" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-                <span>Get Started</span>
+                <span>Get Quote</span>
                 <i class="bi bi-arrow-right"></i>
               </a>
             </div>
           </div>
         </div>
         <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
-          <img src="assets/img/hero-img.png" class="img-fluid" alt="">
+          <img src="assets/img/van.png" class="img-fluid" alt="">
         </div>
       </div>
     </div>

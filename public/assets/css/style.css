@@ -204,7 +204,7 @@ section {
   font-family: "Nunito", sans-serif;
   font-size: 16px;
   font-weight: 700;
-  color: #013289;
+  color: #000000;
   white-space: nowrap;
   transition: 0.3s;
 }
@@ -214,10 +214,10 @@ section {
   margin-left: 5px;
 }
 .navbar a:hover, .navbar .active, .navbar .active:focus, .navbar li:hover > a {
-  color: #4154f1;
+  color: #fc8a18;
 }
 .navbar .getstarted, .navbar .getstarted:focus {
-  background: #4154f1;
+  background: #fc8a18;
   padding: 8px 20px;
   margin-left: 30px;
   border-radius: 4px;
@@ -399,7 +399,7 @@ section {
   border-radius: 4px;
   transition: 0.5s;
   color: #fff;
-  background: #4154f1;
+  background: #fc8a18;
   box-shadow: 0px 5px 30px rgba(65, 84, 241, 0.4);
 }
 .hero .btn-get-started span {
