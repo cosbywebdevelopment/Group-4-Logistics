@@ -61,22 +61,22 @@
           <li><a class="nav-link scrollto" href="#services">Services</a></li>
           <li><a class="nav-link scrollto" href="#portfolio">Portfolio</a></li>
           <li><a class="nav-link scrollto" href="#team">Team</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+{{--          <li><a href="blog.html">Blog</a></li>--}}
+          <li class="dropdown"><a href="#"><span>Join Us</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
+                @auth
+                    @if ($logged_in_user->isUser())
+                        <li><a href="{{ route('frontend.user.dashboard') }}">@lang('Dashboard')</a></li>
+                    @endif
+
+                    <li><a href="{{ route('frontend.user.account') }}">@lang('Account')</a></li>
+                @else
+                    <li><a href="{{ route('frontend.auth.login') }}">@lang('Login')</a></li>
+
+                    @if (config('boilerplate.access.user.registration'))
+                        <li><a href="{{ route('frontend.auth.register') }}">@lang('Register')</a></li>
+                    @endif
+                @endauth
             </ul>
           </li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
@@ -124,16 +124,40 @@
 
           <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
             <div class="content">
-              <h3>Who We Are</h3>
-              <h2>Expedita voluptas omnis cupiditate totam eveniet nobis sint iste. Dolores est repellat corrupti reprehenderit.</h2>
-              <p>
-                Quisquam vel ut sint cum eos hic dolores aperiam. Sed deserunt et. Inventore et et dolor consequatur itaque ut voluptate sed et. Magnam nam ipsum tenetur suscipit voluptatum nam et est corrupti.
-              </p>
+              <h3>with our instant quote tool you can be sure what you'll be paying</h3>
+                <form>
+                    <div class="row">
+                        <div class="mb-3 col-lg-4">
+                            <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up from</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="House Number">
+                        </div>
+                        <div class="mb-3 col-lg-5">
+                            <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up from</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Postcode">
+                        </div>
+                        <div class="mb-3 col-lg-4">
+                            <label for="exampleFormControlInput1" class="form-label text-capitalize">drop off at</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="House Number">
+                        </div>
+                        <div class="mb-3 col-lg-5">
+                            <label for="exampleFormControlInput1" class="form-label text-capitalize">drop off at</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Postcode">
+                        </div>
+                        <div class="mb-3 col-lg-4">
+                            <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up time</label>
+                            <input type="time" class="form-control" id="exampleFormControlInput1" placeholder="Postcode">
+                        </div>
+                        <div class="mb-3 col-lg-5">
+                            <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up date</label>
+                            <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="Postcode">
+                        </div>
+                    </div>
+                </form>
               <div class="text-center text-lg-start">
-                <a href="#" class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center">
-                  <span>Read More</span>
-                  <i class="bi bi-arrow-right"></i>
-                </a>
+                  <button type="submit" class="btn btn-read-more d-inline-flex align-items-center justify-content-center align-self-center">
+                      <span>Quote Me!</span>
+                      <i class="bi bi-cash-coin"></i>
+                  </button>
               </div>
             </div>
           </div>
