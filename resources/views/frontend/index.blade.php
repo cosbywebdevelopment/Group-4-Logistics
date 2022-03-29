@@ -129,7 +129,7 @@
                     <div class="row">
                         <div class="mb-3 col-lg-4">
                             <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up from</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="House Number">
+                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Property Number">
                         </div>
                         <div class="mb-3 col-lg-5">
                             <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up from</label>
@@ -137,7 +137,7 @@
                         </div>
                         <div class="mb-3 col-lg-4">
                             <label for="exampleFormControlInput1" class="form-label text-capitalize">drop off at</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="House Number">
+                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Property Number">
                         </div>
                         <div class="mb-3 col-lg-5">
                             <label for="exampleFormControlInput1" class="form-label text-capitalize">drop off at</label>
@@ -145,11 +145,11 @@
                         </div>
                         <div class="mb-3 col-lg-4">
                             <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up time</label>
-                            <input type="time" class="form-control" id="exampleFormControlInput1" placeholder="Postcode">
+                            <input type="time" class="form-control">
                         </div>
                         <div class="mb-3 col-lg-5">
                             <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up date</label>
-                            <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="Postcode">
+                            <input type="date" class="form-control">
                         </div>
                     </div>
                 </form>
