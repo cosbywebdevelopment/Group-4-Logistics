@@ -1598,12 +1598,12 @@
             geoPickupLong = place.geometry.viewport.zb.h;
             // function to set start param
             setRoute([geoPickupLat,geoPickupLong]);
-            console.log(geoPickupLong)
+            console.log([geoPickupLat,geoPickupLong])
         }
     }
 
     function onPlaceDropOff(){
-        let place = autoPickup.getPlace();
+        let place = autoDropOff.getPlace();
 
         if(!place.geometry){
             // user did not select an address
@@ -1612,7 +1612,6 @@
             document.getElementById('geoDropOff').innerHTML = place.name;
             geoDropOffLat = place.geometry.viewport.Ua.h;
             geoDropOffLong = place.geometry.viewport.zb.h;
-            //console.log(geoDropOffLat)
             endRoute([geoDropOffLat,geoDropOffLong]);
 
         }
