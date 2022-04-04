@@ -33,14 +33,64 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: FlexStart - v1.9.0
-  * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-</head>
 
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+{{--    <link rel="stylesheet" type="text/css" href="./style.css" />--}}
+
+
+    <!-- =======================================================
+    * Template Name: FlexStart - v1.9.0
+    * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+</head>
+{{--<style>--}}
+{{--    #map {--}}
+{{--        height: 900px;--}}
+{{--    }--}}
+
+{{--    .controls {--}}
+{{--        margin-top: 10px;--}}
+{{--        border: 1px solid transparent;--}}
+{{--        border-radius: 2px 0 0 2px;--}}
+{{--        box-sizing: border-box;--}}
+{{--        -moz-box-sizing: border-box;--}}
+{{--        height: 32px;--}}
+{{--        outline: none;--}}
+{{--        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);--}}
+{{--    }--}}
+
+{{--    #origin-input,--}}
+{{--    #destination-input {--}}
+{{--        background-color: #fff;--}}
+{{--        font-family: Roboto;--}}
+{{--        font-size: 15px;--}}
+{{--        font-weight: 300;--}}
+{{--        margin-left: 12px;--}}
+{{--        padding: 0 11px 0 13px;--}}
+{{--        text-overflow: ellipsis;--}}
+{{--        width: 200px;--}}
+{{--    }--}}
+
+{{--    #origin-input:focus,--}}
+{{--    #destination-input:focus {--}}
+{{--        border-color: #4d90fe;--}}
+{{--    }--}}
+
+{{--    #mode-selector {--}}
+{{--        color: #fff;--}}
+{{--        background-color: #4d90fe;--}}
+{{--        margin-left: 12px;--}}
+{{--        padding: 5px 11px 0px 11px;--}}
+{{--    }--}}
+
+{{--    #mode-selector label {--}}
+{{--        font-family: Roboto;--}}
+{{--        font-size: 13px;--}}
+{{--        font-weight: 300;--}}
+{{--    }--}}
+{{--</style>--}}
 <body>
 
 @include('includes.partials.read-only')
@@ -127,21 +177,13 @@
               <h3>with our instant quote tool you can be sure what you'll be paying</h3>
                 <form>
                     <div class="row">
-                        <div class="mb-3 col-lg-4">
+                        <div class="mb-3 col-lg-9">
                             <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up from</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Property Number">
+                            <input type="text" class="form-control" id="geoPickup" placeholder="Type Your Address">
                         </div>
-                        <div class="mb-3 col-lg-5">
-                            <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up from</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Postcode">
-                        </div>
-                        <div class="mb-3 col-lg-4">
+                        <div class="mb-3 col-lg-9">
                             <label for="exampleFormControlInput1" class="form-label text-capitalize">drop off at</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Property Number">
-                        </div>
-                        <div class="mb-3 col-lg-5">
-                            <label for="exampleFormControlInput1" class="form-label text-capitalize">drop off at</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Postcode">
+                            <input type="text" class="form-control" id="geoDropOff" placeholder="Type Your Address">
                         </div>
                         <div class="mb-3 col-lg-4">
                             <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up time</label>
@@ -162,7 +204,8 @@
             </div>
           </div>
           <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
-            <img src="assets/img/quote.png" class="img-fluid" alt="">
+{{--            <img src="assets/img/quote.png" class="img-fluid" alt="">--}}
+              <div id='map' style='width: 500px; height: 400px;'></div>
           </div>
         </div>
       </div>
@@ -1245,6 +1288,46 @@
 
     </section><!-- End Contact Section -->
 
+
+      <div style="display: none">
+          <input
+              id="origin-input"
+              class="controls"
+              type="text"
+              placeholder="Enter an origin location"
+          />
+
+          <input
+              id="destination-input"
+              class="controls"
+              type="text"
+              placeholder="Enter a destination location"
+          />
+
+          <div id="mode-selector" class="controls">
+              <input
+                  type="radio"
+                  name="type"
+                  id="changemode-walking"
+                  checked="checked"
+              />
+              <label for="changemode-walking">Walking</label>
+
+              <input type="radio" name="type" id="changemode-transit" />
+              <label for="changemode-transit">Transit</label>
+
+              <input type="radio" name="type" id="changemode-driving" />
+              <label for="changemode-driving">Driving</label>
+          </div>
+      </div>
+
+      <div id="map"></div>
+
+
+
+
+
+
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
@@ -1349,11 +1432,332 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
-{{--@stack('before-scripts')--}}
-{{--<script src="{{ mix('js/manifest.js') }}"></script>--}}
-{{--<script src="{{ mix('js/vendor.js') }}"></script>--}}
-{{--<script src="{{ mix('js/frontend.js') }}"></script>--}}
-{{--@stack('after-scripts')--}}
+
+<!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+{{--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANuqMix1FlQmAVcJk-VnF225H-ecxEKok&callback=initMap&libraries=places&v=weekly" async></script>--}}
+
+
+<script>
+    // This example requires the Places library. Include the libraries=places
+    // parameter when you first load the API. For example:
+    // <script
+    // src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBC4ifOTnjExDqnT5lB6Ets0MVExftNHzI&libraries=places">
+    // function initMap() {
+    //     const map = new google.maps.Map(document.getElementById("map"), {
+    //         mapTypeControl: false,
+    //         center: { lat: 52.3555, lng: 1.1743 },
+    //         zoom: 10,
+    //     });
+    //
+    //     new AutocompleteDirectionsHandler(map);
+    // }
+    //
+    // class AutocompleteDirectionsHandler {
+    //     map;
+    //     originPlaceId;
+    //     destinationPlaceId;
+    //     travelMode;
+    //     directionsService;
+    //     directionsRenderer;
+    //     constructor(map) {
+    //         this.map = map;
+    //         this.originPlaceId = "";
+    //         this.destinationPlaceId = "";
+    //         this.travelMode = google.maps.TravelMode.WALKING;
+    //         this.directionsService = new google.maps.DirectionsService();
+    //         this.directionsRenderer = new google.maps.DirectionsRenderer();
+    //         this.directionsRenderer.setMap(map);
+    //
+    //         const originInput = document.getElementById("origin-input");
+    //         const destinationInput = document.getElementById("destination-input");
+    //         const modeSelector = document.getElementById("mode-selector");
+    //         // Specify just the place data fields that you need.
+    //         const originAutocomplete = new google.maps.places.Autocomplete(
+    //             originInput,
+    //             { fields: ["place_id"], componentRestrictions: {'country': ['uk']} }
+    //         );
+    //         // Specify just the place data fields that you need.
+    //         const destinationAutocomplete = new google.maps.places.Autocomplete(
+    //             destinationInput,
+    //             { fields: ["place_id"],componentRestrictions: {'country': ['uk']} }
+    //         );
+    //
+    //         this.setupClickListener(
+    //             "changemode-walking",
+    //             google.maps.TravelMode.WALKING
+    //         );
+    //         this.setupClickListener(
+    //             "changemode-transit",
+    //             google.maps.TravelMode.TRANSIT
+    //         );
+    //         this.setupClickListener(
+    //             "changemode-driving",
+    //             google.maps.TravelMode.DRIVING
+    //         );
+    //         this.setupPlaceChangedListener(originAutocomplete, "ORIG");
+    //         this.setupPlaceChangedListener(destinationAutocomplete, "DEST");
+    //         this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
+    //         this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(
+    //             destinationInput
+    //         );
+    //         this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
+    //     }
+    //     // Sets a listener on a radio button to change the filter type on Places
+    //     // Autocomplete.
+    //     setupClickListener(id, mode) {
+    //         const radioButton = document.getElementById(id);
+    //
+    //         radioButton.addEventListener("click", () => {
+    //             this.travelMode = mode;
+    //             this.route();
+    //         });
+    //     }
+    //     setupPlaceChangedListener(autocomplete, mode) {
+    //         autocomplete.bindTo("bounds", this.map);
+    //         autocomplete.addListener("place_changed", () => {
+    //             const place = autocomplete.getPlace();
+    //
+    //             if (!place.place_id) {
+    //                 window.alert("Please select an option from the dropdown list.");
+    //                 return;
+    //             }
+    //
+    //             if (mode === "ORIG") {
+    //                 this.originPlaceId = place.place_id;
+    //             } else {
+    //                 this.destinationPlaceId = place.place_id;
+    //             }
+    //
+    //             this.route();
+    //         });
+    //     }
+    //     route() {
+    //         if (!this.originPlaceId || !this.destinationPlaceId) {
+    //             return;
+    //         }
+    //
+    //         const me = this;
+    //
+    //         this.directionsService.route(
+    //             {
+    //                 origin: { placeId: this.originPlaceId },
+    //                 destination: { placeId: this.destinationPlaceId },
+    //                 travelMode: this.travelMode,
+    //             },
+    //             (response, status) => {
+    //                 if (status === "OK") {
+    //                     me.directionsRenderer.setDirections(response);
+    //                 } else {
+    //                     window.alert("Directions request failed due to " + status);
+    //                 }
+    //             }
+    //         );
+    //     }
+    // }
+</script>
+
+
+<script>
+    let autoPickup;
+    let autoDropOff;
+    function initAutocomplete(){
+        autoPickup = new google.maps.places.Autocomplete(
+            document.getElementById('geoPickup'),
+            {
+                types: ['address'],
+                componentRestrictions: {'country': ['uk']},
+                fields: ['place_id', 'geometry', 'name']
+            });
+        autoDropOff = new google.maps.places.Autocomplete(
+            document.getElementById('geoDropOff'),
+            {
+                types: ['address'],
+                componentRestrictions: {'country': ['uk']},
+                fields: ['place_id', 'geometry', 'name']
+            });
+        // store geo data
+        autoPickup.addListener('place_changed', onPlacePickup);
+        autoDropOff.addListener('place_changed', onPlaceDropOff);
+    }
+
+    function onPlacePickup(){
+        let place = autoPickup.getPlace();
+
+        if(!place.geometry){
+            // user did not select an address
+            document.getElementById('geoPickup').placeholder = 'Enter a place';
+        } else {
+            document.getElementById('geoPickup').innerHTML = place.name;
+            console.log(place)
+        }
+    }
+
+    function onPlaceDropOff(){
+        let place = autoPickup.getPlace();
+
+        if(!place.geometry){
+            // user did not select an address
+            document.getElementById('geoDropOff').placeholder = 'Enter a place';
+        } else {
+            document.getElementById('geoDropOff').innerHTML = place.name;
+            console.log(place.geometry)
+        }
+    }
+
+</script>
+
+<script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANuqMix1FlQmAVcJk-VnF225H-ecxEKok&libraries=places&callback=initAutocomplete">
+</script>
+
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css' rel='stylesheet' />
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZ3JvdXA0bG9naXN0aWNzIiwiYSI6ImNsMWJ5dmRtejAyaTQzZnAzdTgzZTI0NnAifQ.mR63lFlRLTQg2kE5swvmsw';
+    const map = new mapboxgl.Map({
+        container: 'map', // container ID
+        style: 'mapbox://styles/mapbox/streets-v11', // style URL
+        center: [-74.5, 40], // starting position [lng, lat]
+        zoom: 9 // starting zoom
+    });
+    // set the bounds of the map
+    const bounds = [
+        [-123.069003, 45.395273],
+        [-122.303707, 45.612333]
+    ];
+    map.setMaxBounds(bounds);
+
+    // an arbitrary start will always be the same
+    // only the end or destination will change
+    const start = [-122.662323, 45.523751];
+
+    // this is where the code for the next step will go
+    // create a function to make a directions request
+    async function getRoute(end) {
+        // make a directions request using cycling profile
+        // an arbitrary start will always be the same
+        // only the end or destination will change
+        const query = await fetch(
+            `https://api.mapbox.com/directions/v5/mapbox/cycling/${start[0]},${start[1]};${end[0]},${end[1]}?steps=true&geometries=geojson&access_token=${mapboxgl.accessToken}`,
+            { method: 'GET' }
+        );
+        const json = await query.json();
+        const data = json.routes[0];
+        const route = data.geometry.coordinates;
+        const geojson = {
+            type: 'Feature',
+            properties: {},
+            geometry: {
+                type: 'LineString',
+                coordinates: route
+            }
+        };
+        // if the route already exists on the map, we'll reset it using setData
+        if (map.getSource('route')) {
+            map.getSource('route').setData(geojson);
+        }
+        // otherwise, we'll make a new request
+        else {
+            map.addLayer({
+                id: 'route',
+                type: 'line',
+                source: {
+                    type: 'geojson',
+                    data: geojson
+                },
+                layout: {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                },
+                paint: {
+                    'line-color': '#3887be',
+                    'line-width': 5,
+                    'line-opacity': 0.75
+                }
+            });
+        }
+        // add turn instructions here at the end
+    }
+
+    map.on('load', () => {
+        // make an initial directions request that
+        // starts and ends at the same location
+        getRoute(start);
+
+        // Add starting point to the map
+        map.addLayer({
+            id: 'point',
+            type: 'circle',
+            source: {
+                type: 'geojson',
+                data: {
+                    type: 'FeatureCollection',
+                    features: [
+                        {
+                            type: 'Feature',
+                            properties: {},
+                            geometry: {
+                                type: 'Point',
+                                coordinates: start
+                            }
+                        }
+                    ]
+                }
+            },
+            paint: {
+                'circle-radius': 10,
+                'circle-color': '#3887be'
+            }
+        });
+        // this is where the code from the next step will go
+        map.on('click', (event) => {
+            const coords = Object.keys(event.lngLat).map((key) => event.lngLat[key]);
+            const end = {
+                type: 'FeatureCollection',
+                features: [
+                    {
+                        type: 'Feature',
+                        properties: {},
+                        geometry: {
+                            type: 'Point',
+                            coordinates: coords
+                        }
+                    }
+                ]
+            };
+            if (map.getLayer('end')) {
+                map.getSource('end').setData(end);
+            } else {
+                map.addLayer({
+                    id: 'end',
+                    type: 'circle',
+                    source: {
+                        type: 'geojson',
+                        data: {
+                            type: 'FeatureCollection',
+                            features: [
+                                {
+                                    type: 'Feature',
+                                    properties: {},
+                                    geometry: {
+                                        type: 'Point',
+                                        coordinates: coords
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    paint: {
+                        'circle-radius': 10,
+                        'circle-color': '#f30'
+                    }
+                });
+            }
+            getRoute(coords);
+        });
+    });
+
+</script>
 
 </body>
 
