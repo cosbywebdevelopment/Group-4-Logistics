@@ -33,6 +33,8 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css' rel='stylesheet' />
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 {{--    <link rel="stylesheet" type="text/css" href="./style.css" />--}}
@@ -1560,6 +1562,10 @@
 <script>
     let autoPickup;
     let autoDropOff;
+    let geoPickupLat;
+    let geoPickupLong;
+    let geoDropOffLat;
+    let geoDropOffLong;
     function initAutocomplete(){
         autoPickup = new google.maps.places.Autocomplete(
             document.getElementById('geoPickup'),
@@ -1588,7 +1594,11 @@
             document.getElementById('geoPickup').placeholder = 'Enter a place';
         } else {
             document.getElementById('geoPickup').innerHTML = place.name;
-            console.log(place)
+            geoPickupLat = place.geometry.viewport.Ua.h;
+            geoPickupLong = place.geometry.viewport.zb.h;
+            // function to set start param
+            setRoute([geoPickupLat,geoPickupLong]);
+            console.log(geoPickupLong)
         }
     }
 
@@ -1600,36 +1610,32 @@
             document.getElementById('geoDropOff').placeholder = 'Enter a place';
         } else {
             document.getElementById('geoDropOff').innerHTML = place.name;
-            console.log(place.geometry)
+            geoDropOffLat = place.geometry.viewport.Ua.h;
+            geoDropOffLong = place.geometry.viewport.zb.h;
+            //console.log(geoDropOffLat)
+            endRoute([geoDropOffLat,geoDropOffLong]);
+
         }
     }
 
-</script>
-
-<script async
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANuqMix1FlQmAVcJk-VnF225H-ecxEKok&libraries=places&callback=initAutocomplete">
-</script>
-
-<script src='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js'></script>
-<link href='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css' rel='stylesheet' />
-<script>
     mapboxgl.accessToken = 'pk.eyJ1IjoiZ3JvdXA0bG9naXN0aWNzIiwiYSI6ImNsMWJ5dmRtejAyaTQzZnAzdTgzZTI0NnAifQ.mR63lFlRLTQg2kE5swvmsw';
     const map = new mapboxgl.Map({
         container: 'map', // container ID
         style: 'mapbox://styles/mapbox/streets-v11', // style URL
-        center: [-74.5, 40], // starting position [lng, lat]
-        zoom: 9 // starting zoom
+        center: [-1.1941504496901416, 52.02630560979523], // starting position [lng, lat]
+        zoom: 5 // starting zoom
     });
     // set the bounds of the map
-    const bounds = [
-        [-123.069003, 45.395273],
-        [-122.303707, 45.612333]
-    ];
-    map.setMaxBounds(bounds);
+    // const bounds = [
+    //     [-73.990593, 40.740121]
+    //     ,
+    //     [-73.990593, 40.740121]
+    // ];
+    // map.setMaxBounds(bounds);
 
     // an arbitrary start will always be the same
     // only the end or destination will change
-    const start = [-122.662323, 45.523751];
+    //const start = [geoPickupLat,geoPickupLong];
 
     // this is where the code for the next step will go
     // create a function to make a directions request
@@ -1638,9 +1644,10 @@
         // an arbitrary start will always be the same
         // only the end or destination will change
         const query = await fetch(
-            `https://api.mapbox.com/directions/v5/mapbox/cycling/${start[0]},${start[1]};${end[0]},${end[1]}?steps=true&geometries=geojson&access_token=${mapboxgl.accessToken}`,
+            `https://api.mapbox.com/directions/v5/mapbox/driving/${geoPickupLat},${geoPickupLong};${end[0]},${end[1]}?steps=true&geometries=geojson&access_token=${mapboxgl.accessToken}`,
             { method: 'GET' }
         );
+        //console.log(query)
         const json = await query.json();
         const data = json.routes[0];
         const route = data.geometry.coordinates;
@@ -1679,7 +1686,7 @@
         // add turn instructions here at the end
     }
 
-    map.on('load', () => {
+    function setRoute(start) {
         // make an initial directions request that
         // starts and ends at the same location
         getRoute(start);
@@ -1710,8 +1717,59 @@
             }
         });
         // this is where the code from the next step will go
-        map.on('click', (event) => {
-            const coords = Object.keys(event.lngLat).map((key) => event.lngLat[key]);
+        // map.on('click', (event) => {
+        //     const coords = Object.keys(event.lngLat).map((key) => event.lngLat[key]);
+        //     console.log(coords)
+        //     const end = {
+        //         type: 'FeatureCollection',
+        //         features: [
+        //             {
+        //                 type: 'Feature',
+        //                 properties: {},
+        //                 geometry: {
+        //                     type: 'Point',
+        //                     coordinates: coords
+        //                 }
+        //             }
+        //         ]
+        //     };
+        //     if (map.getLayer('end')) {
+        //         map.getSource('end').setData(end);
+        //     } else {
+        //         map.addLayer({
+        //             id: 'end',
+        //             type: 'circle',
+        //             source: {
+        //                 type: 'geojson',
+        //                 data: {
+        //                     type: 'FeatureCollection',
+        //                     features: [
+        //                         {
+        //                             type: 'Feature',
+        //                             properties: {},
+        //                             geometry: {
+        //                                 type: 'Point',
+        //                                 coordinates: coords
+        //                             }
+        //                         }
+        //                     ]
+        //                 }
+        //             },
+        //             paint: {
+        //                 'circle-radius': 10,
+        //                 'circle-color': '#f30'
+        //             }
+        //         });
+        //     }
+        //     getRoute(coords);
+        // });
+
+    };
+
+    function endRoute(finish){
+
+            const coords = finish;
+            console.log(coords)
             const end = {
                 type: 'FeatureCollection',
                 features: [
@@ -1754,10 +1812,16 @@
                 });
             }
             getRoute(coords);
-        });
-    });
+
+        };
+
 
 </script>
+
+<script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANuqMix1FlQmAVcJk-VnF225H-ecxEKok&libraries=places&callback=initAutocomplete">
+</script>
+
 
 </body>
 
