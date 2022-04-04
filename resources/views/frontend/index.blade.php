@@ -1434,131 +1434,6 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
-
-<!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-{{--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANuqMix1FlQmAVcJk-VnF225H-ecxEKok&callback=initMap&libraries=places&v=weekly" async></script>--}}
-
-
-<script>
-    // This example requires the Places library. Include the libraries=places
-    // parameter when you first load the API. For example:
-    // <script
-    // src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBC4ifOTnjExDqnT5lB6Ets0MVExftNHzI&libraries=places">
-    // function initMap() {
-    //     const map = new google.maps.Map(document.getElementById("map"), {
-    //         mapTypeControl: false,
-    //         center: { lat: 52.3555, lng: 1.1743 },
-    //         zoom: 10,
-    //     });
-    //
-    //     new AutocompleteDirectionsHandler(map);
-    // }
-    //
-    // class AutocompleteDirectionsHandler {
-    //     map;
-    //     originPlaceId;
-    //     destinationPlaceId;
-    //     travelMode;
-    //     directionsService;
-    //     directionsRenderer;
-    //     constructor(map) {
-    //         this.map = map;
-    //         this.originPlaceId = "";
-    //         this.destinationPlaceId = "";
-    //         this.travelMode = google.maps.TravelMode.WALKING;
-    //         this.directionsService = new google.maps.DirectionsService();
-    //         this.directionsRenderer = new google.maps.DirectionsRenderer();
-    //         this.directionsRenderer.setMap(map);
-    //
-    //         const originInput = document.getElementById("origin-input");
-    //         const destinationInput = document.getElementById("destination-input");
-    //         const modeSelector = document.getElementById("mode-selector");
-    //         // Specify just the place data fields that you need.
-    //         const originAutocomplete = new google.maps.places.Autocomplete(
-    //             originInput,
-    //             { fields: ["place_id"], componentRestrictions: {'country': ['uk']} }
-    //         );
-    //         // Specify just the place data fields that you need.
-    //         const destinationAutocomplete = new google.maps.places.Autocomplete(
-    //             destinationInput,
-    //             { fields: ["place_id"],componentRestrictions: {'country': ['uk']} }
-    //         );
-    //
-    //         this.setupClickListener(
-    //             "changemode-walking",
-    //             google.maps.TravelMode.WALKING
-    //         );
-    //         this.setupClickListener(
-    //             "changemode-transit",
-    //             google.maps.TravelMode.TRANSIT
-    //         );
-    //         this.setupClickListener(
-    //             "changemode-driving",
-    //             google.maps.TravelMode.DRIVING
-    //         );
-    //         this.setupPlaceChangedListener(originAutocomplete, "ORIG");
-    //         this.setupPlaceChangedListener(destinationAutocomplete, "DEST");
-    //         this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
-    //         this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(
-    //             destinationInput
-    //         );
-    //         this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
-    //     }
-    //     // Sets a listener on a radio button to change the filter type on Places
-    //     // Autocomplete.
-    //     setupClickListener(id, mode) {
-    //         const radioButton = document.getElementById(id);
-    //
-    //         radioButton.addEventListener("click", () => {
-    //             this.travelMode = mode;
-    //             this.route();
-    //         });
-    //     }
-    //     setupPlaceChangedListener(autocomplete, mode) {
-    //         autocomplete.bindTo("bounds", this.map);
-    //         autocomplete.addListener("place_changed", () => {
-    //             const place = autocomplete.getPlace();
-    //
-    //             if (!place.place_id) {
-    //                 window.alert("Please select an option from the dropdown list.");
-    //                 return;
-    //             }
-    //
-    //             if (mode === "ORIG") {
-    //                 this.originPlaceId = place.place_id;
-    //             } else {
-    //                 this.destinationPlaceId = place.place_id;
-    //             }
-    //
-    //             this.route();
-    //         });
-    //     }
-    //     route() {
-    //         if (!this.originPlaceId || !this.destinationPlaceId) {
-    //             return;
-    //         }
-    //
-    //         const me = this;
-    //
-    //         this.directionsService.route(
-    //             {
-    //                 origin: { placeId: this.originPlaceId },
-    //                 destination: { placeId: this.destinationPlaceId },
-    //                 travelMode: this.travelMode,
-    //             },
-    //             (response, status) => {
-    //                 if (status === "OK") {
-    //                     me.directionsRenderer.setDirections(response);
-    //                 } else {
-    //                     window.alert("Directions request failed due to " + status);
-    //                 }
-    //             }
-    //         );
-    //     }
-    // }
-</script>
-
-
 <script>
     let autoPickup;
     let autoDropOff;
@@ -1598,7 +1473,7 @@
             geoPickupLong = place.geometry.viewport.zb.h;
             // function to set start param
             setRoute([geoPickupLat,geoPickupLong]);
-            console.log([geoPickupLat,geoPickupLong])
+            //console.log([geoPickupLat,geoPickupLong])
         }
     }
 
@@ -1613,7 +1488,6 @@
             geoDropOffLat = place.geometry.viewport.Ua.h;
             geoDropOffLong = place.geometry.viewport.zb.h;
             endRoute([geoDropOffLat,geoDropOffLong]);
-
         }
     }
 
@@ -1624,19 +1498,6 @@
         center: [-1.1941504496901416, 52.02630560979523], // starting position [lng, lat]
         zoom: 5 // starting zoom
     });
-    // set the bounds of the map
-    // const bounds = [
-    //     [-73.990593, 40.740121]
-    //     ,
-    //     [-73.990593, 40.740121]
-    // ];
-    // map.setMaxBounds(bounds);
-
-    // an arbitrary start will always be the same
-    // only the end or destination will change
-    //const start = [geoPickupLat,geoPickupLong];
-
-    // this is where the code for the next step will go
     // create a function to make a directions request
     async function getRoute(end) {
         // make a directions request using cycling profile
@@ -1658,6 +1519,7 @@
                 coordinates: route
             }
         };
+        //console.log(geojson)
         // if the route already exists on the map, we'll reset it using setData
         if (map.getSource('route')) {
             map.getSource('route').setData(geojson);
@@ -1683,6 +1545,15 @@
             });
         }
         // add turn instructions here at the end
+        const steps = data.legs[0].steps;
+        let distance = 0;
+        let miles = 0;
+        for (const step of steps) {
+            distance += step.distance;
+            //console.log(step.distance)
+        }
+        miles = distance * 0.00062137
+        console.log(miles)
     }
 
     function setRoute(start) {
@@ -1715,60 +1586,12 @@
                 'circle-color': '#3887be'
             }
         });
-        // this is where the code from the next step will go
-        // map.on('click', (event) => {
-        //     const coords = Object.keys(event.lngLat).map((key) => event.lngLat[key]);
-        //     console.log(coords)
-        //     const end = {
-        //         type: 'FeatureCollection',
-        //         features: [
-        //             {
-        //                 type: 'Feature',
-        //                 properties: {},
-        //                 geometry: {
-        //                     type: 'Point',
-        //                     coordinates: coords
-        //                 }
-        //             }
-        //         ]
-        //     };
-        //     if (map.getLayer('end')) {
-        //         map.getSource('end').setData(end);
-        //     } else {
-        //         map.addLayer({
-        //             id: 'end',
-        //             type: 'circle',
-        //             source: {
-        //                 type: 'geojson',
-        //                 data: {
-        //                     type: 'FeatureCollection',
-        //                     features: [
-        //                         {
-        //                             type: 'Feature',
-        //                             properties: {},
-        //                             geometry: {
-        //                                 type: 'Point',
-        //                                 coordinates: coords
-        //                             }
-        //                         }
-        //                     ]
-        //                 }
-        //             },
-        //             paint: {
-        //                 'circle-radius': 10,
-        //                 'circle-color': '#f30'
-        //             }
-        //         });
-        //     }
-        //     getRoute(coords);
-        // });
-
     };
 
     function endRoute(finish){
 
             const coords = finish;
-            console.log(coords)
+            //console.log(coords)
             const end = {
                 type: 'FeatureCollection',
                 features: [
