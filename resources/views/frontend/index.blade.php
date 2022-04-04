@@ -37,6 +37,7 @@
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css' rel='stylesheet' />
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 {{--    <link rel="stylesheet" type="text/css" href="./style.css" />--}}
 
 
@@ -181,28 +182,29 @@
                     <div class="row">
                         <div class="mb-3 col-lg-9">
                             <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up from</label>
-                            <input type="text" class="form-control" id="geoPickup" placeholder="Type Your Address">
+                            <input type="text" class="form-control" id="geoPickup" placeholder="Type Your Address" required>
                         </div>
                         <div class="mb-3 col-lg-9">
                             <label for="exampleFormControlInput1" class="form-label text-capitalize">drop off at</label>
-                            <input type="text" class="form-control" id="geoDropOff" placeholder="Type Your Address">
+                            <input type="text" class="form-control" id="geoDropOff" placeholder="Type Your Address" required>
                         </div>
                         <div class="mb-3 col-lg-4">
                             <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up time</label>
-                            <input type="time" class="form-control">
+                            <input type="time" class="form-control" required>
                         </div>
                         <div class="mb-3 col-lg-5">
                             <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up date</label>
-                            <input type="date" class="form-control">
+                            <input type="date" class="form-control" required>
                         </div>
                     </div>
-                </form>
+
               <div class="text-center text-lg-start">
-                  <button type="submit" class="btn btn-read-more d-inline-flex align-items-center justify-content-center align-self-center">
+                  <button id="quote" type="submit" class="btn btn-read-more d-inline-flex align-items-center justify-content-center align-self-center">
                       <span>Quote Me!</span>
                       <i class="bi bi-cash-coin"></i>
                   </button>
               </div>
+                </form>
             </div>
           </div>
           <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
@@ -1290,46 +1292,6 @@
 
     </section><!-- End Contact Section -->
 
-
-      <div style="display: none">
-          <input
-              id="origin-input"
-              class="controls"
-              type="text"
-              placeholder="Enter an origin location"
-          />
-
-          <input
-              id="destination-input"
-              class="controls"
-              type="text"
-              placeholder="Enter a destination location"
-          />
-
-          <div id="mode-selector" class="controls">
-              <input
-                  type="radio"
-                  name="type"
-                  id="changemode-walking"
-                  checked="checked"
-              />
-              <label for="changemode-walking">Walking</label>
-
-              <input type="radio" name="type" id="changemode-transit" />
-              <label for="changemode-transit">Transit</label>
-
-              <input type="radio" name="type" id="changemode-driving" />
-              <label for="changemode-driving">Driving</label>
-          </div>
-      </div>
-
-      <div id="map"></div>
-
-
-
-
-
-
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
@@ -1441,6 +1403,9 @@
     let geoPickupLong;
     let geoDropOffLat;
     let geoDropOffLong;
+
+
+    // google api places
     function initAutocomplete(){
         autoPickup = new google.maps.places.Autocomplete(
             document.getElementById('geoPickup'),
@@ -1491,11 +1456,12 @@
         }
     }
 
+    // mapbox api
     mapboxgl.accessToken = 'pk.eyJ1IjoiZ3JvdXA0bG9naXN0aWNzIiwiYSI6ImNsMWJ5dmRtejAyaTQzZnAzdTgzZTI0NnAifQ.mR63lFlRLTQg2kE5swvmsw';
     const map = new mapboxgl.Map({
         container: 'map', // container ID
         style: 'mapbox://styles/mapbox/streets-v11', // style URL
-        center: [-1.1941504496901416, 52.02630560979523], // starting position [lng, lat]
+        center: [-1.1941504496901416, 53.3], // starting position [lng, lat]
         zoom: 5 // starting zoom
     });
     // create a function to make a directions request
