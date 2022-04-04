@@ -214,8 +214,17 @@
         </div>
       </div>
 
-    </section><!-- End About Section -->
 
+
+          <div id="vehicles" class="container" data-aos="fade-up">
+
+              <header class="section-header">
+                  <p>Choose your vehicle</p>
+              </header>
+
+              
+          </div>
+    </section><!-- End About Section -->
     <!-- ======= Values Section ======= -->
     <section id="values" class="values">
 
@@ -1520,6 +1529,7 @@
         }
         miles = distance * 0.00062137
         console.log(miles)
+
     }
 
     function setRoute(start) {
@@ -1603,7 +1613,23 @@
 
         };
 
-
+    // const swiper = new Swiper('.swiper', {
+    //     // Optional parameters
+    //     direction: 'horizontal',
+    //     loop: true,
+    //
+    //     // If we need pagination
+    //     // pagination: {
+    //     //     el: '.swiper-pagination',
+    //     // },
+    //
+    //     // Navigation arrows
+    //     navigation: {
+    //         nextEl: '.swiper-button-next',
+    //         prevEl: '.swiper-button-prev',
+    //     },
+    //
+    // });
 </script>
 
 <script async
