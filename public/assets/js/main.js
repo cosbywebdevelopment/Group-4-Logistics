@@ -251,7 +251,7 @@
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
       },
-
+      initialSlide: 0,
     speed: 600,
     loop: true,
     autoplay: {
@@ -260,11 +260,11 @@
         pauseOnMouseEnter: true,
     },
     slidesPerView: 'auto',
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    },
+    // pagination: {
+    //   el: '.swiper-pagination',
+    //   type: 'bullets',
+    //   clickable: true
+    // },
     breakpoints: {
       320: {
         slidesPerView: 1,
