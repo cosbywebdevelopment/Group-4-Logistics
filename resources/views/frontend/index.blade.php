@@ -228,7 +228,8 @@
                           <div class="testimonial-item">
                               <!-- Button trigger modal -->
                               <button type="button" class="btn btn-primary vehicleModal"
-                                      data-type="Artic Truck">
+                                      data-type="Artic Truck"
+                                      data-mileage-cost="">
                                   Choose this Transport
                               </button>
                               <div class="profile mt-auto">
@@ -242,7 +243,8 @@
                       <div class="swiper-slide">
                           <div class="testimonial-item">
                               <button type="button" class="btn btn-primary vehicleModal"
-                                      data-type="Small Van">
+                                      data-type="Small Van"
+                                      data-mileage-cost="0.75">
                                   Choose this Transport
                               </button>
                               <div class="profile mt-auto">
@@ -256,7 +258,8 @@
                       <div class="swiper-slide">
                           <div class="testimonial-item">
                               <button type="button" class="btn btn-primary vehicleModal"
-                                      data-type="Short Wheel Base Van">
+                                      data-type="Short Wheel Base Van"
+                                      data-mileage-cost="0.85">
                                   Choose this Transport
                               </button>
                               <div class="profile mt-auto">
@@ -270,7 +273,8 @@
                       <div class="swiper-slide">
                           <div class="testimonial-item">
                               <button type="button" class="btn btn-primary vehicleModal"
-                                      data-type="Long Wheelbase Van">
+                                      data-type="Long Wheelbase Van"
+                                      data-mileage-cost="1.00">
                                   Choose this Transport
                               </button>
                               <div class="profile mt-auto">
@@ -284,7 +288,8 @@
                       <div class="swiper-slide">
                           <div class="testimonial-item">
                               <button type="button" class="btn btn-primary vehicleModal"
-                                      data-type="Extra Long Wheelbase Van">
+                                      data-type="Extra Long Wheelbase Van"
+                                      data-mileage-cost="1.15">
                                   Choose this Transport
                               </button>
                               <div class="profile mt-auto">
@@ -298,7 +303,8 @@
                       <div class="swiper-slide">
                           <div class="testimonial-item">
                               <button type="button" class="btn btn-primary vehicleModal"
-                                      data-type="Luton Van">
+                                      data-type="Luton Van"
+                                      data-mileage-cost="">
                                   Choose this Transport
                               </button>
                               <div class="profile mt-auto">
@@ -312,7 +318,8 @@
                       <div class="swiper-slide">
                           <div class="testimonial-item">
                               <button type="button" class="btn btn-primary vehicleModal"
-                                      data-type="7.5 Tonne Truck">
+                                      data-type="7.5 Tonne Truck"
+                                      data-mileage-cost="">
                                   Choose this Transport
                               </button>
                               <div class="profile mt-auto">
@@ -326,7 +333,8 @@
                       <div class="swiper-slide">
                           <div class="testimonial-item">
                               <button type="button" class="btn btn-primary vehicleModal"
-                                      data-type="18 Tonne Truck">
+                                      data-type="18 Tonne Truck"
+                                      data-mileage-cost="">
                                   Choose this Transport
                               </button>
                               <div class="profile mt-auto">
@@ -1430,7 +1438,7 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                      <p>Milage: <span id="miles"></span></p>
+                      <p>Milage: <span id="miles"></span>x<span id="mileage_cost"></span></p>
                   </div>
                   <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -1557,9 +1565,11 @@
 
     $('.vehicleModal').click(function(event) {
         let type = $(this).data('type');
+        let mileageCost = $(this).data('mileage-cost');
         //let businessName = $(this).data('businessname');
         // console.log(businessId)
-        $("#typeLabel").text( type );
+        $("#typeLabel").text(type);
+        $("#mileage_cost").text(mileageCost);
         $("#miles").text(miles.toFixed());
         // $("#event_form").prop('action', '/event/add/'+businessId);
         $('#vehicleModal').modal('show');
