@@ -224,14 +224,10 @@
 
               <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="200">
                   <div class="swiper-wrapper">
-                      <div class="swiper-slide vehicleModal">
+                      <div class="swiper-slide vehicleModal"
+                           data-type="18 Tonne Truck"
+                           data-mileage-cost="">
                           <div class="testimonial-item">
-                              <!-- Button trigger modal -->
-                              <button type="button" class="btn btn-primary vehicleModal"
-                                      data-type="Artic Truck"
-                                      data-mileage-cost="">
-                                  Choose this Transport
-                              </button>
                               <div class="profile mt-auto">
                                   <img width="250px" src="assets/img/vehicles/Artic-Truck-Speedy-Freight-White-lorry-edit-LEFT-FACE-RGB.png" class="" alt="">
                                   <h3>Artic Truck</h3>
@@ -240,13 +236,10 @@
                           </div>
                       </div><!-- End testimonial item -->
 
-                      <div class="swiper-slide vehicleModal">
+                      <div class="swiper-slide vehicleModal"
+                           data-type="Small Van"
+                           data-mileage-cost="0.75">
                           <div class="testimonial-item">
-                              <button type="button" class="btn btn-primary vehicleModal"
-                                      data-type="Small Van"
-                                      data-mileage-cost="0.75">
-                                  Choose this Transport
-                              </button>
                               <div class="profile mt-auto">
                                   <img width="250px" src="assets/img/vehicles/Speedy-Freight-Small-Van-RGB.png" class="" alt="">
                                   <h3>Small Van</h3>
@@ -255,13 +248,10 @@
                           </div>
                       </div><!-- End testimonial item -->
 
-                      <div class="swiper-slide vehicleModal">
+                      <div class="swiper-slide vehicleModal"
+                           data-type="Short Wheel Base Van"
+                           data-mileage-cost="0.85">
                           <div class="testimonial-item">
-                              <button type="button" class="btn btn-primary vehicleModal"
-                                      data-type="Short Wheel Base Van"
-                                      data-mileage-cost="0.85">
-                                  Choose this Transport
-                              </button>
                               <div class="profile mt-auto">
                                   <img width="250px" src="assets/img/vehicles/Speedy-Freight-Short-Wheel-Base-RGB.png" class="" alt="">
                                   <h3>Short Wheel Base Van</h3>
@@ -270,13 +260,10 @@
                           </div>
                       </div><!-- End testimonial item -->
 
-                      <div class="swiper-slide vehicleModal">
+                      <div class="swiper-slide vehicleModal"
+                           data-type="Long Wheelbase Van"
+                           data-mileage-cost="1.00">
                           <div class="testimonial-item">
-                              <button type="button" class="btn btn-primary vehicleModal"
-                                      data-type="Long Wheelbase Van"
-                                      data-mileage-cost="1.00">
-                                  Choose this Transport
-                              </button>
                               <div class="profile mt-auto">
                                   <img width="250px" src="assets/img/vehicles/Speedy-Freight-Long-Wheel-Base-Van-RGB.png" class="" alt="">
                                   <h3>Long Wheelbase Van</h3>
@@ -285,13 +272,11 @@
                           </div>
                       </div><!-- End testimonial item -->
 
-                      <div class="swiper-slide vehicleModal">
+                      <div class="swiper-slide vehicleModal"
+                           data-type="Extra Long Wheelbase Van"
+                           data-mileage-cost="1.15">
                           <div class="testimonial-item">
-                              <button type="button" class="btn btn-primary vehicleModal"
-                                      data-type="Extra Long Wheelbase Van"
-                                      data-mileage-cost="1.15">
-                                  Choose this Transport
-                              </button>
+
                               <div class="profile mt-auto">
                                   <img width="250px" src="assets/img/vehicles/Speedy-Freight-Extra-Long-Wheelbase-RGB.png" class="" alt="">
                                   <h3>Extra Long Wheelbase Van</h3>
@@ -300,13 +285,11 @@
                           </div>
                       </div><!-- End testimonial item -->
 
-                      <div class="swiper-slide vehicleModal">
+                      <div class="swiper-slide vehicleModal"
+                           data-type="18 Tonne Truck"
+                           data-mileage-cost="">
                           <div class="testimonial-item">
-                              <button type="button" class="btn btn-primary vehicleModal"
-                                      data-type="Luton Van"
-                                      data-mileage-cost="">
-                                  Choose this Transport
-                              </button>
+
                               <div class="profile mt-auto">
                                   <img width="250px" src="assets/img/vehicles/Speedy-Freight-Luton-Van-RGB.png" class="" alt="">
                                   <h3>Luton Van</h3>
@@ -315,13 +298,11 @@
                           </div>
                       </div><!-- End testimonial item -->
 
-                      <div class="swiper-slide vehicleModal">
+                      <div class="swiper-slide vehicleModal"
+                           data-type="18 Tonne Truck"
+                           data-mileage-cost="">
                           <div class="testimonial-item">
-                              <button type="button" class="btn btn-primary vehicleModal"
-                                      data-type="7.5 Tonne Truck"
-                                      data-mileage-cost="">
-                                  Choose this Transport
-                              </button>
+
                               <div class="profile mt-auto">
                                   <img width="250px" src="assets/img/vehicles/Speedy-Freight-7.5-Tonne-Truck-RGB.png" class="" alt="">
                                   <h3>7.5 Tonne Truck</h3>
@@ -330,13 +311,11 @@
                           </div>
                       </div><!-- End testimonial item -->
 
-                      <div class="swiper-slide vehicleModal">
+                      <div class="swiper-slide vehicleModal"
+                           data-type="18 Tonne Truck"
+                           data-mileage-cost="">
                           <div class="testimonial-item">
-                              <button type="button" class="btn btn-primary vehicleModal"
-                                      data-type="18 Tonne Truck"
-                                      data-mileage-cost="">
-                                  Choose this Transport
-                              </button>
+
                               <div class="profile mt-auto">
                                   <img width="250px" src="assets/img/vehicles/Speedy-Freight-18-Tonne-Truck-RGB.png" class="" alt="">
                                   <h3>18 Tonne Truck</h3>
