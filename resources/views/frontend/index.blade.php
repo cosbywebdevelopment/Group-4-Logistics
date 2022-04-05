@@ -240,6 +240,11 @@
                            data-type="Small Van"
                            data-mileage-cost="0.75">
                           <div class="testimonial-item">
+                              <p>Length: 1.3m</p>
+                              <p>Height: 1.0m</p>
+                              <p>Width: 1.2m</p>
+                              <p>Pallets: 1 small</p>
+                              <p>Max Weight: 400kg</p>
                               <div class="profile mt-auto">
                                   <img width="250px" src="assets/img/vehicles/Speedy-Freight-Small-Van-RGB.png" class="" alt="">
                                   <h3>Small Van</h3>
@@ -252,6 +257,11 @@
                            data-type="Short Wheel Base Van"
                            data-mileage-cost="0.85">
                           <div class="testimonial-item">
+                              <p>Length: 2.1m</p>
+                              <p>Height: 1.4m</p>
+                              <p>Width: 1.2m</p>
+                              <p>Pallets: Up to 2</p>
+                              <p>Max Weight: 800kg</p>
                               <div class="profile mt-auto">
                                   <img width="250px" src="assets/img/vehicles/Speedy-Freight-Short-Wheel-Base-RGB.png" class="" alt="">
                                   <h3>Short Wheel Base Van</h3>
@@ -264,6 +274,11 @@
                            data-type="Long Wheelbase Van"
                            data-mileage-cost="1.00">
                           <div class="testimonial-item">
+                              <p>Length: 3.3m</p>
+                              <p>Height: 1.70m</p>
+                              <p>Width: 1.2m</p>
+                              <p>Pallets: Up to 3</p>
+                              <p>Max Weight: 1,200kg</p>
                               <div class="profile mt-auto">
                                   <img width="250px" src="assets/img/vehicles/Speedy-Freight-Long-Wheel-Base-Van-RGB.png" class="" alt="">
                                   <h3>Long Wheelbase Van</h3>
@@ -276,7 +291,11 @@
                            data-type="Extra Long Wheelbase Van"
                            data-mileage-cost="1.15">
                           <div class="testimonial-item">
-
+                              <p>Length: 4m</p>
+                              <p>Height: 1.75m</p>
+                              <p>Width: 1.2m</p>
+                              <p>Pallets: Up to 4</p>
+                              <p>Max Weight: 1,000kg</p>
                               <div class="profile mt-auto">
                                   <img width="250px" src="assets/img/vehicles/Speedy-Freight-Extra-Long-Wheelbase-RGB.png" class="" alt="">
                                   <h3>Extra Long Wheelbase Van</h3>
@@ -286,10 +305,14 @@
                       </div><!-- End testimonial item -->
 
                       <div class="swiper-slide vehicleModal"
-                           data-type="18 Tonne Truck"
+                           data-type="Luton Van"
                            data-mileage-cost="">
                           <div class="testimonial-item">
-
+                              <p>Length: 4.2m</p>
+                              <p>Height: 2.1m</p>
+                              <p>Width: 2.0m</p>
+                              <p>Pallets: Up to 6</p>
+                              <p>Max Weight: 2,700kg</p>
                               <div class="profile mt-auto">
                                   <img width="250px" src="assets/img/vehicles/Speedy-Freight-Luton-Van-RGB.png" class="" alt="">
                                   <h3>Luton Van</h3>
@@ -302,7 +325,11 @@
                            data-type="18 Tonne Truck"
                            data-mileage-cost="">
                           <div class="testimonial-item">
-
+                              <p>Length: 4.2m</p>
+                              <p>Height: 2.1m</p>
+                              <p>Width: 2.0m</p>
+                              <p>Pallets: Up to 6</p>
+                              <p>Max Weight: 2,700kg</p>
                               <div class="profile mt-auto">
                                   <img width="250px" src="assets/img/vehicles/Speedy-Freight-7.5-Tonne-Truck-RGB.png" class="" alt="">
                                   <h3>7.5 Tonne Truck</h3>
