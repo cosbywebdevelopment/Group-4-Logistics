@@ -226,7 +226,11 @@
                   <div class="swiper-wrapper">
                       <div class="swiper-slide">
                           <div class="testimonial-item">
-
+                              <!-- Button trigger modal -->
+                              <button type="button" class="btn btn-primary vehicleModal"
+                                      data-type="Artic Truck">
+                                  Choose this Transport
+                              </button>
                               <div class="profile mt-auto">
                                   <img width="250px" src="assets/img/vehicles/Artic-Truck-Speedy-Freight-White-lorry-edit-LEFT-FACE-RGB.png" class="" alt="">
                                   <h3>Artic Truck</h3>
@@ -237,7 +241,10 @@
 
                       <div class="swiper-slide">
                           <div class="testimonial-item">
-
+                              <button type="button" class="btn btn-primary vehicleModal"
+                                      data-type="Small Van">
+                                  Choose this Transport
+                              </button>
                               <div class="profile mt-auto">
                                   <img width="250px" src="assets/img/vehicles/Speedy-Freight-Small-Van-RGB.png" class="" alt="">
                                   <h3>Small Van</h3>
@@ -248,7 +255,10 @@
 
                       <div class="swiper-slide">
                           <div class="testimonial-item">
-
+                              <button type="button" class="btn btn-primary vehicleModal"
+                                      data-type="Short Wheel Base Van">
+                                  Choose this Transport
+                              </button>
                               <div class="profile mt-auto">
                                   <img width="250px" src="assets/img/vehicles/Speedy-Freight-Short-Wheel-Base-RGB.png" class="" alt="">
                                   <h3>Short Wheel Base Van</h3>
@@ -259,7 +269,10 @@
 
                       <div class="swiper-slide">
                           <div class="testimonial-item">
-
+                              <button type="button" class="btn btn-primary vehicleModal"
+                                      data-type="Long Wheelbase Van">
+                                  Choose this Transport
+                              </button>
                               <div class="profile mt-auto">
                                   <img width="250px" src="assets/img/vehicles/Speedy-Freight-Long-Wheel-Base-Van-RGB.png" class="" alt="">
                                   <h3>Long Wheelbase Van</h3>
@@ -270,7 +283,10 @@
 
                       <div class="swiper-slide">
                           <div class="testimonial-item">
-
+                              <button type="button" class="btn btn-primary vehicleModal"
+                                      data-type="Extra Long Wheelbase Van">
+                                  Choose this Transport
+                              </button>
                               <div class="profile mt-auto">
                                   <img width="250px" src="assets/img/vehicles/Speedy-Freight-Extra-Long-Wheelbase-RGB.png" class="" alt="">
                                   <h3>Extra Long Wheelbase Van</h3>
@@ -281,7 +297,10 @@
 
                       <div class="swiper-slide">
                           <div class="testimonial-item">
-
+                              <button type="button" class="btn btn-primary vehicleModal"
+                                      data-type="Luton Van">
+                                  Choose this Transport
+                              </button>
                               <div class="profile mt-auto">
                                   <img width="250px" src="assets/img/vehicles/Speedy-Freight-Luton-Van-RGB.png" class="" alt="">
                                   <h3>Luton Van</h3>
@@ -292,7 +311,10 @@
 
                       <div class="swiper-slide">
                           <div class="testimonial-item">
-
+                              <button type="button" class="btn btn-primary vehicleModal"
+                                      data-type="7.5 Tonne Truck">
+                                  Choose this Transport
+                              </button>
                               <div class="profile mt-auto">
                                   <img width="250px" src="assets/img/vehicles/Speedy-Freight-7.5-Tonne-Truck-RGB.png" class="" alt="">
                                   <h3>7.5 Tonne Truck</h3>
@@ -303,7 +325,10 @@
 
                       <div class="swiper-slide">
                           <div class="testimonial-item">
-
+                              <button type="button" class="btn btn-primary vehicleModal"
+                                      data-type="18 Tonne Truck">
+                                  Choose this Transport
+                              </button>
                               <div class="profile mt-auto">
                                   <img width="250px" src="assets/img/vehicles/Speedy-Freight-18-Tonne-Truck-RGB.png" class="" alt="">
                                   <h3>18 Tonne Truck</h3>
@@ -1396,6 +1421,27 @@
 
     </section><!-- End Contact Section -->
 
+      <!-- Modal -->
+      <div class="modal fade" id="vehicleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="typeLabel"></h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                      ...
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
@@ -1507,6 +1553,17 @@
     let geoPickupLong;
     let geoDropOffLat;
     let geoDropOffLong;
+
+    $('.vehicleModal').click(function(event) {
+        let type = $(this).data('type');
+        //let businessName = $(this).data('businessname');
+        // console.log(businessId)
+        $("#typeLabel").text( type );
+        // $("#pub_name").text( businessName );
+        // $("#event_form").prop('action', '/event/add/'+businessId);
+        $('#vehicleModal').modal('show');
+    });
+
 
     $("#quote_form").submit(function (e){
         e.preventDefault()
