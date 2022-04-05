@@ -215,7 +215,7 @@
       </div>
     </section>
 
-        <section id="" class="testimonials">
+        <section id="vehicle" class="testimonials">
           <div id="vehicles" class="container" style="display: none">
 
               <header class="section-header">
@@ -1510,7 +1510,13 @@
 
     $("#quote_form").submit(function (e){
         e.preventDefault()
-        $("#vehicles").show('slow')//.attr('data-aos','fade-down')
+        // An offset to push the content down from the top.
+        var offset = 60;
+        // Our scroll target : the top position of the
+        var target = $('#vehicle').offset().top - offset;
+        // The magic...smooth scrollin' goodness.
+        $('html, body').animate({scrollTop:target}, 600);
+        $("#vehicles").show('fade')//.attr('data-aos','fade-down')
     })
 
 
