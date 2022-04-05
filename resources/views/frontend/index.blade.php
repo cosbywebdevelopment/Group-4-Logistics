@@ -178,23 +178,23 @@
           <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
             <div class="content">
               <h3>with our instant quote tool you can be sure what you'll be paying</h3>
-                <form>
+                <form id="quote_form">
                     <div class="row">
                         <div class="mb-3 col-lg-9">
                             <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up from</label>
-                            <input type="text" class="form-control" id="geoPickup" placeholder="Type Your Address" required>
+                            <input type="text" class="form-control" id="geoPickup" placeholder="Type Your Address" >
                         </div>
                         <div class="mb-3 col-lg-9">
                             <label for="exampleFormControlInput1" class="form-label text-capitalize">drop off at</label>
-                            <input type="text" class="form-control" id="geoDropOff" placeholder="Type Your Address" required>
+                            <input type="text" class="form-control" id="geoDropOff" placeholder="Type Your Address" >
                         </div>
                         <div class="mb-3 col-lg-4">
                             <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up time</label>
-                            <input type="time" class="form-control" required>
+                            <input type="time" class="form-control" >
                         </div>
                         <div class="mb-3 col-lg-5">
                             <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up date</label>
-                            <input type="date" class="form-control" required>
+                            <input type="date" class="form-control" >
                         </div>
                     </div>
 
@@ -213,16 +213,104 @@
           </div>
         </div>
       </div>
+    </section>
 
-
-
-          <div id="vehicles" class="container" data-aos="fade-up">
+        <section id="" class="testimonials">
+          <div id="vehicles" class="container" style="display: none">
 
               <header class="section-header">
                   <p>Choose your vehicle</p>
               </header>
 
-              
+              <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="200">
+                  <div class="swiper-wrapper">
+                      <div class="swiper-slide">
+                          <div class="testimonial-item">
+                              <div class="stars">
+                                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                              </div>
+                              <p>
+                                  Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+                              </p>
+                              <div class="profile mt-auto">
+                                  <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                                  <h3>Saul Goodman</h3>
+                                  <h4>Ceo &amp; Founder</h4>
+                              </div>
+                          </div>
+                      </div><!-- End testimonial item -->
+
+                      <div class="swiper-slide">
+                          <div class="testimonial-item">
+                              <div class="stars">
+                                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                              </div>
+                              <p>
+                                  Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
+                              </p>
+                              <div class="profile mt-auto">
+                                  <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+                                  <h3>Sara Wilsson</h3>
+                                  <h4>Designer</h4>
+                              </div>
+                          </div>
+                      </div><!-- End testimonial item -->
+
+                      <div class="swiper-slide">
+                          <div class="testimonial-item">
+                              <div class="stars">
+                                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                              </div>
+                              <p>
+                                  Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
+                              </p>
+                              <div class="profile mt-auto">
+                                  <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
+                                  <h3>Jena Karlis</h3>
+                                  <h4>Store Owner</h4>
+                              </div>
+                          </div>
+                      </div><!-- End testimonial item -->
+
+                      <div class="swiper-slide">
+                          <div class="testimonial-item">
+                              <div class="stars">
+                                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                              </div>
+                              <p>
+                                  Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
+                              </p>
+                              <div class="profile mt-auto">
+                                  <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
+                                  <h3>Matt Brandon</h3>
+                                  <h4>Freelancer</h4>
+                              </div>
+                          </div>
+                      </div><!-- End testimonial item -->
+
+                      <div class="swiper-slide">
+                          <div class="testimonial-item">
+                              <div class="stars">
+                                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                              </div>
+                              <p>
+                                  Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
+                              </p>
+                              <div class="profile mt-auto">
+                                  <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
+                                  <h3>John Larson</h3>
+                                  <h4>Entrepreneur</h4>
+                              </div>
+                          </div>
+                      </div><!-- End testimonial item -->
+
+                  </div>
+
+                  <!-- If we need navigation buttons -->
+                  <div class="swiper-button-prev"></div>
+                  <div class="swiper-button-next"></div>
+              </div>
+
           </div>
     </section><!-- End About Section -->
     <!-- ======= Values Section ======= -->
@@ -1413,6 +1501,11 @@
     let geoDropOffLat;
     let geoDropOffLong;
 
+    $("#quote_form").submit(function (e){
+        e.preventDefault()
+        $("#vehicles").show('slow')//.attr('data-aos','fade-down')
+    })
+
 
     // google api places
     function initAutocomplete(){
@@ -1558,7 +1651,7 @@
                 }
             },
             paint: {
-                'circle-radius': 10,
+                'circle-radius': 5,
                 'circle-color': '#3887be'
             }
         });
@@ -1604,7 +1697,7 @@
                         }
                     },
                     paint: {
-                        'circle-radius': 10,
+                        'circle-radius': 5,
                         'circle-color': '#f30'
                     }
                 });

@@ -31,7 +31,7 @@
   }
 
   /**
-   * Easy on scroll event listener 
+   * Easy on scroll event listener
    */
   const onscroll = (el, listener) => {
     el.addEventListener('scroll', listener)
@@ -221,7 +221,7 @@
   });
 
   /**
-   * Initiate portfolio lightbox 
+   * Initiate portfolio lightbox
    */
   const portfolioLightbox = GLightbox({
     selector: '.portfokio-lightbox'
@@ -246,12 +246,18 @@
   /**
    * Testimonials slider
    */
-  new Swiper('.testimonials-slider', {
+  let mySwiper = new Swiper('.testimonials-slider', {
+      navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+      },
+
     speed: 600,
     loop: true,
     autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
+      delay: 3000,
+      disableOnInteraction: false,
+        pauseOnMouseEnter: true,
     },
     slidesPerView: 'auto',
     pagination: {
@@ -270,7 +276,14 @@
       }
     }
   });
-
+    // $('.testimonials-slider').on('mouseenter', function(e){
+    //     //console.log('stop autoplay');
+    //     mySwiper.autoplay.stop();
+    // })
+    // $('.testimonials-slider').on('mouseleave', function(e){
+    //     //console.log('start autoplay');
+    //     mySwiper.autoplay.start();
+    // })
   /**
    * Animation on scroll
    */
