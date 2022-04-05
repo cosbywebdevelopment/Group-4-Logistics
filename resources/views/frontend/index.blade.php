@@ -224,7 +224,7 @@
 
               <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="200">
                   <div class="swiper-wrapper">
-                      <div class="swiper-slide">
+                      <div class="swiper-slide vehicleModal">
                           <div class="testimonial-item">
                               <!-- Button trigger modal -->
                               <button type="button" class="btn btn-primary vehicleModal"
@@ -240,7 +240,7 @@
                           </div>
                       </div><!-- End testimonial item -->
 
-                      <div class="swiper-slide">
+                      <div class="swiper-slide vehicleModal">
                           <div class="testimonial-item">
                               <button type="button" class="btn btn-primary vehicleModal"
                                       data-type="Small Van"
@@ -255,7 +255,7 @@
                           </div>
                       </div><!-- End testimonial item -->
 
-                      <div class="swiper-slide">
+                      <div class="swiper-slide vehicleModal">
                           <div class="testimonial-item">
                               <button type="button" class="btn btn-primary vehicleModal"
                                       data-type="Short Wheel Base Van"
@@ -270,7 +270,7 @@
                           </div>
                       </div><!-- End testimonial item -->
 
-                      <div class="swiper-slide">
+                      <div class="swiper-slide vehicleModal">
                           <div class="testimonial-item">
                               <button type="button" class="btn btn-primary vehicleModal"
                                       data-type="Long Wheelbase Van"
@@ -285,7 +285,7 @@
                           </div>
                       </div><!-- End testimonial item -->
 
-                      <div class="swiper-slide">
+                      <div class="swiper-slide vehicleModal">
                           <div class="testimonial-item">
                               <button type="button" class="btn btn-primary vehicleModal"
                                       data-type="Extra Long Wheelbase Van"
@@ -300,7 +300,7 @@
                           </div>
                       </div><!-- End testimonial item -->
 
-                      <div class="swiper-slide">
+                      <div class="swiper-slide vehicleModal">
                           <div class="testimonial-item">
                               <button type="button" class="btn btn-primary vehicleModal"
                                       data-type="Luton Van"
@@ -315,7 +315,7 @@
                           </div>
                       </div><!-- End testimonial item -->
 
-                      <div class="swiper-slide">
+                      <div class="swiper-slide vehicleModal">
                           <div class="testimonial-item">
                               <button type="button" class="btn btn-primary vehicleModal"
                                       data-type="7.5 Tonne Truck"
@@ -330,7 +330,7 @@
                           </div>
                       </div><!-- End testimonial item -->
 
-                      <div class="swiper-slide">
+                      <div class="swiper-slide vehicleModal">
                           <div class="testimonial-item">
                               <button type="button" class="btn btn-primary vehicleModal"
                                       data-type="18 Tonne Truck"
