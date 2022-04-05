@@ -1585,9 +1585,9 @@
     $("#quote_form").submit(function (e){
         e.preventDefault()
         // An offset to push the content down from the top.
-        var offset = 60;
+        let offset = 60;
         // Our scroll target : the top position of the
-        var target = $('#vehicle').offset().top - offset;
+        let target = $('#vehicle').offset().top - offset;
         // The magic...smooth scrollin' goodness.
         $('html, body').animate({scrollTop:target}, 600);
         $("#vehicles").show('fade')//.attr('data-aos','fade-down')
