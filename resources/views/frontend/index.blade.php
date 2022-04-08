@@ -1440,11 +1440,13 @@
           <div class="modal-dialog">
               <div class="modal-content">
                   <div class="modal-header">
-                      <h5 class="modal-title" id="typeLabel"></h5>
+                      <h5 class="modal-title" id="">Your sellection</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
+                      <h3>You have chosen a <span id="typeLabel"></span></h3>
                       <p>Milage: <span id="miles"></span>x<span id="mileage_cost"></span></p>
+                      <p id="cost"></p>
                   </div>
                   <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -1572,11 +1574,13 @@
     $('.vehicleModal').click(function(event) {
         let type = $(this).data('type');
         let mileageCost = $(this).data('mileage-cost');
+        let cost = miles.toFixed() * mileageCost;
         //let businessName = $(this).data('businessname');
         // console.log(businessId)
         $("#typeLabel").text(type);
         $("#mileage_cost").text(mileageCost);
         $("#miles").text(miles.toFixed());
+        $("#cost").text('£' + cost.toFixed());
         // $("#event_form").prop('action', '/event/add/'+businessId);
         $('#vehicleModal').modal('show');
     });
