@@ -14,4 +14,10 @@ class HomeController
     {
         return view('frontend.index');
     }
+
+    public function takeOrder()
+    {
+        // place order in cart
+        // from products table
+    }
 }
