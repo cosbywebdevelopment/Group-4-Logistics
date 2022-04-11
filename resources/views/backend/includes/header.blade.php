@@ -63,7 +63,9 @@
         @include('backend.includes.partials.breadcrumbs')
 
         <div class="c-subheader-nav mfe-2">
-            @yield('breadcrumb-links')
+            @if(!Route::is('admin.dashboard.frontend') )
+                @yield('breadcrumb-links')
+            @endif
         </div>
     </div><!--c-subheader-->
 </header>
