@@ -13,7 +13,7 @@
         </div>
         <div class="card-body">
             <h5 class="card-title">Matrix Options</h5>
-            <p class="card-text">You can change the options below.</p>
+            <p class="card-text">You can change the values below.</p>
 
             <table class="table table-responsive-sm">
                 <thead>
