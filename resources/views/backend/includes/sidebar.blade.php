@@ -96,6 +96,16 @@
                 </ul>
             </li>
         @endif
+
+        <li class="c-sidebar-nav-item">
+            <x-utils.link
+                class="c-sidebar-nav-link"
+                :href="route('admin.dashboard.frontend')"
+                :active="activeClass(Route::is('admin.dashboard.frontend.*'), 'c-active')"
+                icon="c-sidebar-nav-icon cil-applications"
+                :text="__('Matrix')" />
+        </li>
+
     </ul>
 
     <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized"></button>
