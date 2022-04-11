@@ -17,3 +17,9 @@ Route::get('dashboard/frontend', [DashboardController::class, 'frontend'])
     ->breadcrumbs(function (Trail $trail) {
         $trail->push(__('Home'), route('admin.dashboard.frontend'));
     });
+
+Route::patch('dashboard/frontend/update/{id}', [DashboardController::class, 'update'])
+    ->name('dashboard.frontend.update')
+    ->breadcrumbs(function (Trail $trail) {
+        $trail->push(__('Home'), route('admin.dashboard.frontend.update'));
+    });

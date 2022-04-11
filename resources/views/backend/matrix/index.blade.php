@@ -34,19 +34,20 @@
                 <tbody>
 
                 @foreach($product as $products)
-                    <form>
+                    <form method="post" action="/admin/dashboard/frontend/update/{{ $products->id }}">
+                        @method('PATCH')
+                        @csrf
                         <tr>
-                            <td hidden><input class="form-control" value="{{ $products->id }}"></td>
-                            <td><input class="form-control" value="{{ $products->type }}"></td>
-                            <td><input class="form-control" value="{{ $products->length }}"></td>
-                            <td><input class="form-control" value="{{ $products->height }}"></td>
-                            <td><input class="form-control" value="{{ $products->width }}"></td>
-                            <td><input class="form-control" value="{{ $products->pallets }}"></td>
-                            <td><input class="form-control" value="{{ $products->max_weight }}"></td>
-                            <td><input class="form-control" value="{{ $products->min_charge }}"></td>
-                            <td><input class="form-control" value="{{ $products->per_mile }}"></td>
-                            <td><input class="form-control" value="{{ $products->collection_5 }}"></td>
-                            <td><input class="form-control" value="{{ $products->collection_weekend }}"></td>
+                            <td><input name="type" class="form-control" value="{{ $products->type }}"></td>
+                            <td><input name="length" class="form-control" value="{{ $products->length }}"></td>
+                            <td><input name="height" class="form-control" value="{{ $products->height }}"></td>
+                            <td><input name="width" class="form-control" value="{{ $products->width }}"></td>
+                            <td><input name="pallets" class="form-control" value="{{ $products->pallets }}"></td>
+                            <td><input name="max_weight" class="form-control" value="{{ $products->max_weight }}"></td>
+                            <td><input name="min_charge" class="form-control" value="{{ $products->min_charge }}"></td>
+                            <td><input name="per_mile" class="form-control" value="{{ $products->per_mile }}"></td>
+                            <td><input name="collection_5" class="form-control" value="{{ $products->collection_5 }}"></td>
+                            <td><input name="collection_weekend" class="form-control" value="{{ $products->collection_weekend }}"></td>
                             <td><button type="submit" class="btn btn-primary">Update</button></td>
                         </tr>
                     </form>
