@@ -1575,13 +1575,10 @@
         let type = $(this).data('type');
         let mileageCost = $(this).data('mileage-cost');
         let cost = miles.toFixed() * mileageCost;
-        //let businessName = $(this).data('businessname');
-        // console.log(businessId)
         $("#typeLabel").text(type);
         $("#mileage_cost").text(mileageCost);
         $("#miles").text(miles.toFixed());
         $("#cost").text('£' + cost.toFixed());
-        // $("#event_form").prop('action', '/event/add/'+businessId);
         $('#vehicleModal').modal('show');
     });
 
