@@ -9,6 +9,18 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'type',
+        'height',
+        'width',
+        'pallets',
+        'max_weight',
+        'min_charge',
+        'per_mile',
+        'collection_5',
+        'collection_weekend',
+
+    ];
 
 
 }
