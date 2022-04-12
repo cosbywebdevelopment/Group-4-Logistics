@@ -48,52 +48,6 @@
     * License: https://bootstrapmade.com/license/
     ======================================================== -->
 </head>
-{{--<style>--}}
-{{--    #map {--}}
-{{--        height: 900px;--}}
-{{--    }--}}
-
-{{--    .controls {--}}
-{{--        margin-top: 10px;--}}
-{{--        border: 1px solid transparent;--}}
-{{--        border-radius: 2px 0 0 2px;--}}
-{{--        box-sizing: border-box;--}}
-{{--        -moz-box-sizing: border-box;--}}
-{{--        height: 32px;--}}
-{{--        outline: none;--}}
-{{--        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);--}}
-{{--    }--}}
-
-{{--    #origin-input,--}}
-{{--    #destination-input {--}}
-{{--        background-color: #fff;--}}
-{{--        font-family: Roboto;--}}
-{{--        font-size: 15px;--}}
-{{--        font-weight: 300;--}}
-{{--        margin-left: 12px;--}}
-{{--        padding: 0 11px 0 13px;--}}
-{{--        text-overflow: ellipsis;--}}
-{{--        width: 200px;--}}
-{{--    }--}}
-
-{{--    #origin-input:focus,--}}
-{{--    #destination-input:focus {--}}
-{{--        border-color: #4d90fe;--}}
-{{--    }--}}
-
-{{--    #mode-selector {--}}
-{{--        color: #fff;--}}
-{{--        background-color: #4d90fe;--}}
-{{--        margin-left: 12px;--}}
-{{--        padding: 5px 11px 0px 11px;--}}
-{{--    }--}}
-
-{{--    #mode-selector label {--}}
-{{--        font-family: Roboto;--}}
-{{--        font-size: 13px;--}}
-{{--        font-weight: 300;--}}
-{{--    }--}}
-{{--</style>--}}
 <body>
 
 @include('includes.partials.read-only')
@@ -133,6 +87,8 @@
             </ul>
           </li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="nav-link scrollto" href="/checkout">Checkout</a>
+          </li>
           <li><a class="getstarted scrollto" href="#about">Get Started</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -182,19 +138,19 @@
                     <div class="row">
                         <div class="mb-3 col-lg-9">
                             <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up from</label>
-                            <input type="text" class="form-control" id="geoPickup" placeholder="Type Your Address" required>
+                            <input type="text" class="form-control" id="geoPickup" placeholder="Type Your Address" >
                         </div>
                         <div class="mb-3 col-lg-9">
                             <label for="exampleFormControlInput1" class="form-label text-capitalize">drop off at</label>
-                            <input type="text" class="form-control" id="geoDropOff" placeholder="Type Your Address" required>
+                            <input type="text" class="form-control" id="geoDropOff" placeholder="Type Your Address" >
                         </div>
                         <div class="mb-3 col-lg-4">
                             <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up time</label>
-                            <input type="time" class="form-control" required>
+                            <input type="time" class="form-control" >
                         </div>
                         <div class="mb-3 col-lg-5">
                             <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up date</label>
-                            <input type="date" class="form-control" required>
+                            <input type="date" class="form-control" >
                         </div>
                     </div>
 
@@ -224,134 +180,25 @@
 
               <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="200">
                   <div class="swiper-wrapper">
-                      <div class="swiper-slide vehicleModal"
-                           data-type="18 Tonne Truck"
-                           data-mileage-cost="">
-                          <div class="testimonial-item">
-                              <div class="profile mt-auto">
-                                  <img width="250px" src="assets/img/vehicles/Artic-Truck-Speedy-Freight-White-lorry-edit-LEFT-FACE-RGB.png" class="" alt="">
-                                  <h3>Artic Truck</h3>
-                                  <h4></h4>
+                      @foreach($vehicle as $vehicles)
+                          <div class="swiper-slide vehicleModal"
+                               data-type="{{ $vehicles->type }}"
+                               data-mileage-cost="{{ $vehicles->per_mile }}">
+                              <div class="testimonial-item">
+                                  <p>Length: @if($vehicles->length == 0.00) 'N/A' @else {{$vehicles->length}}m @endif</p>
+                                  <p>Height: @if($vehicles->height == 0.00) 'N/A' @else {{$vehicles->height}}m @endif</p>
+                                  <p>Width: @if($vehicles->width == 0.00) 'N/A' @else {{$vehicles->width}}m @endif</p>
+                                  <p>Payload: {{ $vehicles->pallets }}</p>
+                                  <p>Max Weight: {{ $vehicles->weight }}</p>
+                                  <div class="profile mt-auto">
+                                      <img width="250px" src="assets/img/vehicles/{{ $vehicles->type }}.png" class="" alt="">
+                                      <h3>{{ $vehicles->type }}</h3>
+                                      <h4></h4>
+                                  </div>
                               </div>
-                          </div>
-                      </div><!-- End testimonial item -->
-
-                      <div class="swiper-slide vehicleModal"
-                           data-type="Small Van"
-                           data-mileage-cost="0.75">
-                          <div class="testimonial-item">
-                              <p>Length: 1.3m</p>
-                              <p>Height: 1.0m</p>
-                              <p>Width: 1.2m</p>
-                              <p>Pallets: 1 small</p>
-                              <p>Max Weight: 400kg</p>
-                              <div class="profile mt-auto">
-                                  <img width="250px" src="assets/img/vehicles/Speedy-Freight-Small-Van-RGB.png" class="" alt="">
-                                  <h3>Small Van</h3>
-                                  <h4></h4>
-                              </div>
-                          </div>
-                      </div><!-- End testimonial item -->
-
-                      <div class="swiper-slide vehicleModal"
-                           data-type="Short Wheel Base Van"
-                           data-mileage-cost="0.85">
-                          <div class="testimonial-item">
-                              <p>Length: 2.1m</p>
-                              <p>Height: 1.4m</p>
-                              <p>Width: 1.2m</p>
-                              <p>Pallets: Up to 2</p>
-                              <p>Max Weight: 800kg</p>
-                              <div class="profile mt-auto">
-                                  <img width="250px" src="assets/img/vehicles/Speedy-Freight-Short-Wheel-Base-RGB.png" class="" alt="">
-                                  <h3>Short Wheel Base Van</h3>
-                                  <h4></h4>
-                              </div>
-                          </div>
-                      </div><!-- End testimonial item -->
-
-                      <div class="swiper-slide vehicleModal"
-                           data-type="Long Wheelbase Van"
-                           data-mileage-cost="1.00">
-                          <div class="testimonial-item">
-                              <p>Length: 3.3m</p>
-                              <p>Height: 1.70m</p>
-                              <p>Width: 1.2m</p>
-                              <p>Pallets: Up to 3</p>
-                              <p>Max Weight: 1,200kg</p>
-                              <div class="profile mt-auto">
-                                  <img width="250px" src="assets/img/vehicles/Speedy-Freight-Long-Wheel-Base-Van-RGB.png" class="" alt="">
-                                  <h3>Long Wheelbase Van</h3>
-                                  <h4></h4>
-                              </div>
-                          </div>
-                      </div><!-- End testimonial item -->
-
-                      <div class="swiper-slide vehicleModal"
-                           data-type="Extra Long Wheelbase Van"
-                           data-mileage-cost="1.15">
-                          <div class="testimonial-item">
-                              <p>Length: 4m</p>
-                              <p>Height: 1.75m</p>
-                              <p>Width: 1.2m</p>
-                              <p>Pallets: Up to 4</p>
-                              <p>Max Weight: 1,000kg</p>
-                              <div class="profile mt-auto">
-                                  <img width="250px" src="assets/img/vehicles/Speedy-Freight-Extra-Long-Wheelbase-RGB.png" class="" alt="">
-                                  <h3>Extra Long Wheelbase Van</h3>
-                                  <h4></h4>
-                              </div>
-                          </div>
-                      </div><!-- End testimonial item -->
-
-                      <div class="swiper-slide vehicleModal"
-                           data-type="Luton Van"
-                           data-mileage-cost="">
-                          <div class="testimonial-item">
-                              <p>Length: 4.2m</p>
-                              <p>Height: 2.1m</p>
-                              <p>Width: 2.0m</p>
-                              <p>Pallets: Up to 6</p>
-                              <p>Max Weight: 2,700kg</p>
-                              <div class="profile mt-auto">
-                                  <img width="250px" src="assets/img/vehicles/Speedy-Freight-Luton-Van-RGB.png" class="" alt="">
-                                  <h3>Luton Van</h3>
-                                  <h4></h4>
-                              </div>
-                          </div>
-                      </div><!-- End testimonial item -->
-
-                      <div class="swiper-slide vehicleModal"
-                           data-type="18 Tonne Truck"
-                           data-mileage-cost="">
-                          <div class="testimonial-item">
-                              <p>Length: 4.2m</p>
-                              <p>Height: 2.1m</p>
-                              <p>Width: 2.0m</p>
-                              <p>Pallets: Up to 6</p>
-                              <p>Max Weight: 2,700kg</p>
-                              <div class="profile mt-auto">
-                                  <img width="250px" src="assets/img/vehicles/Speedy-Freight-7.5-Tonne-Truck-RGB.png" class="" alt="">
-                                  <h3>7.5 Tonne Truck</h3>
-                                  <h4></h4>
-                              </div>
-                          </div>
-                      </div><!-- End testimonial item -->
-
-                      <div class="swiper-slide vehicleModal"
-                           data-type="18 Tonne Truck"
-                           data-mileage-cost="">
-                          <div class="testimonial-item">
-
-                              <div class="profile mt-auto">
-                                  <img width="250px" src="assets/img/vehicles/Speedy-Freight-18-Tonne-Truck-RGB.png" class="" alt="">
-                                  <h3>18 Tonne Truck</h3>
-                                  <h4></h4>
-                              </div>
-                          </div>
-                      </div><!-- End testimonial item -->
+                          </div><!-- End testimonial item -->
+                      @endforeach
                   </div>
-
                   <!-- If we need navigation buttons -->
                   <div class="swiper-button-prev"></div>
                   <div class="swiper-button-next"></div>
@@ -1440,7 +1287,7 @@
           <div class="modal-dialog">
               <div class="modal-content">
                   <div class="modal-header">
-                      <h5 class="modal-title" id="">Your sellection</h5>
+                      <h5 class="modal-title" id="">Your selection</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
@@ -1450,7 +1297,7 @@
                   </div>
                   <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
+                      <button type="button" class="btn btn-primary" style="background: #fc8a18; border-color: #fc8a18">Checkout</button>
                   </div>
               </div>
           </div>
