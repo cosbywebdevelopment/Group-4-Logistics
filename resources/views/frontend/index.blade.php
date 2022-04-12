@@ -1294,17 +1294,26 @@
                       <h5 class="modal-title" id="">Your selection</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <div class="modal-body">
-                      <h3>You have chosen a <span id="typeLabel"></span> which can take a load of upto <span id="max_weight"></span></h3>
-                      <h4>Your Route Mileage: <span id="miles"></span></h4>
-                      <h4>Cost <span id="cost"></span></h4>
-                      <h4>Time <span id="time"></span> Date <span id="date"></span></h4>
-                      <p>Click the "Checkout" button to book.</p>
-                  </div>
-                  <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary" style="background: #fc8a18; border-color: #fc8a18">Checkout</button>
-                  </div>
+                  <form action="/checkoutPost" method="post">
+                      @csrf
+                      <input id="miles_input" name="miles_input" hidden>
+                      <input id="type_input" name="type_input" hidden>
+                      <input id="time_input" name="time_input" hidden>
+                      <input id="date_input" name="date_input" hidden>
+                      <input id="pickup_input" name="pickup_input" hidden>
+                      <input id="dropoff_input" name="dropoff_input" hidden>
+                    <div class="modal-body">
+                          <h3>You have chosen a <span id="typeLabel"></span> which can take a load of upto <span id="max_weight"></span></h3>
+                          <h4>Your Route Mileage: <span class="miles"></span></h4>
+                          <h4>Cost <span id="cost"></span></h4>
+                          <h4>Time <span id="time"></span> Date <span id="date"></span></h4>
+                          <p>Click the "Checkout" button to book.</p>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary" style="background: #fc8a18; border-color: #fc8a18">Checkout</button>
+                      </div>
+                  </form>
               </div>
           </div>
       </div>
@@ -1437,13 +1446,19 @@
             cost = minCharge
             cost = Number(cost)
         }
+        $("#pickup_input").val($("#geoPickup").val())
+        $("#dropoff_input").val($("#geoDropOff").val())
+        $("#time_input").val(pickupTime)
+        $("#date_input").val(pickupDate)
         $("#typeLabel").text(type);
+        $("#type_input").val(type);
         $("#mileage_cost").text(mileageCost);
         $("#max_weight").text(maxWeight);
         $("#pallets").text(pallets);
         $("#time").text(pickupTime);
         $("#date").text(pickupDate);
         $("#miles").text(miles.toFixed());
+        $("#miles_input").val(miles.toFixed());
         $("#cost").text('£' + cost.toFixed());
         $('#vehicleModal').modal('show');
     });

@@ -21,6 +21,13 @@ Route::get('checkout', [HomeController::class, 'checkout'])
             ->push(__('checkout'), route('frontend.checkout'));
     });
 
+Route::post('checkoutPost', [HomeController::class, 'checkoutPost'])
+    ->name('checkoutPost')
+    ->breadcrumbs(function (Trail $trail) {
+        $trail->parent('frontend.index')
+            ->push(__('checkoutPost'), route('frontend.checkoutPost'));
+    });
+
 Route::get('terms', [TermsController::class, 'index'])
     ->name('pages.terms')
     ->breadcrumbs(function (Trail $trail) {
