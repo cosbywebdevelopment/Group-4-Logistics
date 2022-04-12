@@ -1295,7 +1295,7 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                      <h3>You have chosen a <span id="typeLabel"></span> which can take a load of <span id="max_weight"></span></h3>
+                      <h3>You have chosen a <span id="typeLabel"></span> which can take a load of upto <span id="max_weight"></span></h3>
                       <h4>Your Route Mileage: <span id="miles"></span></h4>
                       <h4>Cost <span id="cost"></span></h4>
                       <h4>Time <span id="time"></span> Date <span id="date"></span></h4>
