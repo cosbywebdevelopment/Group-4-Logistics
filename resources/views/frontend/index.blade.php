@@ -146,11 +146,11 @@
                         </div>
                         <div class="mb-3 col-lg-4">
                             <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up time</label>
-                            <input type="time" class="form-control" >
+                            <input id="pickup_time" type="time" class="form-control" >
                         </div>
                         <div class="mb-3 col-lg-5">
                             <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up date</label>
-                            <input type="date" class="form-control" >
+                            <input id="pickup_date" type="date" class="form-control" >
                         </div>
                     </div>
 
@@ -1298,6 +1298,8 @@
                       <h3>You have chosen a <span id="typeLabel"></span> which can take a load of <span id="max_weight"></span></h3>
                       <h4>Your Route Mileage: <span id="miles"></span></h4>
                       <h4>Cost <span id="cost"></span></h4>
+                      <h4>Time <span id="time"></span> Date <span id="date"></span></h4>
+                      <p>Click the "Checkout" button to book.</p>
                   </div>
                   <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -1420,6 +1422,8 @@
     let geoPickupLong;
     let geoDropOffLat;
     let geoDropOffLong;
+    let pickupTime;
+    let pickupDate;
     let miles = 0;
 
     $('.vehicleModal').click(function(event) {
@@ -1437,6 +1441,8 @@
         $("#mileage_cost").text(mileageCost);
         $("#max_weight").text(maxWeight);
         $("#pallets").text(pallets);
+        $("#time").text(pickupTime);
+        $("#date").text(pickupDate);
         $("#miles").text(miles.toFixed());
         $("#cost").text('£' + cost.toFixed());
         $('#vehicleModal').modal('show');
@@ -1445,6 +1451,9 @@
 
     $("#quote_form").submit(function (e){
         e.preventDefault()
+        // set pick up time and date
+        pickupTime = $("#pickup_time").val()
+        pickupDate = $("#pickup_date").val()
         // An offset to push the content down from the top.
         let offset = 60;
         // Our scroll target : the top position of the
