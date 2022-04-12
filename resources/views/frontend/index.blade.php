@@ -183,7 +183,11 @@
                       @foreach($vehicle as $vehicles)
                           <div class="swiper-slide vehicleModal"
                                data-type="{{ $vehicles->type }}"
-                               data-mileage-cost="{{ $vehicles->per_mile }}">
+                               data-mileage-cost="{{ $vehicles->per_mile }}"
+                               data-max-weight="{{ $vehicles->max_weight }}"
+                               data-pallets="{{ $vehicles->pallets }}"
+                               data-min-charge="{{ $vehicles->min_charge }}"
+                          >
                               <div class="testimonial-item">
                                   <p>Length: @if($vehicles->length == 0.00) 'N/A' @else {{$vehicles->length}}m @endif</p>
                                   <p>Height: @if($vehicles->height == 0.00) 'N/A' @else {{$vehicles->height}}m @endif</p>
@@ -1291,9 +1295,9 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                      <h3>You have chosen a <span id="typeLabel"></span></h3>
-                      <p>Milage: <span id="miles"></span>x<span id="mileage_cost"></span></p>
-                      <p id="cost"></p>
+                      <h3>You have chosen a <span id="typeLabel"></span> which can take a load of <span id="max_weight"></span></h3>
+                      <h4>Your Route Mileage: <span id="miles"></span></h4>
+                      <h4>Cost <span id="cost"></span></h4>
                   </div>
                   <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -1421,9 +1425,18 @@
     $('.vehicleModal').click(function(event) {
         let type = $(this).data('type');
         let mileageCost = $(this).data('mileage-cost');
+        let maxWeight = $(this).data('max-weight');
+        let pallets = $(this).data('pallets');
+        let minCharge = $(this).data('min-charge');
         let cost = miles.toFixed() * mileageCost;
+        if(cost < minCharge){
+            cost = minCharge
+            cost = Number(cost)
+        }
         $("#typeLabel").text(type);
         $("#mileage_cost").text(mileageCost);
+        $("#max_weight").text(maxWeight);
+        $("#pallets").text(pallets);
         $("#miles").text(miles.toFixed());
         $("#cost").text('£' + cost.toFixed());
         $('#vehicleModal').modal('show');
