@@ -148,7 +148,7 @@
 
                 <div class="row gy-4">
                     <div class="info-box text-center">
-                        
+
                         <p>This is where the payment gateway will be</p>
                     </div>
 
