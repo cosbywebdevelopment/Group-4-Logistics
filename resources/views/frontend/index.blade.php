@@ -138,19 +138,19 @@
                     <div class="row">
                         <div class="mb-3 col-lg-9">
                             <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up from</label>
-                            <input type="text" class="form-control" id="geoPickup" placeholder="Type Your Address" >
+                            <input type="text" class="form-control" id="geoPickup" placeholder="Type Your Address" required>
                         </div>
                         <div class="mb-3 col-lg-9">
                             <label for="exampleFormControlInput1" class="form-label text-capitalize">drop off at</label>
-                            <input type="text" class="form-control" id="geoDropOff" placeholder="Type Your Address" >
+                            <input type="text" class="form-control" id="geoDropOff" placeholder="Type Your Address" required>
                         </div>
                         <div class="mb-3 col-lg-4">
                             <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up time</label>
-                            <input id="pickup_time" type="time" class="form-control" >
+                            <input id="pickup_time" type="time" class="form-control" required>
                         </div>
                         <div class="mb-3 col-lg-5">
                             <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up date</label>
-                            <input id="pickup_date" type="date" class="form-control" >
+                            <input id="pickup_date" type="date" class="form-control" required>
                         </div>
                     </div>
 
