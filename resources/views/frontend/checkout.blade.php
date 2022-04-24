@@ -120,7 +120,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="info-box text-center">
-                            <h3><i class="bi bi-envelope align-middle"></i><span class="pl-3">Package</span></h3>
+                            <h3><i class="bi bi-envelope align-middle"></i><span class="pl-3">Package/Pallets</span></h3>
                             <p class="font-weight-bold">{{ $pallet }}</p>
                         </div>
                     </div>
