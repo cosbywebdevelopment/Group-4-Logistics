@@ -28,6 +28,9 @@ Route::post('checkoutPost', [HomeController::class, 'checkoutPost'])
             ->push(__('checkoutPost'), route('frontend.checkoutPost'));
     });
 
+Route::post('stripePost', [HomeController::class, 'stripePost'])
+    ->name('stripePost');
+
 Route::get('terms', [TermsController::class, 'index'])
     ->name('pages.terms')
     ->breadcrumbs(function (Trail $trail) {

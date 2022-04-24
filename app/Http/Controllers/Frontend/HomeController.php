@@ -6,6 +6,9 @@ use App\Models\Product;
 use Auth;
 use Cart;
 use Illuminate\Http\Request;
+use Session;
+use Stripe\Charge;
+use Stripe\Stripe;
 use function PHPUnit\Framework\isNull;
 
 /**
@@ -32,7 +35,6 @@ class HomeController
 
     public function checkoutPost(Request $request)
     {
-        //dd($request->all());
 //        $miles = $request->input('miles_input');
         $miles = 10;
         $time = $request->input('time_input');
@@ -66,5 +68,19 @@ class HomeController
 
         $item = Cart::getContent();
         return view('frontend.checkout', compact('item', 'miles', 'pallet', 'time', 'date'));
+    }
+
+    public function stripePost(Request $request)
+    {
+
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+        Charge::create ([
+            "amount" => 100 * 100,
+            "currency" => "gbp",
+            "source" => $request->stripeToken,
+            "description" => "This payment is tested purpose phpcodingstuff.com"
+        ]);
+
+        return redirect()->route('frontend.index')->withFlashSuccess(__('Payment successful!'));
     }
 }
