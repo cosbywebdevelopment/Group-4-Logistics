@@ -101,6 +101,7 @@
   <section id="hero" class="hero d-flex align-items-center">
 
     <div class="container">
+        @include('includes.partials.messages')
       <div class="row">
         <div class="col-lg-6 d-flex flex-column justify-content-center">
             <h1 style="color: #9b9a9d" data-aos="fade-up">A <span style="color: #fc8a18">TO</span> B
@@ -138,19 +139,19 @@
                     <div class="row">
                         <div class="mb-3 col-lg-9">
                             <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up from</label>
-                            <input type="text" class="form-control" id="geoPickup" placeholder="Type Your Address" required>
+                            <input type="text" class="form-control" id="geoPickup" placeholder="Type Your Address" >
                         </div>
                         <div class="mb-3 col-lg-9">
                             <label for="exampleFormControlInput1" class="form-label text-capitalize">drop off at</label>
-                            <input type="text" class="form-control" id="geoDropOff" placeholder="Type Your Address" required>
+                            <input type="text" class="form-control" id="geoDropOff" placeholder="Type Your Address" >
                         </div>
                         <div class="mb-3 col-lg-4">
                             <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up time</label>
-                            <input id="pickup_time" type="time" class="form-control" required>
+                            <input id="pickup_time" type="time" class="form-control" >
                         </div>
                         <div class="mb-3 col-lg-5">
                             <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up date</label>
-                            <input id="pickup_date" type="date" class="form-control" required>
+                            <input id="pickup_date" type="date" class="form-control" >
                         </div>
                     </div>
 
