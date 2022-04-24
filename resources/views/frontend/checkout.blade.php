@@ -113,30 +113,29 @@
                 @foreach($item as $row)
                 <div class="row gy-4">
                     <div class="col-md-6">
-                        <div class="info-box">
-                            <i class="bi bi-fan"></i>
-                            <h3>Vehicle</h3>
+                        <div class="info-box text-center">
+                            <h3><i class="bi bi-fan align-middle"></i><span class="pl-2">Vehicle</span></h3>
                             <p class="font-weight-bold">{{ $row->name }}</p>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="info-box">
-                            <i class="bi bi-envelope"></i>
-                            <h3>Package</h3>
+                        <div class="info-box text-center">
+                            <h3><i class="bi bi-envelope align-middle"></i><span class="pl-3">Package</span></h3>
                             <p class="font-weight-bold">{{ $pallet }}</p>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="info-box">
-                            <i class="bi bi-geo-alt"></i>
-                            <h3>Delivery Route</h3>
-                            <p>Pickup Time: <span class="font-weight-bold">{{ $time }} {{ $date }}</span> Miles: <span class="font-weight-bold">{{ $miles }}</span></p>
+                        <div class="info-box text-center">
+                            <h3><i class="bi bi-geo-alt align-middle"></i><span class="pl-2">Delivery Route</span></h3>
+                            <p>Pickup Time: <span class="font-weight-bold">{{ $time }}</span> on
+                                <span class="font-weight-bold">{{ \Carbon\Carbon::parse($date)->format('d/m/Y') }}</span>
+                                <br>
+                                Miles: <span class="font-weight-bold">{{ $miles }}</span></p>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="info-box">
-                            <i class="bi bi-currency-pound"></i>
-                            <h3>Cost</h3>
+                        <div class="info-box text-center">
+                            <h3><i class="bi bi-currency-pound align-middle"></i><span class="pl-1">Cost</span></h3>
                             <p class="font-weight-bold">£{{ $row->price }}</p>
                         </div>
                     </div>
