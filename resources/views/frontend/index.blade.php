@@ -183,6 +183,7 @@
                       @foreach($vehicle as $vehicles)
                           <div class="swiper-slide vehicleModal"
                                data-type="{{ $vehicles->type }}"
+                               data-id="{{ $vehicles->id }}"
                                data-mileage-cost="{{ $vehicles->per_mile }}"
                                data-max-weight="{{ $vehicles->max_weight }}"
                                data-pallets="{{ $vehicles->pallets }}"
@@ -1297,6 +1298,7 @@
                   <form action="/checkoutPost" method="post">
                       @csrf
                       <input id="miles_input" name="miles_input" hidden>
+                      <input id="id_input" name="type_id" hidden>
                       <input id="type_input" name="type_input" hidden>
                       <input id="time_input" name="time_input" hidden>
                       <input id="date_input" name="date_input" hidden>
@@ -1437,6 +1439,7 @@
 
     $('.vehicleModal').click(function(event) {
         let type = $(this).data('type');
+        let id = $(this).data('id');
         let mileageCost = $(this).data('mileage-cost');
         let maxWeight = $(this).data('max-weight');
         let pallets = $(this).data('pallets');
@@ -1452,6 +1455,7 @@
         $("#date_input").val(pickupDate)
         $("#typeLabel").text(type);
         $("#type_input").val(type);
+        $("#id_input").val(id);
         $("#mileage_cost").text(mileageCost);
         $("#max_weight").text(maxWeight);
         $("#pallets").text(pallets);

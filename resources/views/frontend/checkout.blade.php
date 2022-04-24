@@ -109,41 +109,41 @@
         </header>
 
         <div class="row gy-4">
-
             <div class="col-lg-6">
-
+                @foreach($item as $row)
                 <div class="row gy-4">
                     <div class="col-md-6">
                         <div class="info-box">
                             <i class="bi bi-fan"></i>
                             <h3>Vehicle</h3>
-                            <p>A108 Adam Street,<br>New York, NY 535022</p>
+                            <p class="font-weight-bold">{{ $row->name }}</p>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="info-box">
                             <i class="bi bi-envelope"></i>
                             <h3>Package</h3>
-                            <p>+1 5589 55488 55<br>+1 6678 254445 41</p>
+                            <p class="font-weight-bold">{{ $pallet }}</p>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="info-box">
                             <i class="bi bi-geo-alt"></i>
                             <h3>Delivery Route</h3>
-                            <p>info@example.com<br>contact@example.com</p>
+                            <p>Pickup Time: <span class="font-weight-bold">{{ $time }} {{ $date }}</span> Miles: <span class="font-weight-bold">{{ $miles }}</span></p>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="info-box">
                             <i class="bi bi-currency-pound"></i>
                             <h3>Cost</h3>
-                            <p>Monday - Friday<br>9:00AM - 05:00PM</p>
+                            <p class="font-weight-bold">£{{ $row->price }}</p>
                         </div>
                     </div>
                 </div>
 
             </div>
+            @endforeach
 
             <div class="col-lg-6">
                 <form action="forms/contact.php" method="post" class="php-email-form">
