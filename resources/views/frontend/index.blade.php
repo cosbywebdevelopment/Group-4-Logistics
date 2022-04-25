@@ -1309,7 +1309,7 @@
                       <input id="dropoff_input" name="dropoff_input" hidden>
                     <div class="modal-body">
                           <h3>You have chosen a <span id="typeLabel"></span> which can take a load of upto <span id="max_weight"></span></h3>
-                          <h4>Your Route Mileage: <span class="miles"></span></h4>
+                          <h4>Your Route Mileage: <span id="miles"></span></h4>
                           <h4>Cost <span id="cost"></span></h4>
                           <h4>Time <span id="time"></span> Date <span id="date"></span></h4>
                           <p>Click the "Checkout" button to book.</p>
@@ -1447,7 +1447,8 @@
         let maxWeight = $(this).data('max-weight');
         let pallets = $(this).data('pallets');
         let minCharge = $(this).data('min-charge');
-        let cost = miles.toFixed() * mileageCost;
+        let cost = miles.toFixed(2) * mileageCost;
+        console.log(cost)
         if(cost < minCharge){
             cost = minCharge
             cost = Number(cost)
@@ -1464,9 +1465,9 @@
         $("#pallets").text(pallets);
         $("#time").text(pickupTime);
         $("#date").text(pickupDate);
-        $("#miles").text(miles.toFixed());
-        $("#miles_input").val(miles.toFixed());
-        $("#cost").text('£' + cost.toFixed());
+        $("#miles").text(miles.toFixed(2));
+        $("#miles_input").val(miles.toFixed(2));
+        $("#cost").text('£' + cost.toFixed(2));
         $('#vehicleModal').modal('show');
     });
 
