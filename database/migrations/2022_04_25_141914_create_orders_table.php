@@ -24,6 +24,7 @@ class CreateOrdersTable extends Migration
             $table->string('package');
             $table->string('mileage');
             $table->string('cost');
+            $table->string('payment_method');
             $table->timestamps();
         });
     }
