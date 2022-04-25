@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,8 @@ class DashboardController
      */
     public function index()
     {
-        return view('backend.dashboard');
+        $orders = Order::all();
+        return view('backend.dashboard', compact('orders'));
     }
 
     public function frontend()
