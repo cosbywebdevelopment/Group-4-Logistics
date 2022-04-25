@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\Order;
 use App\Models\Product;
 use Auth;
 use Carbon\Carbon;
@@ -56,7 +57,7 @@ class HomeController
         $cost = number_format((float)$this->cost, 2, '.', '');
         // min charge applied
         if($this->cost < $product->min_charge){
-            $this->cost = $product->min_charge;
+            $cost = $product->min_charge;
         }
 
         // place order in cart
@@ -113,8 +114,21 @@ class HomeController
             . ' vehicle ' . $type . ' load ' . $package
         ]);
 
+        //dd($charge);
         if($charge->status == "succeeded"){
             // save order
+            $order = Order::create([
+                'email'=>'test Email',
+                'type' =>$type,
+                'pickup' => $pickup,
+                'drop_off' => $dropOff,
+                'time' => $time,
+                'date' => $date,
+                'package' => $package,
+                'mileage' => $milesCart,
+                'cost' => $charge->amount,
+                'payment_method' =>$charge->payment_method,
+            ]);
             // email customer and John
             return redirect()->route('frontend.index')->withFlashSuccess(__('Payment successful!'));
         }
