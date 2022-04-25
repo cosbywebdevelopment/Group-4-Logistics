@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\Product;
 use Auth;
+use Carbon\Carbon;
 use Cart;
 use Illuminate\Http\Request;
 use Session;
@@ -36,22 +37,24 @@ class HomeController
     public function checkoutPost(Request $request)
     {
         $miles = $request->input('miles_input');
-        //$miles = 10;
         $time = $request->input('time_input');
         $date = $request->input('date_input');
-        // change to ID
+        $pickupAddress = $request->input('pickup_input');
+        $dropoffAddress = $request->input('dropoff_input');
+        // need the start and end addresses
+        $userId = '';
         $id = $request->input('type_id');
-        // change to ID
-        //dd($id);
+
         $product = Product::findOrFail($id);
         $pallet = $product->pallets;
         // create user id if not logged in
         if(isNull(Auth::id())){
-            $this->userId = uniqid();
+            $userId = uniqid();
         } else{
-            $this->userId = Auth::id();
+            $userId = Auth::id();
         }
         $this->cost = $miles * $product->per_mile;
+        $cost = number_format((float)$this->cost, 2, '.', '');
         // min charge applied
         if($this->cost < $product->min_charge){
             $this->cost = $product->min_charge;
@@ -59,26 +62,58 @@ class HomeController
 
         // place order in cart
         // from products table
-        Cart::session($this->userId)->add([
+        Cart::session($userId)->add([
             'id' => $id,
             'name' => $product->type,
-            'price' => $this->cost,
+            'price' => $cost,
             'quantity' => 1,
+            'attributes' => [
+                'miles'=>$miles,
+                'time'=>$time,
+                'date'=>$date,
+                'package' => $pallet,
+                'pickup' => $pickupAddress,
+                'dropOff' => $dropoffAddress,
+            ],
+            'associatedModel' => $product
         ]);
 
-        $item = Cart::getContent();
-        return view('frontend.checkout', compact('item', 'miles', 'pallet', 'time', 'date'));
+//        dd(Cart::getContent());
+        return view('frontend.checkout', compact('userId', 'miles', 'pallet', 'time', 'date'));
     }
 
     public function stripePost(Request $request)
     {
+        //dd($this->userId);
+        // save cart to DB for ref Todo
+        $items = Cart::session($request->sessionKey)->getContent();
+        //dd($items);
+        $type = '';
+        $cost = Cart::session($request->sessionKey)->getTotal();
+        $milesCart = 0;
+        $time = '';
+        $date = '';
+        $package = '';
+        $pickup = '';
+        $dropOff = '';
+        foreach ($items as $row){
+            $type = $row->name;
+            $milesCart = $row->attributes->miles;
+            $time = $row->attributes->time;
+            $date = $row->attributes->date;
+            $package = $row->attributes->package;
+            $pickup = $row->attributes->pickup;
+            $dropOff = $row->attributes->dropOff;
+        }
+        //dd($cost);
 
         Stripe::setApiKey(env('STRIPE_SECRET'));
         Charge::create ([
-            "amount" => 100 * 100,
+            "amount" => $cost * 100,
             "currency" => "gbp",
             "source" => $request->stripeToken,
-            "description" => "This payment is tested purpose phpcodingstuff.com"
+            "description" => "Route " . $pickup . " to " . $dropOff . ' at ' . $time . ' ' . Carbon::parse($date)->format('d/m/Y')
+            . ' vehicle ' . $type . ' load ' . $package
         ]);
 
         return redirect()->route('frontend.index')->withFlashSuccess(__('Payment successful!'));

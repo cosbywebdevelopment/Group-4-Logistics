@@ -107,7 +107,7 @@
 
         <div class="row gy-4">
             <div class="col-lg-6">
-                @foreach($item as $row)
+                @foreach(Cart::getContent() as $row)
                 <div class="row gy-4">
                     <div class="col-md-6">
                         <div class="info-box text-center">
@@ -133,7 +133,7 @@
                     <div class="col-md-6">
                         <div class="info-box text-center">
                             <h3><i class="bi bi-currency-pound align-middle"></i><span class="pl-1">Cost</span></h3>
-                            <p class="font-weight-bold">£{{ $row->price }}</p>
+                            <p class="font-weight-bold">£{{ number_format((float)$row->price, 2, '.', '') }}</p>
                         </div>
                     </div>
                 </div>
@@ -333,7 +333,8 @@
                 /* token contains id, last4, and card type */
                 var token = response['id'];
                 $form.find('input[type=text]').empty();
-                $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+                $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>" +
+                    "<input type='hidden' name='sessionKey' value='{{ $userId }}'/>");
                 $form.get(0).submit();
             }
         }
