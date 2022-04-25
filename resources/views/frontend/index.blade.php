@@ -33,8 +33,10 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-    <script src='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css' rel='stylesheet' />
+{{--    <script src='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js'></script>--}}
+{{--    <link href='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css' rel='stylesheet' />--}}
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
@@ -1507,16 +1509,16 @@
 
     function onPlacePickup(){
         let place = autoPickup.getPlace();
-
-        if(!place.geometry){
+        if(!place.geometry.location.lat){
             // user did not select an address
             document.getElementById('geoPickup').placeholder = 'Enter a place';
         } else {
             document.getElementById('geoPickup').innerHTML = place.name;
-            geoPickupLat = place.geometry.viewport.Ua.h;
-            geoPickupLong = place.geometry.viewport.zb.h;
+            geoPickupLat = place.geometry.location.lat();
+            geoPickupLong = place.geometry.location.lng();
+
             // function to set start param
-            setRoute([geoPickupLat,geoPickupLong]);
+            setRoute([geoPickupLong,geoPickupLat]);
             //console.log([geoPickupLat,geoPickupLong])
         }
     }
@@ -1529,9 +1531,9 @@
             document.getElementById('geoDropOff').placeholder = 'Enter a place';
         } else {
             document.getElementById('geoDropOff').innerHTML = place.name;
-            geoDropOffLat = place.geometry.viewport.Ua.h;
-            geoDropOffLong = place.geometry.viewport.zb.h;
-            endRoute([geoDropOffLat,geoDropOffLong]);
+            geoDropOffLat = place.geometry.location.lat();
+            geoDropOffLong = place.geometry.location.lng();
+            endRoute([geoDropOffLong,geoDropOffLat]);
         }
     }
 
@@ -1549,12 +1551,14 @@
         // an arbitrary start will always be the same
         // only the end or destination will change
         const query = await fetch(
-            `https://api.mapbox.com/directions/v5/mapbox/driving/${geoPickupLat},${geoPickupLong};${end[0]},${end[1]}?steps=true&geometries=geojson&access_token=${mapboxgl.accessToken}`,
+            `https://api.mapbox.com/directions/v5/mapbox/driving/${geoPickupLong},${geoPickupLat};${end[0]},${end[1]}?steps=true&geometries=geojson&access_token=${mapboxgl.accessToken}`,
             { method: 'GET' }
         );
         //console.log(query)
         const json = await query.json();
+        console.log(json)
         const data = json.routes[0];
+
         const route = data.geometry.coordinates;
         const geojson = {
             type: 'Feature',
