@@ -35,8 +35,8 @@ class HomeController
 
     public function checkoutPost(Request $request)
     {
-//        $miles = $request->input('miles_input');
-        $miles = 10;
+        $miles = $request->input('miles_input');
+        //$miles = 10;
         $time = $request->input('time_input');
         $date = $request->input('date_input');
         // change to ID
