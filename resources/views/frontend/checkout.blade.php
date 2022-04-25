@@ -334,7 +334,7 @@
                 var token = response['id'];
                 $form.find('input[type=text]').empty();
                 $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>" +
-                    "<input type='hidden' name='sessionKey' value='{{ $userId }}'/>");
+                    "<input type='hidden' name='userId' value='{{ $userId }}'/>");
                 $form.get(0).submit();
             }
         }

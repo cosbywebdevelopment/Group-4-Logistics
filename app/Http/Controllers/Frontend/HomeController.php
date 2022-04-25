@@ -86,10 +86,10 @@ class HomeController
     {
         //dd($this->userId);
         // save cart to DB for ref Todo
-        $items = Cart::session($request->sessionKey)->getContent();
+        $items = Cart::session($request->userId)->getContent();
         //dd($items);
         $type = '';
-        $cost = Cart::session($request->sessionKey)->getTotal();
+        $cost = Cart::session($request->userId)->getTotal();
         $milesCart = 0;
         $time = '';
         $date = '';
