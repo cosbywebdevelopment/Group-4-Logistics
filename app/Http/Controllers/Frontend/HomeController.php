@@ -41,7 +41,6 @@ class HomeController
         $date = $request->input('date_input');
         $pickupAddress = $request->input('pickup_input');
         $dropoffAddress = $request->input('dropoff_input');
-        // need the start and end addresses
         $userId = '';
         $id = $request->input('type_id');
 
@@ -84,7 +83,6 @@ class HomeController
 
     public function stripePost(Request $request)
     {
-        //dd($this->userId);
         // save cart to DB for ref Todo
         $items = Cart::session($request->userId)->getContent();
         //dd($items);
@@ -105,7 +103,6 @@ class HomeController
             $pickup = $row->attributes->pickup;
             $dropOff = $row->attributes->dropOff;
         }
-        //dd($cost);
 
         Stripe::setApiKey(env('STRIPE_SECRET'));
         Charge::create ([
