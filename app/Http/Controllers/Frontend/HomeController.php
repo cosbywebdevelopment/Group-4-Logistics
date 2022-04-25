@@ -105,7 +105,7 @@ class HomeController
         }
 
         Stripe::setApiKey(env('STRIPE_SECRET'));
-        Charge::create ([
+        $charge = Charge::create ([
             "amount" => $cost * 100,
             "currency" => "gbp",
             "source" => $request->stripeToken,
@@ -113,6 +113,11 @@ class HomeController
             . ' vehicle ' . $type . ' load ' . $package
         ]);
 
-        return redirect()->route('frontend.index')->withFlashSuccess(__('Payment successful!'));
+        if($charge->status == "succeeded"){
+            // save order
+            // email customer and John
+            return redirect()->route('frontend.index')->withFlashSuccess(__('Payment successful!'));
+        }
+        return redirect()->route('frontend.index')->withFlashDanger(__('Payment Failed, please try again!'));
     }
 }
