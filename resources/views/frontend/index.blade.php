@@ -1449,7 +1449,7 @@
         let pallets = $(this).data('pallets');
         let minCharge = $(this).data('min-charge');
         let cost = miles.toFixed(2) * mileageCost;
-        console.log(cost)
+        //console.log(cost)
         if(cost < minCharge){
             cost = minCharge
             cost = Number(cost)
@@ -1495,14 +1495,14 @@
             {
                 types: ['address'],
                 componentRestrictions: {'country': ['uk']},
-                fields: ['place_id', 'geometry', 'name']
+                fields: ['place_id', 'geometry', 'address_components']
             });
         autoDropOff = new google.maps.places.Autocomplete(
             document.getElementById('geoDropOff'),
             {
                 types: ['address'],
                 componentRestrictions: {'country': ['uk']},
-                fields: ['place_id', 'geometry', 'name']
+                fields: ['place_id', 'geometry', 'address_components']
             });
         // store geo data
         autoPickup.addListener('place_changed', onPlacePickup);
@@ -1511,6 +1511,16 @@
 
     function onPlacePickup(){
         let place = autoPickup.getPlace();
+        // get postcode
+        for (var i = 0; i < place.address_components.length; i++) {
+            for (var j = 0; j < place.address_components[i].types.length; j++) {
+                if (place.address_components[i].types[j] == "postal_code") {
+                    //document.getElementById('postal_code').innerHTML = place.address_components[i].long_name;
+                    console.log(place.address_components[i].long_name)
+                }
+            }
+        }
+
         if(!place.geometry.location.lat){
             // user did not select an address
             document.getElementById('geoPickup').placeholder = 'Enter a place';
@@ -1527,6 +1537,15 @@
 
     function onPlaceDropOff(){
         let place = autoDropOff.getPlace();
+        // get postcode
+        for (var i = 0; i < place.address_components.length; i++) {
+            for (var j = 0; j < place.address_components[i].types.length; j++) {
+                if (place.address_components[i].types[j] == "postal_code") {
+                    //document.getElementById('postal_code').innerHTML = place.address_components[i].long_name;
+                    console.log(place.address_components[i].long_name)
+                }
+            }
+        }
 
         if(!place.geometry){
             // user did not select an address
@@ -1549,16 +1568,14 @@
     });
     // create a function to make a directions request
     async function getRoute(end) {
-        // make a directions request using cycling profile
-        // an arbitrary start will always be the same
-        // only the end or destination will change
+
         const query = await fetch(
             `https://api.mapbox.com/directions/v5/mapbox/driving/${geoPickupLong},${geoPickupLat};${end[0]},${end[1]}?steps=true&geometries=geojson&access_token=${mapboxgl.accessToken}`,
             { method: 'GET' }
         );
         //console.log(query)
         const json = await query.json();
-        console.log(json)
+        //console.log(json)
         const data = json.routes[0];
 
         const route = data.geometry.coordinates;
@@ -1603,7 +1620,7 @@
             //console.log(step.distance)
         }
         miles = distance * 0.00062137
-        console.log(miles)
+        //console.log(miles)
 
     }
 
