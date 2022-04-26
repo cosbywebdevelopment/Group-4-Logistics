@@ -20,6 +20,7 @@ class HomeController
 {
     public $userId;
     public $cost;
+    public $postcodes = ['EC1', 'EC2', 'EC3', 'EC4', 'SE1', 'SW1', 'W1', 'WC1', 'WC2'];
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
@@ -35,6 +36,7 @@ class HomeController
         return view('frontend.checkout');
     }
 
+    // run through the matrix and updates cost
     public function checkoutPost(Request $request)
     {
         $miles = $request->input('miles_input');
@@ -42,8 +44,14 @@ class HomeController
         $date = $request->input('date_input');
         $pickupAddress = $request->input('pickup_input');
         $dropoffAddress = $request->input('dropoff_input');
+        $pickupPostcode = $request->input('pickup_postcode_input');
+        $dropoffPostcode = $request->input('drop_off_postcode_input');
         $userId = '';
         $id = $request->input('type_id');
+        $surcharge = false;
+        $weekend_collection = false;
+        $after_5 = false;
+        $min_charge = false;
 
         $product = Product::findOrFail($id);
         $pallet = $product->pallets;
@@ -58,14 +66,38 @@ class HomeController
         // min charge applied
         if($this->cost < $product->min_charge){
             $cost = $product->min_charge;
+            $min_charge = true;
         }
-
+        //dd($cost);
+        // after 5pm ? add 10%
+        if(Carbon::parse($time)->format('H:i') > "17:00"){
+            // add 10%
+            $percent = $cost * $product->collection_5 / 100;
+            $cost = $cost + $percent;
+            $after_5 = true;
+        }
+        //dd($cost);
+        // at the weekend ? add 20%
+        $day = Carbon::parse($date)->isWeekend();
+        if($day){
+            $percent = $cost * $product->collection_weekend / 100;
+            $cost = $cost + $percent;
+            $weekend_collection = true;
+        }
+        // in postcode congestion charge ? add surcharge
+        foreach ($this->postcodes as $postcode){
+            if(str_starts_with($pickupPostcode, $postcode) || str_starts_with($dropoffPostcode, $postcode)){
+                // add surcharge
+                $cost = $cost + $product->surcharge;
+                $surcharge = true;
+            }
+        }
         // place order in cart
         // from products table
         Cart::session($userId)->add([
             'id' => $id,
             'name' => $product->type,
-            'price' => $cost,
+            'price' => number_format((float)$cost, 2, '.', ''),
             'quantity' => 1,
             'attributes' => [
                 'miles'=>$miles,
@@ -79,9 +111,11 @@ class HomeController
         ]);
 
 //        dd(Cart::getContent());
-        return view('frontend.checkout', compact('userId', 'miles', 'pallet', 'time', 'date'));
+        return view('frontend.checkout', compact('userId', 'miles', 'pallet', 'time', 'date',
+        'min_charge', 'after_5', 'weekend_collection', 'surcharge'));
     }
 
+    // make payment and saves order to DB
     public function stripePost(Request $request)
     {
         // save cart to DB for ref Todo
