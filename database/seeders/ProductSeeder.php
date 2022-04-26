@@ -36,6 +36,7 @@ class ProductSeeder extends Seeder
                 'per_mile' => 0.50,
                 'collection_5' => 10.00,
                 'collection_weekend' => 20.00,
+                'surcharge' => 12.50,
             ]);
 
             Product::create([
@@ -49,6 +50,7 @@ class ProductSeeder extends Seeder
                 'per_mile' => 0.65,
                 'collection_5' => 10.00,
                 'collection_weekend' => 20.00,
+                'surcharge' => 15.00,
             ]);
 
             Product::create([
@@ -62,6 +64,7 @@ class ProductSeeder extends Seeder
                 'per_mile' => 0.75,
                 'collection_5' => 10.00,
                 'collection_weekend' => 20.00,
+                'surcharge' => 17.50,
             ]);
 
             Product::create([
@@ -75,6 +78,7 @@ class ProductSeeder extends Seeder
                 'per_mile' => 0.85,
                 'collection_5' => 10.00,
                 'collection_weekend' => 20.00,
+                'surcharge' => 17.50,
             ]);
 
             Product::create([
@@ -88,6 +92,7 @@ class ProductSeeder extends Seeder
                 'per_mile' => 1.00,
                 'collection_5' => 10.00,
                 'collection_weekend' => 20.00,
+                'surcharge' => 17.50,
             ]);
 
             Product::create([
@@ -101,6 +106,7 @@ class ProductSeeder extends Seeder
                 'per_mile' => 1.15,
                 'collection_5' => 10.00,
                 'collection_weekend' => 20.00,
+                'surcharge' => 25.00,
             ]);
 
             Product::create([
@@ -114,6 +120,7 @@ class ProductSeeder extends Seeder
                 'per_mile' => 0,
                 'collection_5' => 10.00,
                 'collection_weekend' => 20.00,
+                'surcharge' => 20.00,
             ]);
 
             Product::create([
@@ -127,6 +134,7 @@ class ProductSeeder extends Seeder
                 'per_mile' => 0,
                 'collection_5' => 10.00,
                 'collection_weekend' => 20.00,
+                'surcharge' => 50.00,
             ]);
 
             Product::create([
@@ -140,6 +148,7 @@ class ProductSeeder extends Seeder
                 'per_mile' => 0,
                 'collection_5' => 10.00,
                 'collection_weekend' => 20.00,
+                'surcharge' => 100.00,
             ]);
 
             Product::create([
@@ -153,6 +162,7 @@ class ProductSeeder extends Seeder
                 'per_mile' => 0,
                 'collection_5' => 10.00,
                 'collection_weekend' => 20.00,
+                'surcharge' => 100.00,
             ]);
 
         }
