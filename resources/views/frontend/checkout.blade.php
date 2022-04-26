@@ -133,10 +133,16 @@
                     <div class="col-md-6">
                         <div class="info-box text-center">
                             <h3><i class="bi bi-currency-pound align-middle"></i><span class="pl-1">Cost</span></h3>
-                            <p class="font-weight-bold">£{{ number_format((float)$row->price, 2, '.', '') }}</p>
+
+                            @if($surcharge || $weekend_collection || $after_5 || $min_charge)
+                                <p class="font-weight-bold">£{{ number_format((float)$row->price, 2, '.', '') }}<span style="color: red">*</span></p>
+                            @else
+                                <p class="font-weight-bold">£{{ number_format((float)$row->price, 2, '.', '') }}</p>
+                            @endif
                         </div>
                     </div>
                 </div>
+                    <small><span style="color: red">*</span> Congestion Charge / Weekend Collection / Collection After 5pm / Minimum Charge has been applied</small>
 
             </div>
             @endforeach
