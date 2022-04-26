@@ -165,6 +165,12 @@
                   </button>
               </div>
                 </form>
+                <div class="mt-3 text-center">
+                    <button id="clear_map" type="button" class="btn btn-outline-primary">
+                        <span>Clear Map!</span>
+                    </button>
+                </div>
+
             </div>
           </div>
           <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
@@ -1481,6 +1487,12 @@
         $('#vehicleModal').modal('show');
     });
 
+    $("#clear_map").click(function (){
+        location.reload();
+        // let offset = 60;
+        // // Our scroll target : the top position of the
+        // let target = $('#about').offset().top - offset;
+    })
 
     $("#quote_form").submit(function (e){
         e.preventDefault()
