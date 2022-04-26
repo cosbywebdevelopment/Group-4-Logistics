@@ -1308,10 +1308,14 @@
                       <input id="date_input" name="date_input" hidden>
                       <input id="pickup_input" name="pickup_input" hidden>
                       <input id="dropoff_input" name="dropoff_input" hidden>
-                    <div class="modal-body">
+                      <input id="dropoff_input" name="dropoff_input" hidden>
+                      <input id="dropoff_input" name="dropoff_input" hidden>
+                      <input id="pickup_postcode_input" name="pickup_postcode_input" hidden>
+                      <input id="drop_off_postcode_input" name="drop_off_postcode_input" hidden>
+                      <div class="modal-body">
                           <h3>You have chosen a <span id="typeLabel"></span> which can take a load of upto <span id="max_weight"></span></h3>
                           <h4>Your Route Mileage: <span id="miles"></span></h4>
-                          <h4>Cost <span id="cost"></span></h4>
+                          <h4>Cost From<span id="cost"></span></h4>
                           <h4>Time <span id="time"></span> Date <span id="date"></span></h4>
                           <p>Click the "Checkout" button to book.</p>
                       </div>
@@ -1440,6 +1444,8 @@
     let pickupTime;
     let pickupDate;
     let miles = 0;
+    let pickupPostcode;
+    let dropOffPostcode;
 
     $('.vehicleModal').click(function(event) {
         let type = $(this).data('type');
@@ -1454,8 +1460,11 @@
             cost = minCharge
             cost = Number(cost)
         }
-        $("#pickup_input").val($("#geoPickup").val())
-        $("#dropoff_input").val($("#geoDropOff").val())
+        $("#pickup_input").val($("#geoPickup").val() + ', ' + pickupPostcode)
+        $("#dropoff_input").val($("#geoDropOff").val()+ ', ' + dropOffPostcode)
+        $("#pickup_postcode_input").val(pickupPostcode)
+        $("#drop_off_postcode_input").val(dropOffPostcode)
+        $("#time_input").val(pickupTime)
         $("#time_input").val(pickupTime)
         $("#date_input").val(pickupDate)
         $("#typeLabel").text(type);
@@ -1515,8 +1524,7 @@
         for (var i = 0; i < place.address_components.length; i++) {
             for (var j = 0; j < place.address_components[i].types.length; j++) {
                 if (place.address_components[i].types[j] == "postal_code") {
-                    //document.getElementById('postal_code').innerHTML = place.address_components[i].long_name;
-                    console.log(place.address_components[i].long_name)
+                    pickupPostcode = place.address_components[i].long_name;
                 }
             }
         }
@@ -1541,8 +1549,7 @@
         for (var i = 0; i < place.address_components.length; i++) {
             for (var j = 0; j < place.address_components[i].types.length; j++) {
                 if (place.address_components[i].types[j] == "postal_code") {
-                    //document.getElementById('postal_code').innerHTML = place.address_components[i].long_name;
-                    console.log(place.address_components[i].long_name)
+                    dropOffPostcode = place.address_components[i].long_name;
                 }
             }
         }
