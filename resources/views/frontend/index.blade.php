@@ -206,7 +206,7 @@
                                   <p>Payload: {{ $vehicles->pallets }}</p>
                                   <p>Max Weight: {{ $vehicles->weight }}</p>
                                   <div class="profile mt-auto">
-                                      <img width="250px" src="assets/img/vehicles/{{ $vehicles->type }}.png" class="" alt="">
+                                      <img width="250px" src="assets/img/vehicles/{{ $vehicles->type }}.jpg" class="" alt="">
                                       <h3>{{ $vehicles->type }}</h3>
                                       <h4></h4>
                                   </div>
