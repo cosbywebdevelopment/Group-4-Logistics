@@ -23,12 +23,13 @@
                     <th style="width: 100px">Height</th>
                     <th style="width: 100px">Width</th>
                     <th style="width: 120px">Pallets</th>
-                    <th style="width: 120px">Max Weight</th>
-                    <th style="width: 120px">Min Charge</th>
-                    <th style="width: 120px">Per Mile</th>
-                    <th style="width: 120px">After 5</th>
-                    <th style="width: 120px">At weekends</th>
-                    <th style="width: 120px">Action</th>
+                    <th style="width: 100px">Max Weight</th>
+                    <th style="width: 100px">Min Charge</th>
+                    <th style="width: 100px">Per Mile</th>
+                    <th style="width: 100px">After 5</th>
+                    <th style="width: 100px">At weekends</th>
+                    <th style="width: 100px">Surcharge</th>
+                    <th style="width: 100px">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -48,6 +49,7 @@
                             <td><input name="per_mile" class="form-control" value="{{ $products->per_mile }}"></td>
                             <td><input name="collection_5" class="form-control" value="{{ $products->collection_5 }}"></td>
                             <td><input name="collection_weekend" class="form-control" value="{{ $products->collection_weekend }}"></td>
+                            <td><input name="collection_weekend" class="form-control" value="{{ $products->surcharge }}"></td>
                             <td><button type="submit" class="btn btn-primary">Update</button></td>
                         </tr>
                     </form>
