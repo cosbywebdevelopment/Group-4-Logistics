@@ -46,15 +46,15 @@
                                         aria-selected="false" />
                                 @endif
 
-                                <x-utils.link
-                                    :text="__('Two Factor Authentication')"
-                                    class="nav-link"
-                                    id="two-factor-authentication-tab"
-                                    data-toggle="pill"
-                                    href="#two-factor-authentication"
-                                    role="tab"
-                                    aria-controls="two-factor-authentication"
-                                    aria-selected="false"/>
+{{--                                <x-utils.link--}}
+{{--                                    :text="__('Two Factor Authentication')"--}}
+{{--                                    class="nav-link"--}}
+{{--                                    id="two-factor-authentication-tab"--}}
+{{--                                    data-toggle="pill"--}}
+{{--                                    href="#two-factor-authentication"--}}
+{{--                                    role="tab"--}}
+{{--                                    aria-controls="two-factor-authentication"--}}
+{{--                                    aria-selected="false"/>--}}
                             </div>
                         </nav>
 
