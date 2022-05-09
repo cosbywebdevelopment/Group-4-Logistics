@@ -112,7 +112,7 @@ class HomeController
 
 //        dd(Cart::getContent());
         return view('frontend.checkout', compact('userId', 'miles', 'pallet', 'time', 'date',
-        'min_charge', 'after_5', 'weekend_collection', 'surcharge'));
+        'min_charge', 'after_5', 'weekend_collection', 'surcharge', 'pickupPostcode', 'dropoffPostcode'));
     }
 
     // make payment and saves order to DB
@@ -152,7 +152,7 @@ class HomeController
         if($charge->status == "succeeded"){
             // save order
             $order = Order::create([
-                'email'=>'test Email',
+                'email'=>$request->email,
                 'type' =>$type,
                 'pickup' => $pickup,
                 'drop_off' => $dropOff,
