@@ -110,6 +110,24 @@ class HomeController
             'associatedModel' => $product
         ]);
 
+        // save order
+        if(Auth::hasUser()){
+            $order = Order::create([
+                'email'=>Auth::user()->email,
+                'type' =>$product->type,
+                'pickup' => $pickupAddress,
+                'drop_off' => $dropoffAddress,
+                'time' => $time,
+                'date' => $date,
+                'package' => $pallet,
+                'mileage' => $miles,
+                'cost' => number_format((float)$cost, 2, '.', ''),
+                'payment_method' =>'account',
+            ]);
+            return redirect()->route('frontend.index')->withFlashSuccess(__('Route added, an email has been sent to you!'));
+        }
+
+
 //        dd(Cart::getContent());
         return view('frontend.checkout', compact('userId', 'miles', 'pallet', 'time', 'date',
         'min_charge', 'after_5', 'weekend_collection', 'surcharge', 'pickupPostcode', 'dropoffPostcode'));
