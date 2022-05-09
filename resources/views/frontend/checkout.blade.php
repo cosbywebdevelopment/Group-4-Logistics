@@ -159,9 +159,9 @@
                     id="payment-form">
                     @csrf
                     <div class='form-row row'>
-                        <div class='col-xs-12 form-group required'>
+                        <div class='col-xs-12 form-group'>
                             <label class='control-label'>Email</label> <input
-                                class='form-control' name="email" size='4' type='text'>
+                                class='form-control' name="email" size='4' type='text' required>
                         </div>
                     </div>
                     <div class='form-row row'>
