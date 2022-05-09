@@ -1312,12 +1312,10 @@
                       <input id="type_input" name="type_input" hidden>
                       <input id="time_input" name="time_input" hidden>
                       <input id="date_input" name="date_input" hidden>
-                      <input id="pickup_input" name="pickup_input" hidden>
-                      <input id="dropoff_input" name="dropoff_input" hidden>
-                      <input id="dropoff_input" name="dropoff_input" hidden>
-                      <input id="dropoff_input" name="dropoff_input" hidden>
-                      <input id="pickup_postcode_input" name="pickup_postcode_input" hidden>
-                      <input id="drop_off_postcode_input" name="drop_off_postcode_input" hidden>
+                      <input id="pickup_input" name="pickup_input" >
+                      <input id="dropoff_input" name="dropoff_input" >
+                      <input id="pickup_postcode_input" name="pickup_postcode_input" >
+                      <input id="drop_off_postcode_input" name="drop_off_postcode_input" >
                       <div class="modal-body">
                           <h3>You have chosen a <span id="typeLabel"></span> which can take a load of upto <span id="max_weight"></span></h3>
                           <h4>Your Route Mileage: <span id="miles"></span></h4>
@@ -1531,12 +1529,12 @@
         // get postcode
         for (var i = 0; i < place.address_components.length; i++) {
             for (var j = 0; j < place.address_components[i].types.length; j++) {
-                if (place.address_components[i].types[j] == "postal_code") {
+                if (place.address_components[i].types[j] === "postal_code") {
                     pickupPostcode = place.address_components[i].long_name;
                 }
             }
         }
-
+        console.log(pickupPostcode)
         if(!place.geometry.location.lat){
             // user did not select an address
             document.getElementById('geoPickup').placeholder = 'Enter a place';
@@ -1552,23 +1550,24 @@
     }
 
     function onPlaceDropOff(){
-        let place = autoDropOff.getPlace();
+        let place2 = autoDropOff.getPlace();
         // get postcode
-        for (var i = 0; i < place.address_components.length; i++) {
-            for (var j = 0; j < place.address_components[i].types.length; j++) {
-                if (place.address_components[i].types[j] == "postal_code") {
-                    dropOffPostcode = place.address_components[i].long_name;
+        for (var b = 0; b < place2.address_components.length; b++) {
+            for (var r = 0; r < place2.address_components[b].types.length; r++) {
+                if (place2.address_components[b].types[r] === "postal_code") {
+                    dropOffPostcode = place2.address_components[b].long_name;
                 }
             }
         }
+        console.log(dropOffPostcode)
 
-        if(!place.geometry){
+        if(!place2.geometry){
             // user did not select an address
             document.getElementById('geoDropOff').placeholder = 'Enter a place';
         } else {
-            document.getElementById('geoDropOff').innerHTML = place.name;
-            geoDropOffLat = place.geometry.location.lat();
-            geoDropOffLong = place.geometry.location.lng();
+            document.getElementById('geoDropOff').innerHTML = place2.name;
+            geoDropOffLat = place2.geometry.location.lat();
+            geoDropOffLong = place2.geometry.location.lng();
             endRoute([geoDropOffLong,geoDropOffLat]);
         }
     }
