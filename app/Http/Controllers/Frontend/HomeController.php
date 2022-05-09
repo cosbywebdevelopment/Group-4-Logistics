@@ -121,7 +121,7 @@ class HomeController
                 'date' => $date,
                 'package' => $pallet,
                 'mileage' => $miles,
-                'cost' => number_format((float)$cost, 2, '.', ''),
+                'cost' => $cost*100,
                 'payment_method' =>'account',
             ]);
             return redirect()->route('frontend.index')->withFlashSuccess(__('Route added, an email has been sent to you!'));

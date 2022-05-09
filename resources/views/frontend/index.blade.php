@@ -1312,10 +1312,10 @@
                       <input id="type_input" name="type_input" hidden>
                       <input id="time_input" name="time_input" hidden>
                       <input id="date_input" name="date_input" hidden>
-                      <input id="pickup_input" name="pickup_input" >
-                      <input id="dropoff_input" name="dropoff_input" >
-                      <input id="pickup_postcode_input" name="pickup_postcode_input" >
-                      <input id="drop_off_postcode_input" name="drop_off_postcode_input" >
+                      <input id="pickup_input" name="pickup_input" hidden>
+                      <input id="dropoff_input" name="dropoff_input" hidden>
+                      <input id="pickup_postcode_input" name="pickup_postcode_input" hidden>
+                      <input id="drop_off_postcode_input" name="drop_off_postcode_input" hidden>
                       <div class="modal-body">
                           <h3>You have chosen a <span id="typeLabel"></span> which can take a load of upto <span id="max_weight"></span></h3>
                           <h4>Your Route Mileage: <span id="miles"></span></h4>
