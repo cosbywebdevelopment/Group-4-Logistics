@@ -127,7 +127,11 @@
                             <p>Pickup Time: <span class="font-weight-bold">{{ $time }}</span> on
                                 <span class="font-weight-bold">{{ \Carbon\Carbon::parse($date)->format('d/m/Y') }}</span>
                                 <br>
-                                Miles: <span class="font-weight-bold">{{ $miles }}</span></p>
+                                Miles: <span class="font-weight-bold">{{ $miles }}</span>
+                                <br>
+                                Pickup: <span class="font-weight-bold">{{ $pickupPostcode }}</span>
+                                Drop: <span class="font-weight-bold">{{ $dropoffPostcode }}</span>
+                            </p>
                         </div>
                     </div>
                     <div class="col-md-6">
