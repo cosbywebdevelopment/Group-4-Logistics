@@ -165,7 +165,7 @@ class HomeController
             ]);
             // email customer and John
 
-            return redirect()->route('frontend.index')->withFlashSuccess(__('Payment successful!'));
+            return redirect()->route('frontend.index')->withFlashSuccess(__('Payment successful, an email has been sent to you!'));
         }
         return redirect()->route('frontend.index')->withFlashDanger(__('Payment Failed, please try again!'));
     }
