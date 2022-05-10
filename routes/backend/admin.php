@@ -23,3 +23,9 @@ Route::patch('dashboard/frontend/update/{id}', [DashboardController::class, 'upd
     ->breadcrumbs(function (Trail $trail) {
         $trail->push(__('Home'), route('admin.dashboard.frontend.update'));
     });
+
+Route::delete('dashboard/frontend/deleteOrder/{id}', [DashboardController::class, 'deleteOrder'])
+    ->name('dashboard.frontend.deleteOrder')
+    ->breadcrumbs(function (Trail $trail) {
+        $trail->push(__('Home'), route('admin.dashboard.frontend.deleteOrder'));
+    });

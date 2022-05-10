@@ -17,7 +17,7 @@ class DashboardController
      */
     public function index()
     {
-        $orders = Order::orderBy('id', 'desc')->get();
+        $orders = Order::where('remove', null)->orderBy('id', 'desc')->get();
         return view('backend.dashboard', compact('orders'));
     }
 
@@ -33,4 +33,14 @@ class DashboardController
         $product = Product::whereId($request->id)->update($request->except('_token','_method'));
         return redirect()->back();
     }
+
+    public function deleteOrder(Request $request)
+    {
+        $order = Order::findOrFail($request->id);
+        $order->remove = 1;
+        $order->save();
+        return redirect()->back();
+    }
+
+
 }

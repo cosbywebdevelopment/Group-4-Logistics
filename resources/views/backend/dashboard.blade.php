@@ -22,12 +22,16 @@
                     <th style="width:100px">Cost</th>
                     <th style="width:100px" class="text-wrap">Payment ID</th>
                     <th style="width:100px">Created At</th>
+                    <th style="width:100px">Action</th>
 
                 </tr>
                 </thead>
                 <tbody>
 
                 @foreach($orders as $order)
+                    <form method="post" action="/admin/dashboard/frontend/deleteOrder/{{ $order->id }}">
+                        @method('DELETE')
+                        @csrf
                         <tr>
                             <td>{{ $order->type }}</td>
                             <td>{{ $order->pickup }}</td>
@@ -39,7 +43,9 @@
                             <td>{{ number_format((float)$order->cost/100, 2, '.', '') }}</td>
                             <td>{{ $order->payment_method }}</td>
                             <td>{{ \Carbon\Carbon::parse($order->created_at)->diffForHumans() }}</td>
+                            <td><button type="submit" class="btn btn-danger">Delete</button></td>
                         </tr>
+                    </form>
                 @endforeach
 
                 </tbody>
