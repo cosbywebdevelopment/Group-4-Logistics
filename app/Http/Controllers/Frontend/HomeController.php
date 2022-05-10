@@ -68,7 +68,7 @@ class HomeController
             $cost = $product->min_charge;
             $min_charge = true;
         }
-        //dd($cost);
+
         // after 5pm ? add 10%
         if(Carbon::parse($time)->format('H:i') > "17:00"){
             // add 10%
@@ -92,6 +92,7 @@ class HomeController
                 $surcharge = true;
             }
         }
+
         // place order in cart
         // from products table
         Cart::session($userId)->add([
@@ -112,6 +113,10 @@ class HomeController
 
         // save order
         if(Auth::hasUser()){
+            if(Auth::user()->discount){
+                $discount = $cost * Auth::user()->discount/100;
+                $cost = $cost - $discount;
+            }
             $order = Order::create([
                 'email'=>Auth::user()->email,
                 'type' =>$product->type,
