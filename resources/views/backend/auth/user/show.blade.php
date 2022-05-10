@@ -35,6 +35,11 @@
                 </tr>
 
                 <tr>
+                    <th>Discount %</th>
+                    <td>{{ $user->discount }}%</td>
+                </tr>
+
+                <tr>
                     <th>@lang('Status')</th>
                     <td>@include('backend.auth.user.includes.status', ['user' => $user])</td>
                 </tr>
