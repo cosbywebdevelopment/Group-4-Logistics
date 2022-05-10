@@ -29,7 +29,7 @@
                 <tbody>
 
                 @foreach($orders as $order)
-                    <form method="post" action="/admin/dashboard/frontend/deleteOrder/{{ $order->id }}">
+                    <form name="delete-item" method="post" action="/admin/dashboard/frontend/deleteOrder/{{ $order->id }}">
                         @method('DELETE')
                         @csrf
                         <tr>
