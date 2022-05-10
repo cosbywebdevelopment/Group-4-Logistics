@@ -20,5 +20,6 @@ class Order extends Model
         'mileage',
         'cost',
         'payment_method',
+        'remove',
     ];
 }
