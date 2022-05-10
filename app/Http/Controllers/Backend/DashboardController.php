@@ -17,7 +17,7 @@ class DashboardController
      */
     public function index()
     {
-        $orders = Order::all();
+        $orders = Order::orderBy('id', 'desc')->get();
         return view('backend.dashboard', compact('orders'));
     }
 
