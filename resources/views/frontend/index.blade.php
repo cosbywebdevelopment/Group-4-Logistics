@@ -1320,6 +1320,8 @@
                       <input id="type_input" name="type_input" hidden>
                       <input id="time_input" name="time_input" hidden>
                       <input id="date_input" name="date_input" hidden>
+                      <input id="time_off_input" name="time_off_input" hidden>
+                      <input id="date_off_input" name="date_off_input" hidden>
                       <input id="pickup_input" name="pickup_input" hidden>
                       <input id="dropoff_input" name="dropoff_input" hidden>
                       <input id="pickup_postcode_input" name="pickup_postcode_input" hidden>
@@ -1451,6 +1453,8 @@
     let geoDropOffLong;
     let pickupTime;
     let pickupDate;
+    let dropOffTime;
+    let dropOffDate;
     let miles = 0;
     let pickupPostcode;
     let dropOffPostcode;
@@ -1473,8 +1477,9 @@
         $("#pickup_postcode_input").val(pickupPostcode)
         $("#drop_off_postcode_input").val(dropOffPostcode)
         $("#time_input").val(pickupTime)
-        $("#time_input").val(pickupTime)
         $("#date_input").val(pickupDate)
+        $("#time_off_input").val(dropOffTime)
+        $("#date_off_input").val(dropOffDate)
         $("#typeLabel").text(type);
         $("#type_input").val(type);
         $("#id_input").val(id);
@@ -1501,6 +1506,8 @@
         // set pick up time and date
         pickupTime = $("#pickup_time").val()
         pickupDate = $("#pickup_date").val()
+        dropOffTime = $("#drop_off_time").val()
+        dropOffDate = $("#drop_off_date").val()
         // An offset to push the content down from the top.
         let offset = 60;
         // Our scroll target : the top position of the
