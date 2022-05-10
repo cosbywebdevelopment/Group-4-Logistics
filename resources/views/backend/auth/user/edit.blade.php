@@ -46,6 +46,14 @@
                         </div>
                     </div><!--form-group-->
 
+                        <div class="form-group row">
+                            <label for="email" class="col-md-2 col-form-label">Discount %</label>
+
+                            <div class="col-md-10">
+                                <input type="email" name="discount" id="email" class="form-control" placeholder="{{ __('Discount %') }}" value="{{ old('discount') ?? $user->discount }}" maxlength="255" required />
+                            </div>
+                        </div><!--form-group-->
+
                     @if (!$user->isMasterAdmin())
                         @include('backend.auth.includes.roles')
 
