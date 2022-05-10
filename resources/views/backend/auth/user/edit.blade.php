@@ -50,7 +50,7 @@
                             <label for="email" class="col-md-2 col-form-label">Discount %</label>
 
                             <div class="col-md-10">
-                                <input type="email" name="discount" id="email" class="form-control" placeholder="{{ __('Discount %') }}" value="{{ old('discount') ?? $user->discount }}" maxlength="255" required />
+                                <input type="text" name="discount" id="" class="form-control" placeholder="{{ __('Discount %') }}" value="{{ old('discount') ?? $user->discount }}" maxlength="255" required />
                             </div>
                         </div><!--form-group-->
 
