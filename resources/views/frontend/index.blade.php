@@ -156,6 +156,14 @@
                             <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up date</label>
                             <input id="pickup_date" type="date" class="form-control" required>
                         </div>
+                        <div class="mb-3 col-lg-4">
+                            <label for="exampleFormControlInput1" class="form-label text-capitalize">drop off time</label>
+                            <input id="drop_off_time" type="time" class="form-control" required>
+                        </div>
+                        <div class="mb-3 col-lg-5">
+                            <label for="exampleFormControlInput1" class="form-label text-capitalize">drop off date</label>
+                            <input id="drop_off_date" type="date" class="form-control" required>
+                        </div>
                     </div>
 
               <div class="text-center text-lg-start">
