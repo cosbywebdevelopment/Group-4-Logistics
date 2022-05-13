@@ -1343,6 +1343,21 @@
           </div>
       </div>
 
+      <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="">Please Login or Register</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body text-center">
+                      <a class="btn btn-secondary" href="/register">Register</a>
+                      <a class="btn btn-primary" href="/login">Login</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+
 
 
   </main><!-- End #main -->
@@ -1504,21 +1519,36 @@
         // let target = $('#about').offset().top - offset;
     })
 
-    $("#quote_form").submit(function (e){
-        e.preventDefault()
-        // set pick up time and date
-        pickupTime = $("#pickup_time").val()
-        pickupDate = $("#pickup_date").val()
-        dropOffTime = $("#drop_off_time").val()
-        dropOffDate = $("#drop_off_date").val()
-        // An offset to push the content down from the top.
-        let offset = 60;
-        // Our scroll target : the top position of the
-        let target = $('#vehicle').offset().top - offset;
-        // The magic...smooth scrollin' goodness.
-        $('html, body').animate({scrollTop:target}, 600);
-        $("#vehicles").show('fade')//.attr('data-aos','fade-down')
-    })
+    @auth
+        @if ($logged_in_user->isUser())
+
+            $("#quote_form").submit(function (e){
+                e.preventDefault()
+
+                // set pick up time and date
+                pickupTime = $("#pickup_time").val()
+                pickupDate = $("#pickup_date").val()
+                dropOffTime = $("#drop_off_time").val()
+                dropOffDate = $("#drop_off_date").val()
+                // An offset to push the content down from the top.
+                let offset = 60;
+                // Our scroll target : the top position of the
+                let target = $('#vehicle').offset().top - offset;
+                // The magic...smooth scrollin' goodness.
+                $('html, body').animate({scrollTop:target}, 600);
+                $("#vehicles").show('fade')//.attr('data-aos','fade-down')
+            })
+
+        @endif
+
+        @else
+            $("#quote_form").submit(function (e){
+                e.preventDefault()
+            // window.location.href = '/login';
+            // open modal
+            $('#loginModal').modal('show');
+            })
+    @endauth
 
 
     // google api places
