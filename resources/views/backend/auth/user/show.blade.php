@@ -40,6 +40,17 @@
                 </tr>
 
                 <tr>
+                    <th>Credit</th>
+                    <td>
+                        @if($user->credit == 1)
+                            Yes
+                        @else
+                            No
+                        @endif
+                    </td>
+                </tr>
+
+                <tr>
                     <th>@lang('Status')</th>
                     <td>@include('backend.auth.user.includes.status', ['user' => $user])</td>
                 </tr>
