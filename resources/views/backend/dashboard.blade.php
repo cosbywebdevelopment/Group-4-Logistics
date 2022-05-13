@@ -15,8 +15,10 @@
                     <th style="width:100px">Vehicle</th>
                     <th style="width:100px">Pickup</th>
                     <th style="width:100px">Drop Off</th>
-                    <th style="width:75px">Time</th>
-                    <th style="width:100px">Date</th>
+                    <th style="width:75px">Pickup Time</th>
+                    <th style="width:100px">Pickup Date</th>
+                    <th style="width:75px">Drop Time</th>
+                    <th style="width:100px">Drop Date</th>
                     <th style="width:100px">Package</th>
                     <th style="width:100px">Mileage</th>
                     <th style="width:100px">Cost</th>
@@ -37,7 +39,9 @@
                             <td>{{ $order->pickup }}</td>
                             <td>{{ $order->drop_off }}</td>
                             <td>{{ $order->time }}</td>
-                            <td>{{ $order->date }}</td>
+                            <td>{{ Carbon\Carbon::parse($order->date)->format('d/m/y') }}</td>
+                            <td>{{ $order->drop_time }}</td>
+                            <td>{{ Carbon\Carbon::parse($order->drop_date)->format('d/m/y') }}</td>
                             <td>{{ $order->package }}</td>
                             <td>{{ $order->mileage }}</td>
                             <td>{{ number_format((float)$order->cost/100, 2, '.', '') }}</td>
