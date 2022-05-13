@@ -12,7 +12,7 @@
             <table class="table table-responsive-sm">
                 <thead>
                 <tr>
-                    <th style="width:100px">Vehicle</th>
+                    <th style="width:100px">Email</th>
                     <th style="width:100px">Pickup</th>
                     <th style="width:100px">Drop Off</th>
                     <th style="width:75px">Pickup Time</th>
@@ -35,7 +35,7 @@
                         @method('DELETE')
                         @csrf
                         <tr>
-                            <td>{{ $order->type }}</td>
+                            <td>{{ $order->email }}</td>
                             <td>{{ $order->pickup }}</td>
                             <td>{{ $order->drop_off }}</td>
                             <td>{{ $order->time }}</td>
