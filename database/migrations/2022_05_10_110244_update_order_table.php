@@ -14,6 +14,8 @@ class UpdateOrderTable extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
+            $table->string('drop_date')->nullable();
+            $table->string('drop_time')->nullable();
             $table->tinyInteger('remove')->nullable();
         });
     }
@@ -26,6 +28,8 @@ class UpdateOrderTable extends Migration
     public function down()
     {
         Schema::table('orders', function (Blueprint $table) {
+            $table->dropColumn('drop_date');
+            $table->dropColumn('drop_time');
             $table->dropColumn('remove');
         });
     }
