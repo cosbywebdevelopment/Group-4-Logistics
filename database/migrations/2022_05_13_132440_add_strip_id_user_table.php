@@ -15,6 +15,7 @@ class AddStripIdUserTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('sripe_id')->nullable();
+            $table->tinyInteger('credit')->default(0);
         });
     }
 
@@ -27,6 +28,7 @@ class AddStripIdUserTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('sripe_id');
+            $table->dropColumn('credit');
         });
     }
 }
