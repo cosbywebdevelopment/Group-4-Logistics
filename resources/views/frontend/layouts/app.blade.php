@@ -12,6 +12,8 @@
     @stack('before-styles')
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="assets/img/favicon.ico" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
     <link href="{{ mix('css/frontend.css') }}" rel="stylesheet">
     <livewire:styles />
     @stack('after-styles')
