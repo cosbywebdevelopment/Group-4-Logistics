@@ -16,6 +16,8 @@ class Order extends Model
         'drop_off',
         'time',
         'date',
+        'drop_date',
+        'drop_time',
         'package',
         'mileage',
         'cost',

@@ -42,6 +42,8 @@ class HomeController
         $miles = $request->input('miles_input');
         $time = $request->input('time_input');
         $date = $request->input('date_input');
+        $dropTime = $request->input('time_off_input');
+        $dropDate = $request->input('date_off_input');
         $pickupAddress = $request->input('pickup_input');
         $dropoffAddress = $request->input('dropoff_input');
         $pickupPostcode = $request->input('pickup_postcode_input');
@@ -104,6 +106,8 @@ class HomeController
                 'miles'=>$miles,
                 'time'=>$time,
                 'date'=>$date,
+                'drop_date' => $dropDate,
+                'drop_time' => $dropTime,
                 'package' => $pallet,
                 'pickup' => $pickupAddress,
                 'dropOff' => $dropoffAddress,
@@ -124,6 +128,8 @@ class HomeController
                 'drop_off' => $dropoffAddress,
                 'time' => $time,
                 'date' => $date,
+                'drop_date' => $dropDate,
+                'drop_time' => $dropTime,
                 'package' => $pallet,
                 'mileage' => $miles,
                 'cost' => $cost*100,
@@ -133,7 +139,7 @@ class HomeController
         }
 
 
-//        dd(Cart::getContent());
+       // dd(Cart::getContent());
         return view('frontend.checkout', compact('userId', 'miles', 'pallet', 'time', 'date',
         'min_charge', 'after_5', 'weekend_collection', 'surcharge', 'pickupPostcode', 'dropoffPostcode'));
     }
@@ -152,11 +158,15 @@ class HomeController
         $package = '';
         $pickup = '';
         $dropOff = '';
+        $drop_date = '';
+        $drop_time = '';
         foreach ($items as $row){
             $type = $row->name;
             $milesCart = $row->attributes->miles;
             $time = $row->attributes->time;
             $date = $row->attributes->date;
+            $drop_date = $row->attributes->drop_date;
+            $drop_time = $row->attributes->drop_time;
             $package = $row->attributes->package;
             $pickup = $row->attributes->pickup;
             $dropOff = $row->attributes->dropOff;
@@ -167,7 +177,8 @@ class HomeController
             "amount" => $cost * 100,
             "currency" => "gbp",
             "source" => $request->stripeToken,
-            "description" => "Route " . $pickup . " to " . $dropOff . ' at ' . $time . ' ' . Carbon::parse($date)->format('d/m/Y')
+            "description" => "Route " . $pickup . ' at ' . $time . ' ' . Carbon::parse($date)->format('d/m/Y')
+                . " drop off " . $dropOff . ' at ' . $drop_time . ' ' . Carbon::parse($drop_date)->format('d/m/Y')
             . ' vehicle ' . $type . ' load ' . $package
         ]);
 
@@ -181,6 +192,8 @@ class HomeController
                 'drop_off' => $dropOff,
                 'time' => $time,
                 'date' => $date,
+                'drop_date' => $drop_date,
+                'drop_time' => $drop_time,
                 'package' => $package,
                 'mileage' => $milesCart,
                 'cost' => $charge->amount,
