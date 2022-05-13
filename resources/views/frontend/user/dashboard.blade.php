@@ -6,6 +6,7 @@
     <div class="container py-4">
         <div class="row justify-content-center">
             <div class="col-md-12">
+                <a href="/#about" class="btn btn-success mb-4">Book a Delivery</a>
                 <x-frontend.card>
                     <x-slot name="header">
                         Your Deliveries
