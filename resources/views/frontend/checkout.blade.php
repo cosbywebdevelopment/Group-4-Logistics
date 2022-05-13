@@ -171,7 +171,7 @@
                     <div class='form-row row'>
                         <div class='col-xs-12 form-group'>
                             <label class='control-label'>Email</label> <input
-                                class='form-control' name="email" size='4' type='text' required>
+                                class='form-control' name="email" value="{{ Auth::user()->email }}" size='4' type='text' readonly>
                         </div>
                     </div>
                     <div class='form-row row'>
