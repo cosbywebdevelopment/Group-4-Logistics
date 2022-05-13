@@ -127,6 +127,9 @@
                             <p>Pickup Time: <span class="font-weight-bold">{{ $time }}</span> on
                                 <span class="font-weight-bold">{{ \Carbon\Carbon::parse($date)->format('d/m/Y') }}</span>
                                 <br>
+                                Drop Off Time: <span class="font-weight-bold">{{ $dropTime }}</span> on
+                                <span class="font-weight-bold">{{ \Carbon\Carbon::parse($dropDate)->format('d/m/Y') }}</span>
+                                <br>
                                 Miles: <span class="font-weight-bold">{{ $miles }}</span>
                                 <br>
                                 Pickup: <span class="font-weight-bold">{{ $pickupPostcode }}</span>
@@ -143,6 +146,9 @@
                             @else
                                 <p class="font-weight-bold">£{{ number_format((float)$row->price, 2, '.', '') }}</p>
                             @endif
+                            <br>
+                            <br>
+                            <br>
                         </div>
                     </div>
                 </div>
