@@ -1,10 +1,12 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container">
-        <x-utils.link
-            :href="route('frontend.index')"
-            :text="appName()"
-            class="navbar-brand" />
-
+{{--        <x-utils.link--}}
+{{--            :href="route('frontend.index')"--}}
+{{--            :text="appName()"--}}
+{{--            class="navbar-brand" />--}}
+        <a href="/" class="logo d-flex align-items-center">
+            <img src="assets/img/logo.webp" alt="">
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="@lang('Toggle navigation')">
             <span class="navbar-toggler-icon"></span>
         </button>
