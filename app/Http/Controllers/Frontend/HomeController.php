@@ -10,7 +10,9 @@ use Cart;
 use Illuminate\Http\Request;
 use Session;
 use Stripe\Charge;
+use Stripe\Customer;
 use Stripe\Stripe;
+use function PHPUnit\Framework\isEmpty;
 use function PHPUnit\Framework\isNull;
 
 /**
@@ -115,8 +117,8 @@ class HomeController
             'associatedModel' => $product
         ]);
 
-        // save order
-        if(Auth::hasUser()){
+        // save order if logged in and has credit
+        if(Auth::hasUser() && Auth::user()->credit){
             if(Auth::user()->discount){
                 $discount = $cost * Auth::user()->discount/100;
                 $cost = $cost - $discount;
@@ -135,13 +137,23 @@ class HomeController
                 'cost' => $cost*100,
                 'payment_method' =>'account',
             ]);
+            if(!Auth::user()->sripe_id) {
+                Stripe::setApiKey(env('STRIPE_SECRET'));
+                $customer = Customer::create([
+                    'email' => Auth::user()->email,
+                    'description' => Auth::user()->company,
+                    'name' => Auth::user()->name,
+                ]);
+                // save customer id to user table
+                Auth::user()->sripe_id = $customer->id;
+                Auth::user()->save();
+                //dd(Auth::user());
+            }
             return redirect()->route('frontend.index')->withFlashSuccess(__('Route added, an email has been sent to you!'));
         }
-
-
        // dd(Cart::getContent());
         return view('frontend.checkout', compact('userId', 'miles', 'pallet', 'time', 'date',
-        'min_charge', 'after_5', 'weekend_collection', 'surcharge', 'pickupPostcode', 'dropoffPostcode'));
+        'min_charge', 'after_5', 'weekend_collection', 'surcharge', 'pickupPostcode', 'dropoffPostcode', 'dropTime', 'dropDate'));
     }
 
     // make payment and saves order to DB
@@ -173,35 +185,39 @@ class HomeController
         }
 
         Stripe::setApiKey(env('STRIPE_SECRET'));
-        $charge = Charge::create ([
-            "amount" => $cost * 100,
-            "currency" => "gbp",
-            "source" => $request->stripeToken,
-            "description" => "Route " . $pickup . ' at ' . $time . ' ' . Carbon::parse($date)->format('d/m/Y')
-                . " drop off " . $dropOff . ' at ' . $drop_time . ' ' . Carbon::parse($drop_date)->format('d/m/Y')
-            . ' vehicle ' . $type . ' load ' . $package
-        ]);
-
-        //dd($charge);
-        if($charge->status == "succeeded"){
-            // save order
-            $order = Order::create([
-                'email'=>$request->email,
-                'type' =>$type,
-                'pickup' => $pickup,
-                'drop_off' => $dropOff,
-                'time' => $time,
-                'date' => $date,
-                'drop_date' => $drop_date,
-                'drop_time' => $drop_time,
-                'package' => $package,
-                'mileage' => $milesCart,
-                'cost' => $charge->amount,
-                'payment_method' =>$charge->payment_method,
+        // if user has no credit
+        if(!Auth::user()->credit){
+            $charge = Charge::create ([
+                "amount" => $cost * 100,
+                "currency" => "gbp",
+                "source" => $request->stripeToken,
+                "description" => "Route " . $pickup . ' at ' . $time . ' ' . Carbon::parse($date)->format('d/m/Y')
+                    . " drop off " . $dropOff . ' at ' . $drop_time . ' ' . Carbon::parse($drop_date)->format('d/m/Y')
+                . ' vehicle ' . $type . ' load ' . $package
             ]);
-            // email customer and John
 
-            return redirect()->route('frontend.index')->withFlashSuccess(__('Payment successful, an email has been sent to you!'));
+            if($charge->status == "succeeded"){
+                // save order
+                $order = Order::create([
+                    'email'=>$request->email,
+                    'type' =>$type,
+                    'pickup' => $pickup,
+                    'drop_off' => $dropOff,
+                    'time' => $time,
+                    'date' => $date,
+                    'drop_date' => $drop_date,
+                    'drop_time' => $drop_time,
+                    'package' => $package,
+                    'mileage' => $milesCart,
+                    'cost' => $charge->amount,
+                    'payment_method' =>$charge->payment_method,
+                ]);
+
+                // email customer and John
+
+                return redirect()->route('frontend.index')->withFlashSuccess(__('Payment successful, an email has been sent to you!'));
+            }
+
         }
         return redirect()->route('frontend.index')->withFlashDanger(__('Payment Failed, please try again!'));
     }
