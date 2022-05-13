@@ -14,10 +14,18 @@
                     <x-slot name="body">
                         <x-forms.post :action="route('frontend.auth.register')">
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">@lang('Name')</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-right">Contact</label>
 
                                 <div class="col-md-6">
                                     <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}" placeholder="{{ __('Name') }}" maxlength="100" required autofocus autocomplete="name" />
+                                </div>
+                            </div><!--form-group-->
+
+                            <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label text-md-right">Position</label>
+
+                                <div class="col-md-6">
+                                    <input type="text" name="position" id="position" class="form-control" value="{{ old('position') }}" placeholder="{{ __('position') }}" maxlength="100" required autofocus autocomplete="position" />
                                 </div>
                             </div><!--form-group-->
 
@@ -26,6 +34,38 @@
 
                                 <div class="col-md-6">
                                     <input type="email" name="email" id="email" class="form-control" placeholder="{{ __('E-mail Address') }}" value="{{ old('email') }}" maxlength="255" required autocomplete="email" />
+                                </div>
+                            </div><!--form-group-->
+
+                            <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label text-md-right">Mobile</label>
+
+                                <div class="col-md-6">
+                                    <input type="text" name="mobile" id="mobile" class="form-control" value="{{ old('mobile') }}" placeholder="{{ __('mobile') }}" maxlength="100" required autofocus autocomplete="mobile" />
+                                </div>
+                            </div><!--form-group-->
+
+                            <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label text-md-right">Company Name</label>
+
+                                <div class="col-md-6">
+                                    <input type="text" name="company" id="company" class="form-control" value="{{ old('company') }}" placeholder="{{ __('Company Name') }}" maxlength="100" required autofocus autocomplete="company" />
+                                </div>
+                            </div><!--form-group-->
+
+                            <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label text-md-right">Company Address</label>
+
+                                <div class="col-md-6">
+                                    <input type="text" name="address" id="address" class="form-control" value="{{ old('address') }}" placeholder="{{ __('Company Address') }}" maxlength="100" required autofocus autocomplete="address" />
+                                </div>
+                            </div><!--form-group-->
+
+                            <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label text-md-right">VAT Number <small>(Optional)</small></label>
+
+                                <div class="col-md-6">
+                                    <input type="text" name="vat" id="vat" class="form-control" value="{{ old('vat') }}" placeholder="{{ __('VAT Number') }}" maxlength="100" autofocus />
                                 </div>
                             </div><!--form-group-->
 
