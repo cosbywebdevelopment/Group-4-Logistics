@@ -162,6 +162,7 @@ class UserService extends BaseService
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'discount' => $data['discount'],
+                'credit' => $data['credit'],
             ]);
 
             if (! $user->isMasterAdmin()) {

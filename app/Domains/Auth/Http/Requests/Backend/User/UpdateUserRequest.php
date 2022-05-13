@@ -40,6 +40,7 @@ class UpdateUserRequest extends FormRequest
             'permissions' => ['sometimes', 'array'],
             'permissions.*' => [Rule::exists('permissions', 'id')->where('type', $this->type)],
             'discount' => ['required', 'max:100'],
+            'credit' => ['required', 'max:100'],
         ];
     }
 
