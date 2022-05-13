@@ -25,7 +25,7 @@
                                 <label for="name" class="col-md-4 col-form-label text-md-right">Position</label>
 
                                 <div class="col-md-6">
-                                    <input type="text" name="position" id="position" class="form-control" value="{{ old('position') }}" placeholder="{{ __('position') }}" maxlength="100" required autofocus autocomplete="position" />
+                                    <input type="text" name="position" id="position" class="form-control" value="{{ old('position') }}" placeholder="{{ __('Position') }}" maxlength="100" required autofocus autocomplete="position" />
                                 </div>
                             </div><!--form-group-->
 
