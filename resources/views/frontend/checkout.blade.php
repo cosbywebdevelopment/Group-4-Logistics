@@ -142,9 +142,9 @@
                             <h3><i class="bi bi-currency-pound align-middle"></i><span class="pl-1">Cost</span></h3>
 
                             @if($surcharge || $weekend_collection || $after_5 || $min_charge)
-                                <p class="font-weight-bold">£{{ number_format((float)$row->price, 2, '.', '') }}<span style="color: red">*</span></p>
+                                <p class="font-weight-bold">£{{ number_format((float)Cart::session($userId)->getTotal(), 2, '.', '') }}<span style="color: red">*</span></p>
                             @else
-                                <p class="font-weight-bold">£{{ number_format((float)$row->price, 2, '.', '') }}</p>
+                                <p class="font-weight-bold">£{{ number_format((float)Cart::session($userId)->getTotal(), 2, '.', '') }}</p>
                             @endif
                             <br>
                             <br>
@@ -213,7 +213,7 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
-                            <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now (£{{ number_format((float)$row->price, 2, '.', '') }})</button>
+                            <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now (£{{ number_format((float)Cart::session($userId)->getTotal(), 2, '.', '') }})</button>
                         </div>
                     </div>
                 </form>
