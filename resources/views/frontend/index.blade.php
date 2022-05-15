@@ -1329,7 +1329,7 @@
                       <div class="modal-body">
                           <h3>You have chosen a <span id="typeLabel"></span> which can take a load of upto <span id="max_weight"></span></h3>
                           <h4>Your Route Mileage: <span id="miles"></span></h4>
-                          <h4>Cost From <span id="cost"></span></h4>
+                          <h4>Cost From <span id="cost"></span> +VAT</h4>
                           <h4>pickup Time <span id="time"></span> Date <span id="date"></span></h4>
                           <h4>Drop Off Time <span id="drop_time"></span> Date <span id="drop_date"></span></h4>
                           <p>Click the "Checkout" button to book.</p>
