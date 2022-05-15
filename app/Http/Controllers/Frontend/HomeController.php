@@ -7,6 +7,7 @@ use App\Models\Product;
 use Auth;
 use Carbon\Carbon;
 use Cart;
+use Darryldecode\Cart\CartCondition;
 use Illuminate\Http\Request;
 use Session;
 use Stripe\Charge;
@@ -50,7 +51,8 @@ class HomeController
         $dropoffAddress = $request->input('dropoff_input');
         $pickupPostcode = $request->input('pickup_postcode_input');
         $dropoffPostcode = $request->input('drop_off_postcode_input');
-        $userId = '';
+        $userId = Auth::id();
+        Cart::session($userId)->clear();
         $id = $request->input('type_id');
         $surcharge = false;
         $weekend_collection = false;
@@ -59,12 +61,6 @@ class HomeController
 
         $product = Product::findOrFail($id);
         $pallet = $product->pallets;
-        // create user id if not logged in
-        if(isNull(Auth::id())){
-            $userId = uniqid();
-        } else{
-            $userId = Auth::id();
-        }
         $this->cost = $miles * $product->per_mile;
         $cost = number_format((float)$this->cost, 2, '.', '');
         // min charge applied
@@ -97,12 +93,23 @@ class HomeController
             }
         }
 
+        // ADDED VAT
+        $vat = new CartCondition(array(
+            'name' => 'VAT 20%',
+            'type' => 'tax',
+            'target' => 'total', // this condition will be applied to cart's total when getTotal() is called.
+            'value' => '20%',
+            'attributes' => array( // attributes field is optional
+                'description' => 'Value added tax'
+            )
+        ));
+
         // place order in cart
         // from products table
         Cart::session($userId)->add([
             'id' => $id,
             'name' => $product->type,
-            'price' => number_format((float)$cost, 2, '.', ''),
+            'price' => $cost,
             'quantity' => 1,
             'attributes' => [
                 'miles'=>$miles,
@@ -116,12 +123,26 @@ class HomeController
             ],
             'associatedModel' => $product
         ]);
+        //dd(Cart::getTotal());
+        //dd($cost);
 
         // save order if logged in and has credit
         if(Auth::hasUser() && Auth::user()->credit){
+            //dd(round(Cart::getTotal(),2));
             if(Auth::user()->discount){
-                $discount = $cost * Auth::user()->discount/100;
-                $cost = $cost - $discount;
+                //$discount = $cost * Auth::user()->discount/100;
+                //$cost = $cost - $discount;
+                $discountCondition = new CartCondition(array(
+                    'name' => 'Discount',
+                    'type' => 'tax',
+                    'target' => 'total', // this condition will be applied to cart's subtotal when getSubTotal() is called.
+                    'value' => '-'.Auth::user()->discount.'%',
+                    'attributes' => array( // attributes field is optional
+                        'description' => 'Discount'
+                    )
+                ));
+                //Cart::session($userId)->condition($discountCondition);
+                //dd(round(Cart::session($userId)->getTotal(), 2)*100);
             }
             $order = Order::create([
                 'email'=>Auth::user()->email,
@@ -134,7 +155,7 @@ class HomeController
                 'drop_time' => $dropTime,
                 'package' => $pallet,
                 'mileage' => $miles,
-                'cost' => $cost*100,
+                'cost' => round(Cart::session($userId)->getTotal(), 2)*100,
                 'payment_method' =>'account',
             ]);
             if(!Auth::user()->sripe_id) {
@@ -151,7 +172,7 @@ class HomeController
             }
             return redirect()->route('frontend.index')->withFlashSuccess(__('Route added, an email has been sent to you!'));
         }
-       // dd(Cart::getContent());
+//       dd(round(Cart::session($userId)->getTotal(), 2));
         return view('frontend.checkout', compact('userId', 'miles', 'pallet', 'time', 'date',
         'min_charge', 'after_5', 'weekend_collection', 'surcharge', 'pickupPostcode', 'dropoffPostcode', 'dropTime', 'dropDate'));
     }
@@ -159,11 +180,12 @@ class HomeController
     // make payment and saves order to DB
     public function stripePost(Request $request)
     {
+
         // save cart to DB for ref Todo
         $items = Cart::session($request->userId)->getContent();
         //dd($items);
         $type = '';
-        $cost = Cart::session($request->userId)->getTotal();
+        $cost = round(Cart::session($request->userId)->getTotal(), 2);
         $milesCart = 0;
         $time = '';
         $date = '';
@@ -186,7 +208,7 @@ class HomeController
 
         Stripe::setApiKey(env('STRIPE_SECRET'));
         // if user has no credit
-        if(!Auth::user()->credit){
+
             $charge = Charge::create ([
                 "amount" => $cost * 100,
                 "currency" => "gbp",
@@ -218,7 +240,6 @@ class HomeController
                 return redirect()->route('frontend.index')->withFlashSuccess(__('Payment successful, an email has been sent to you!'));
             }
 
-        }
         return redirect()->route('frontend.index')->withFlashDanger(__('Payment Failed, please try again!'));
     }
 }
