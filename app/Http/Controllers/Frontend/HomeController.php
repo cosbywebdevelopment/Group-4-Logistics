@@ -122,7 +122,7 @@ class HomeController
                 'dropOff' => $dropoffAddress,
             ],
             'associatedModel' => $product
-        ]);
+        ])->condition($vat);
         //dd(Cart::getTotal());
         //dd($cost);
 
@@ -141,7 +141,7 @@ class HomeController
                         'description' => 'Discount'
                     )
                 ));
-                //Cart::session($userId)->condition($discountCondition);
+                Cart::session($userId)->condition($discountCondition);
                 //dd(round(Cart::session($userId)->getTotal(), 2)*100);
             }
             $order = Order::create([
