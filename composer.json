@@ -14,7 +14,7 @@
         "darkghosthunter/laraguard": "^3.0",
         "darryldecode/cart": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
-        "guzzlehttp/guzzle": "^7.0.1",
+        "guzzlehttp/guzzle": "^7.4",
         "jamesmills/laravel-timezone": "^1.9",
         "lab404/laravel-impersonate": "^1.6",
         "langleyfoxall/laravel-nist-password-rules": "^4.1",
@@ -28,7 +28,9 @@
         "rappasoft/lockout": "^3.0",
         "spatie/laravel-activitylog": "^3.14",
         "spatie/laravel-permission": "^3.11",
-        "tabuna/breadcrumbs": "^2.2"
+        "stripe/stripe-php": "^7.125",
+        "tabuna/breadcrumbs": "^2.2",
+        "wildbit/swiftmailer-postmark": "^3.3"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
