@@ -51,6 +51,31 @@
                 </tr>
 
                 <tr>
+                    <th>Company</th>
+                    <td>{{ $user->company }}</td>
+                </tr>
+
+                <tr>
+                    <th>Company Adrress</th>
+                    <td>{{ $user->address }}</td>
+                </tr>
+
+                <tr>
+                    <th>Mobile</th>
+                    <td>{{ $user->mobile }}</td>
+                </tr>
+
+                <tr>
+                    <th>Position</th>
+                    <td>{{ $user->position }}</td>
+                </tr>
+
+                <tr>
+                    <th>Stripe ID</th>
+                    <td>{{ $user->sripe_id }}</td>
+                </tr>
+
+                <tr>
                     <th>@lang('Status')</th>
                     <td>@include('backend.auth.user.includes.status', ['user' => $user])</td>
                 </tr>
