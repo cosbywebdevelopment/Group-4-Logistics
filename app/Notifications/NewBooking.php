@@ -53,7 +53,7 @@ class NewBooking extends Notification
             ->line('Drop Off Date: '.$this->order['drop_date'])
             ->line('package: '.$this->order['package'])
             ->line('Mileage: '.$this->order['mileage'])
-            ->line('Cost exc VAT: £'.$this->order['cost']/100)
+            ->line('Cost : £'.$this->order['cost']/100)
             ->line('Thank you for using our application!');
     }
 
