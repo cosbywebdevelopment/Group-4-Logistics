@@ -146,6 +146,7 @@
                             @else
                                 <p class="font-weight-bold">£{{ number_format((float)Cart::session($userId)->getTotal(), 2, '.', '') }}</p>
                             @endif
+                            <small>Total Cost (Inc. VAT)</small>
                             <br>
                             <br>
                             <br>
