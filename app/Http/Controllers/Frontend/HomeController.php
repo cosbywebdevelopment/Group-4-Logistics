@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\Order;
 use App\Models\Product;
+use App\Notifications\NewBooking;
 use Auth;
 use Carbon\Carbon;
 use Cart;
 use Darryldecode\Cart\CartCondition;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Mail;
 use Session;
 use Stripe\Charge;
 use Stripe\Customer;
@@ -94,37 +97,52 @@ class HomeController
         }
 
         // ADDED VAT
-        $vat = new CartCondition(array(
-            'name' => 'VAT 20%',
-            'type' => 'tax',
-            'target' => 'total', // this condition will be applied to cart's total when getTotal() is called.
-            'value' => '20%',
-            'attributes' => array( // attributes field is optional
-                'description' => 'Value added tax'
-            )
-        ));
-
-        // place order in cart
-        // from products table
-        Cart::session($userId)->add([
-            'id' => $id,
-            'name' => $product->type,
-            'price' => $cost,
-            'quantity' => 1,
-            'attributes' => [
-                'miles'=>$miles,
-                'time'=>$time,
-                'date'=>$date,
-                'drop_date' => $dropDate,
-                'drop_time' => $dropTime,
-                'package' => $pallet,
-                'pickup' => $pickupAddress,
-                'dropOff' => $dropoffAddress,
-            ],
-            'associatedModel' => $product
-        ])->condition($vat);
-        //dd(Cart::getTotal());
-        //dd($cost);
+        if(Auth::user()->credit){
+            $vat = new CartCondition(array(
+                'name' => 'VAT 20%',
+                'type' => 'tax',
+                'target' => 'total', // this condition will be applied to cart's total when getTotal() is called.
+                'value' => '20%',
+                'attributes' => array( // attributes field is optional
+                    'description' => 'Value added tax'
+                )
+            ));
+            Cart::session($userId)->add([
+                'id' => $id,
+                'name' => $product->type,
+                'price' => $cost,
+                'quantity' => 1,
+                'attributes' => [
+                    'miles'=>$miles,
+                    'time'=>$time,
+                    'date'=>$date,
+                    'drop_date' => $dropDate,
+                    'drop_time' => $dropTime,
+                    'package' => $pallet,
+                    'pickup' => $pickupAddress,
+                    'dropOff' => $dropoffAddress,
+                ],
+                'associatedModel' => $product
+            ])->condition($vat);
+        } else{
+            Cart::session($userId)->add([
+                'id' => $id,
+                'name' => $product->type,
+                'price' => $cost,
+                'quantity' => 1,
+                'attributes' => [
+                    'miles'=>$miles,
+                    'time'=>$time,
+                    'date'=>$date,
+                    'drop_date' => $dropDate,
+                    'drop_time' => $dropTime,
+                    'package' => $pallet,
+                    'pickup' => $pickupAddress,
+                    'dropOff' => $dropoffAddress,
+                ],
+                'associatedModel' => $product
+            ]);
+        }
 
         // save order if logged in and has credit
         if(Auth::hasUser() && Auth::user()->credit){
@@ -170,6 +188,10 @@ class HomeController
                 Auth::user()->save();
                 //dd(Auth::user());
             }
+            // send email
+            $array = Arr::except($order->toArray(), ['id', 'created_at', 'updated_at', 'payment_method']);
+            Auth::user()->notify(new NewBooking($array));
+
             return redirect()->route('frontend.index')->withFlashSuccess(__('Route added, an email has been sent to you!'));
         }
 //       dd(round(Cart::session($userId)->getTotal(), 2));
@@ -236,6 +258,8 @@ class HomeController
                 ]);
 
                 // email customer and John
+                $array = Arr::except($order->toArray(), ['id', 'created_at', 'updated_at', 'payment_method']);
+                Auth::user()->notify(new NewBooking($array));
 
                 return redirect()->route('frontend.index')->withFlashSuccess(__('Payment successful, an email has been sent to you!'));
             }
