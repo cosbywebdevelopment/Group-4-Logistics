@@ -1439,6 +1439,10 @@
     <div class="container">
       <div class="copyright">
         &copy; Copyright {{ \Carbon\Carbon::today()->format('Y') }}<strong><span> Group 4 Logistics</span></strong>. All Rights Reserved
+          <br>
+          <a href="/terms">Terms & Conditions</a>
+          <br>
+          <a href="/pp">Privacy Policy</a>
       </div>
       <div class="credits">
         Developed by <a href="https://cosbywebdevelopment.co.uk/">Cosby Web Development</a>
