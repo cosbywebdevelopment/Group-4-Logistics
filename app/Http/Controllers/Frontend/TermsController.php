@@ -14,4 +14,9 @@ class TermsController
     {
         return view('frontend.pages.terms');
     }
+
+    public function pp()
+    {
+        return view('frontend.pages.pp');
+    }
 }

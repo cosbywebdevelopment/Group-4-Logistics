@@ -37,3 +37,10 @@ Route::get('terms', [TermsController::class, 'index'])
         $trail->parent('frontend.index')
             ->push(__('Terms & Conditions'), route('frontend.pages.terms'));
     });
+
+Route::get('pp', [TermsController::class, 'pp'])
+    ->name('pages.pp')
+    ->breadcrumbs(function (Trail $trail) {
+        $trail->parent('frontend.index')
+            ->push(__('Privacy Policy'), route('frontend.pages.pp'));
+    });
