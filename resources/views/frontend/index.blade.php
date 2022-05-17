@@ -1310,7 +1310,7 @@
           <div class="modal-dialog">
               <div class="modal-content">
                   <div class="modal-header">
-                      <h5 class="modal-title" id="">Your selection</h5>
+                      <h5 class="modal-title" id="">Your Quote</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <form action="/checkoutPost" method="post">
@@ -1329,14 +1329,14 @@
                       <div class="modal-body">
                           <h3>You have chosen a <span id="typeLabel"></span> which can take a load of upto <span id="max_weight"></span></h3>
                           <h4>Your Route Mileage: <span id="miles"></span></h4>
-                          <h4>Cost From <span id="cost"></span> +VAT</h4>
-                          <h4>pickup Time <span id="time"></span> Date <span id="date"></span></h4>
+                          <h4>Cost <span id="cost"></span> +VAT</h4>
+                          <h4>Pickup Time <span id="time"></span> Date <span id="date"></span></h4>
                           <h4>Drop Off Time <span id="drop_time"></span> Date <span id="drop_date"></span></h4>
                           <p>Click the "Checkout" button to book.</p>
                       </div>
                       <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <button type="submit" class="btn btn-primary" style="background: #fc8a18; border-color: #fc8a18">Checkout</button>
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Decline</button>
+                          <button type="submit" class="btn btn-primary" style="background: #fc8a18; border-color: #fc8a18">Book Now</button>
                       </div>
                   </form>
               </div>
