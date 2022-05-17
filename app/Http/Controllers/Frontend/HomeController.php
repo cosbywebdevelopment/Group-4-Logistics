@@ -192,7 +192,7 @@ class HomeController
             $array = Arr::except($order->toArray(), ['id', 'created_at', 'updated_at', 'payment_method']);
             Auth::user()->notify(new NewBooking($array));
 
-            return redirect()->route('frontend.index')->withFlashSuccess(__('Route added, an email has been sent to you!'));
+            return redirect()->route('frontend.index')->withFlashSuccess(__('Booking Confirmed, an email has been sent to you!'));
         }
 //       dd(round(Cart::session($userId)->getTotal(), 2));
         return view('frontend.checkout', compact('userId', 'miles', 'pallet', 'time', 'date',
