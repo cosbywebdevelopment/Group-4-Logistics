@@ -53,8 +53,18 @@ class NewBooking extends Notification
             ->line('Drop Off Date: '.$this->order['drop_date'])
             ->line('package: '.$this->order['package'])
             ->line('Mileage: '.$this->order['mileage'])
+
+            ->line('Booking Ref: '.$this->order['ref'])
+            ->line('Pickup Contact: '.$this->order['pickup_contact'])
+            ->line('Delivery Contact: '.$this->order['delivery_contact'])
+            ->line('Delivery Information: '.$this->order['delivery_info'])
+            ->line('Size: '.$this->order['size'])
+            ->line('Weight: '.$this->order['weight'])
+            ->line('Notes: '.$this->order['notes'])
+            ->line('Confirm that the delivery does not include any dangerous goods (as defined in the Carriage of Dangerous Goods by Road Regulations 1996): '.($this->order['confirm']) ? 'Yes' : 'No')
+
             ->line('Cost : £'.$this->order['cost']/100)
-            ->line('Thank you for using our application!');
+            ->line('Thank you for using G4Logistics!');
     }
 
     /**
