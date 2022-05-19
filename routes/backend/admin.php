@@ -29,3 +29,9 @@ Route::delete('dashboard/frontend/deleteOrder/{id}', [DashboardController::class
     ->breadcrumbs(function (Trail $trail) {
         $trail->push(__('Home'), route('admin.dashboard.frontend.deleteOrder'));
     });
+
+Route::get('dashboard/order/{id}', [DashboardController::class, 'showOrder'])
+    ->name('dashboard.order')
+    ->breadcrumbs(function (Trail $trail) {
+        $trail->push(__('Home'), route('admin.dashboard.order', 'id'));
+    });

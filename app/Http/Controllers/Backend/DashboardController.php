@@ -42,5 +42,10 @@ class DashboardController
         return redirect()->back();
     }
 
+    public function showOrder($id){
+        $order = Order::findOrFail($id);
+        return view('backend.show', compact('order'));
+    }
+
 
 }

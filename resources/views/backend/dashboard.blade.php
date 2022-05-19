@@ -12,6 +12,7 @@
             <table class="table table-responsive-sm">
                 <thead>
                 <tr>
+                    <th style="width:100px">Booking</th>
                     <th style="width:100px">Email</th>
                     <th style="width:100px">Pickup</th>
                     <th style="width:100px">Drop Off</th>
@@ -22,7 +23,6 @@
                     <th style="width:100px">Package</th>
                     <th style="width:100px">Mileage</th>
                     <th style="width:100px">Cost</th>
-                    <th style="width:100px" class="text-wrap">Payment ID</th>
                     <th style="width:100px">Created At</th>
                     <th style="width:100px">Action</th>
 
@@ -35,6 +35,7 @@
                         @method('DELETE')
                         @csrf
                         <tr>
+                            <td><a href="{{ route('admin.dashboard.order', $order->id) }}" class="btn btn-dark text-white">Show</a></td>
                             <td>{{ $order->email }}</td>
                             <td>{{ $order->pickup }}</td>
                             <td>{{ $order->drop_off }}</td>
@@ -45,7 +46,6 @@
                             <td>{{ $order->package }}</td>
                             <td>{{ $order->mileage }}</td>
                             <td>{{ number_format((float)$order->cost/100, 2, '.', '') }}</td>
-                            <td>{{ $order->payment_method }}</td>
                             <td>{{ \Carbon\Carbon::parse($order->created_at)->diffForHumans() }}</td>
                             <td><button type="submit" class="btn btn-danger">Delete</button></td>
                         </tr>
