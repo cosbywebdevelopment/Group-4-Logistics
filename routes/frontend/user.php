@@ -27,4 +27,11 @@ Route::group(['as' => 'user.', 'middleware' => ['auth', 'password.expires', conf
         });
 
     Route::patch('profile/update', [ProfileController::class, 'update'])->name('profile.update');
+
+    Route::get('booking/{id}', [DashboardController::class, 'show'])
+        ->name('booking')
+        ->breadcrumbs(function (Trail $trail) {
+            $trail->parent('frontend.user.dashboard')
+                ->push(__('Booking'), route('frontend.user.booking','id'));
+        });
 });

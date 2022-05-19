@@ -16,7 +16,7 @@
                         <table class="table table-responsive-sm">
                             <thead>
                             <tr>
-                                <th>Vehicle</th>
+                                <th>Booking</th>
                                 <th style="">Pickup</th>
                                 <th style="">Drop Off</th>
                                 <th style="">Time</th>
@@ -33,7 +33,7 @@
 
                             @foreach($orders as $order)
                                 <tr>
-                                    <td>{{ $order->type }}</td>
+                                    <td><a href="{{ route('frontend.user.booking', $order->id) }}" class="btn btn-dark">Show</a></td>
                                     <td>{{ $order->pickup }}</td>
                                     <td>{{ $order->drop_off }}</td>
                                     <td>{{ $order->time }}</td>
