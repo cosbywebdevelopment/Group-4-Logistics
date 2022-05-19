@@ -1252,15 +1252,15 @@
                         <div class="row gy-4">
 
                             <div class="col-md-6">
-                                <input type="text" name="ref" class="form-control" placeholder="Booking Reference" >
+                                <input type="text" name="ref" class="form-control" placeholder="Booking Reference" required>
                             </div>
 
                             <div class="col-md-12">
-                                <input type="text" class="form-control" name="pickup_contact" placeholder="Pickup Contact Name & Number" >
+                                <input type="text" class="form-control" name="pickup_contact" placeholder="Pickup Contact Name & Number" required>
                             </div>
 
                             <div class="col-md-12">
-                                <input type="text" class="form-control" name="delivery_contact" placeholder="Delivery Contact Name & Number" >
+                                <input type="text" class="form-control" name="delivery_contact" placeholder="Delivery Contact Name & Number" required>
                             </div>
 
                             <div class="col-md-12">
@@ -1288,7 +1288,7 @@
                             </div>
 
                             <div class="col-md-12">
-                                <input type="checkbox" value="1" name="confirm" id="confirm" >
+                                <input type="checkbox" value="1" name="confirm" id="confirm" required>
                                 <label for="confirm">Confirm that the delivery does not include any dangerous goods (as defined in the Carriage of Dangerous Goods by Road Regulations 1996).</label>
                             </div>
 
