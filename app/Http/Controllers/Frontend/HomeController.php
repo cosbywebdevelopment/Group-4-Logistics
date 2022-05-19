@@ -37,9 +37,36 @@ class HomeController
         return view('frontend.index', compact('vehicle'));
     }
 
-    public function checkout()
+    public function checkout(Request $request)
     {
-        return view('frontend.checkout');
+        $payment = false;
+        $userId = 0;
+        $order = Order::findOrFail($request->id);
+        $miles = $order->miles;
+        $pallet = $order->pallet;
+        $time = $order->time;
+        $date = $order->date;
+        $min_charge = $request->min_charge;
+        $after_5 = $request->after_5;
+        $weekend_collection = $request->weekend_collection;
+        $surcharge = $request->surcharge;
+        $pickupPostcode = $order->pickupPostcode;
+        $dropoffPostcode = $order->dropoffPostcode;
+        $dropTime = $order->dropTime;
+        $dropDate = $order->dropDate;
+        $ref = $order->ref;
+        $pickup_contact = $order->pickup_contact;
+        $delivery_contact = $order->delivery_contact;
+        $delivery_info = $order->delivery_info;
+        $size = $order->size;
+        $weight = $order->weight;
+        $notes = $order->notes;
+        $confirm = $order->confirm;
+        $type = $order->type;
+
+        return view('frontend.checkout', compact('userId', 'miles', 'pallet', 'time', 'date',
+            'min_charge', 'after_5', 'weekend_collection', 'surcharge', 'pickupPostcode', 'dropoffPostcode', 'dropTime', 'dropDate', 'payment',
+            'ref', 'pickup_contact', 'delivery_contact', 'delivery_info', 'size', 'weight', 'notes', 'confirm', 'type'));
     }
 
     // run through the matrix and updates cost
@@ -54,6 +81,14 @@ class HomeController
         $dropoffAddress = $request->input('dropoff_input');
         $pickupPostcode = $request->input('pickup_postcode_input');
         $dropoffPostcode = $request->input('drop_off_postcode_input');
+        $ref = $request->input('ref');
+        $pickup_contact = $request->input('pickup_contact');
+        $delivery_contact = $request->input('delivery_contact');
+        $delivery_info = $request->input('delivery_info');
+        $size = $request->input('size');
+        $weight = $request->input('weight');
+        $notes = $request->input('notes');
+        $confirm = $request->input('confirm');
         $userId = Auth::id();
         Cart::session($userId)->clear();
         $id = $request->input('type_id');
@@ -63,6 +98,7 @@ class HomeController
         $min_charge = false;
 
         $product = Product::findOrFail($id);
+        $type = $product->type;
         $pallet = $product->pallets;
         $this->cost = $miles * $product->per_mile;
         $cost = number_format((float)$this->cost, 2, '.', '');
@@ -121,6 +157,14 @@ class HomeController
                     'package' => $pallet,
                     'pickup' => $pickupAddress,
                     'dropOff' => $dropoffAddress,
+                    'ref' => $ref,
+                    'pickup_contact' => $pickup_contact,
+                    'delivery_contact' => $delivery_contact,
+                    'delivery_info' => $delivery_info,
+                    'size' => $size,
+                    'weight' => $weight,
+                    'notes' => $notes,
+                    'confirm' => $confirm,
                 ],
                 'associatedModel' => $product
             ])->condition($vat);
@@ -139,6 +183,14 @@ class HomeController
                     'package' => $pallet,
                     'pickup' => $pickupAddress,
                     'dropOff' => $dropoffAddress,
+                    'ref' => $ref,
+                    'pickup_contact' => $pickup_contact,
+                    'delivery_contact' => $delivery_contact,
+                    'delivery_info' => $delivery_info,
+                    'size' => $size,
+                    'weight' => $weight,
+                    'notes' => $notes,
+                    'confirm' => $confirm,
                 ],
                 'associatedModel' => $product
             ]);
@@ -175,6 +227,14 @@ class HomeController
                 'mileage' => $miles,
                 'cost' => round(Cart::session($userId)->getTotal(), 2)*100,
                 'payment_method' =>'account',
+                'ref' => $ref,
+                'pickup_contact' => $pickup_contact,
+                'delivery_contact' => $delivery_contact,
+                'delivery_info' => $delivery_info,
+                'size' => $size,
+                'weight' => $weight,
+                'notes' => $notes,
+                'confirm' => $confirm,
             ]);
             if(!Auth::user()->sripe_id) {
                 Stripe::setApiKey(env('STRIPE_SECRET'));
@@ -192,11 +252,14 @@ class HomeController
             $array = Arr::except($order->toArray(), ['id', 'created_at', 'updated_at', 'payment_method']);
             Auth::user()->notify(new NewBooking($array));
 
-            return redirect()->route('frontend.index')->withFlashSuccess(__('Booking Confirmed, an email has been sent to you!'));
+            return redirect()->route('frontend.checkout', ['id' => $order->id, 'min_charge' => $min_charge,
+                'after_5' => $after_5, 'weekend_collection' => $weekend_collection, 'surcharge' => $surcharge])->withInput();
         }
-//       dd(round(Cart::session($userId)->getTotal(), 2));
+        $payment = true;
+
         return view('frontend.checkout', compact('userId', 'miles', 'pallet', 'time', 'date',
-        'min_charge', 'after_5', 'weekend_collection', 'surcharge', 'pickupPostcode', 'dropoffPostcode', 'dropTime', 'dropDate'));
+        'min_charge', 'after_5', 'weekend_collection', 'surcharge', 'pickupPostcode', 'dropoffPostcode', 'dropTime', 'dropDate', 'payment',
+        'ref', 'pickup_contact', 'delivery_contact', 'delivery_info', 'size', 'weight', 'notes', 'confirm', 'type'));
     }
 
     // make payment and saves order to DB
@@ -226,6 +289,15 @@ class HomeController
             $package = $row->attributes->package;
             $pickup = $row->attributes->pickup;
             $dropOff = $row->attributes->dropOff;
+
+            $ref = $row->attributes->ref;
+            $pickup_contact = $row->attributes->pickup_contact;
+            $delivery_contact = $row->attributes->delivery_contact;
+            $delivery_info = $row->attributes->delivery_info;
+            $size = $row->attributes->size;
+            $weight = $row->attributes->weight;
+            $notes = $row->attributes->notes;
+            $confirm = $row->attributes->confirm;
         }
 
         Stripe::setApiKey(env('STRIPE_SECRET'));
@@ -255,6 +327,14 @@ class HomeController
                     'mileage' => $milesCart,
                     'cost' => $charge->amount,
                     'payment_method' =>$charge->payment_method,
+                    'ref' => $ref,
+                    'pickup_contact' => $pickup_contact,
+                    'delivery_contact' => $delivery_contact,
+                    'delivery_info' => $delivery_info,
+                    'size' => $size,
+                    'weight' => $weight,
+                    'notes' => $notes,
+                    'confirm' => $confirm,
                 ]);
 
                 // email customer and John

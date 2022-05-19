@@ -107,12 +107,12 @@
 
         <div class="row gy-4">
             <div class="col-lg-6">
-                @foreach(Cart::getContent() as $row)
+
                 <div class="row gy-4">
                     <div class="col-md-6">
                         <div class="info-box text-center">
                             <h3><i class="bi bi-fan align-middle"></i><span class="pl-2">Vehicle</span></h3>
-                            <p class="font-weight-bold">{{ $row->name }}</p>
+                            <p class="font-weight-bold">{{ $type }}</p>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -142,9 +142,9 @@
                             <h3><i class="bi bi-currency-pound align-middle"></i><span class="pl-1">Cost</span></h3>
 
                             @if($surcharge || $weekend_collection || $after_5 || $min_charge)
-                                <p class="font-weight-bold">£{{ number_format((float)Cart::session($userId)->getTotal(), 2, '.', '') }}<span style="color: red">*</span></p>
+                                <p class="font-weight-bold">£{{ number_format((float)Cart::session(Auth::user()->id)->getTotal(), 2, '.', '') }}<span style="color: red">*</span></p>
                             @else
-                                <p class="font-weight-bold">£{{ number_format((float)Cart::session($userId)->getTotal(), 2, '.', '') }}</p>
+                                <p class="font-weight-bold">£{{ number_format((float)Cart::session(Auth::user()->id)->getTotal(), 2, '.', '') }}</p>
                             @endif
                             <small>Total Cost (Inc. VAT)</small>
                             <br>
@@ -152,72 +152,103 @@
                             <br>
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="info-box text-center">
+                            <h3><i class="bi bi-info-circle align-middle"></i><span class="pl-2">Booking Information</span></h3>
+                            <p>Booking Ref: <span class="font-weight-bold">{{ $ref }}</span>
+                                <br>
+                                Pickup Contact: <span class="font-weight-bold">{{ $pickup_contact }}</span>
+                                <br>
+                                Delivery Contact: <span class="font-weight-bold">{{ $delivery_contact }}</span>
+                                <br>
+                                Delivery Information: <span class="font-weight-bold">{{ $delivery_info }}</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-box text-center">
+                            <h3><i class="bi bi-info-circle align-middle"></i><span class="pl-2">Booking Information</span></h3>
+                            <p>Size: <span class="font-weight-bold">{{ $size }}</span>
+                                <br>
+                                Weight: <span class="font-weight-bold">{{ $weight }}</span>
+                                <br>
+                                Notes: <span class="font-weight-bold">{{ $notes }}</span>
+                                <br>
+                                Confirm that the delivery does not include any dangerous goods: <span class="font-weight-bold">{{ ($confirm == 1) ? 'Yes' : 'No' }}</span>
+                            </p>
+                        </div>
+                    </div>
                 </div>
                     <small><span style="color: red">*</span> Congestion Charge / Weekend Collection / Collection After 5pm / Minimum Charge has been applied</small>
 
             </div>
-            @endforeach
+
 
             <div class="col-lg-6">
 
-                <form
-                    role="form"
-                    action="/stripePost"
-                    method="post"
-                    class="require-validation php-email-form"
-                    data-cc-on-file="false"
-                    data-stripe-publishable-key="{{ env('STRIPE_KEY') }}"
-                    id="payment-form">
-                    @csrf
-                    <div class='form-row row'>
-                        <div class='col-xs-12 form-group'>
-                            <label class='control-label'>Email</label> <input
-                                class='form-control' name="email" value="{{ Auth::user()->email }}" size='4' type='text' readonly>
-                        </div>
-                    </div>
-                    <div class='form-row row'>
-                        <div class='col-xs-12 form-group required'>
-                            <label class='control-label'>Name on Card</label> <input
-                                class='form-control' size='4' type='text'>
-                        </div>
-                    </div>
-                    <div class='form-row row'>
-                        <div class='col-xs-12 form-group card required'>
-                            <label class='control-label'>Card Number</label> <input
-                                autocomplete='off' class='form-control card-number' size='20'
-                                type='text'>
-                        </div>
-                    </div>
-                    <div class='form-row row'>
-                        <div class='col-xs-12 col-md-4 form-group cvc required'>
-                            <label class='control-label'>CVC</label> <input autocomplete='off'
-                                                                            class='form-control card-cvc' placeholder='ex. 311' size='4'
-                                                                            type='text'>
-                        </div>
-                        <div class='col-xs-12 col-md-4 form-group expiration required'>
-                            <label class='control-label'>Expiration Month</label> <input
-                                class='form-control card-expiry-month' placeholder='MM' size='2'
-                                type='text'>
-                        </div>
-                        <div class='col-xs-12 col-md-4 form-group expiration required'>
-                            <label class='control-label'>Expiration Year</label> <input
-                                class='form-control card-expiry-year' placeholder='YYYY' size='4'
-                                type='text'>
-                        </div>
-                    </div>
-                    <div class='form-row row'>
-                        <div class='col-md-12 error form-group d-none'>
-                            <div class='alert-danger alert'>Please correct the errors and try
-                                again.
+                @if($payment)
+                    <form
+                        role="form"
+                        action="/stripePost"
+                        method="post"
+                        class="require-validation php-email-form"
+                        data-cc-on-file="false"
+                        data-stripe-publishable-key="{{ env('STRIPE_KEY') }}"
+                        id="payment-form">
+                        @csrf
+                        <div class='form-row row'>
+                            <div class='col-xs-12 form-group'>
+                                <label class='control-label'>Email</label> <input
+                                    class='form-control' name="email" value="{{ Auth::user()->email }}" size='4' type='text' readonly>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now (£{{ number_format((float)Cart::session($userId)->getTotal(), 2, '.', '') }})</button>
+                        <div class='form-row row'>
+                            <div class='col-xs-12 form-group required'>
+                                <label class='control-label'>Name on Card</label> <input
+                                    class='form-control' size='4' type='text'>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                        <div class='form-row row'>
+                            <div class='col-xs-12 form-group card required'>
+                                <label class='control-label'>Card Number</label> <input
+                                    autocomplete='off' class='form-control card-number' size='20'
+                                    type='text'>
+                            </div>
+                        </div>
+                        <div class='form-row row'>
+                            <div class='col-xs-12 col-md-4 form-group cvc required'>
+                                <label class='control-label'>CVC</label> <input autocomplete='off'
+                                                                                class='form-control card-cvc' placeholder='ex. 311' size='4'
+                                                                                type='text'>
+                            </div>
+                            <div class='col-xs-12 col-md-4 form-group expiration required'>
+                                <label class='control-label'>Expiration Month</label> <input
+                                    class='form-control card-expiry-month' placeholder='MM' size='2'
+                                    type='text'>
+                            </div>
+                            <div class='col-xs-12 col-md-4 form-group expiration required'>
+                                <label class='control-label'>Expiration Year</label> <input
+                                    class='form-control card-expiry-year' placeholder='YYYY' size='4'
+                                    type='text'>
+                            </div>
+                        </div>
+                        <div class='form-row row'>
+                            <div class='col-md-12 error form-group d-none'>
+                                <div class='alert-danger alert'>Please correct the errors and try
+                                    again.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now (£{{ number_format((float)Cart::session($userId)->getTotal(), 2, '.', '') }})</button>
+                            </div>
+                        </div>
+                    </form>
+                @else
+                    <h3>Booking Confirmed, an email has been sent to you!</h3>
+                @endif
+
 
             </div>
 

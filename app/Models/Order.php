@@ -23,5 +23,13 @@ class Order extends Model
         'cost',
         'payment_method',
         'remove',
+        'ref',
+        'pickup_contact',
+        'delivery_contact',
+        'delivery_info',
+        'size',
+        'weight',
+        'notes',
+        'confirm',
     ];
 }

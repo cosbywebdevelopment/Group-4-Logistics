@@ -15,35 +15,37 @@
 
     @stack('after-styles')
 
-  <!-- Favicons -->
-  <link href="assets/img/favicon.ico" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+<!-- Favicons -->
+    <link href="assets/img/favicon.ico" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
 
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css' rel='stylesheet' />
-{{--    <script src='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js'></script>--}}
-{{--    <link href='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css' rel='stylesheet' />--}}
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css' rel='stylesheet'/>
+    {{--    <script src='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js'></script>--}}
+    {{--    <link href='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css' rel='stylesheet' />--}}
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 {{--    <link rel="stylesheet" type="text/css" href="./style.css" />--}}
 
 
-    <!-- =======================================================
+<!-- =======================================================
     * Template Name: FlexStart - v1.9.0
     * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
     * Author: BootstrapMade.com
@@ -55,169 +57,181 @@
 @include('includes.partials.read-only')
 @include('includes.partials.logged-in-as')
 {{--@include('includes.partials.announcements')--}}
-  <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top">
+<!-- ======= Header ======= -->
+<header id="header" class="header fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-      <a href="/" class="logo d-flex align-items-center">
-        <img src="assets/img/logo.webp" alt="">
-      </a>
+        <a href="/" class="logo d-flex align-items-center">
+            <img src="assets/img/logo.webp" alt="">
+        </a>
 
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto active" href="#hero">HOME</a></li>
-          <li><a class="nav-link scrollto" href="#about">QUOTE</a></li>
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a class="nav-link scrollto active" href="#hero">HOME</a></li>
+                <li><a class="nav-link scrollto" href="#about">QUOTE</a></li>
 
-            @auth
-                @if ($logged_in_user->isUser())
-                    <li><a class="nav-link " href="{{ route('frontend.user.dashboard') }}">DASHBOARD</a></li>
-                @endif
+                @auth
+                    @if ($logged_in_user->isUser())
+                        <li><a class="nav-link " href="{{ route('frontend.user.dashboard') }}">DASHBOARD</a></li>
+                    @endif
 
-                <li><a class="nav-link " href="{{ route('frontend.user.account') }}">ACCOUNT</a></li>
-            @else
-                <li><a class="nav-link " href="{{ route('frontend.auth.login') }}">LOGIN</a></li>
+                    <li><a class="nav-link " href="{{ route('frontend.user.account') }}">ACCOUNT</a></li>
+                @else
 
-                @if (config('boilerplate.access.user.registration'))
-                    <li><a class="nav-link " href="{{ route('frontend.auth.register') }}">REGISTER</a></li>
-                @endif
-            @endauth
 
-          <li><a class="getstarted scrollto" href="#about">Get Started</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
+                    @if (config('boilerplate.access.user.registration'))
+                        <li><a class="nav-link " href="{{ route('frontend.auth.register') }}">REGISTER</a></li>
+                    @endif
+                @endauth
+                @guest
+                <li><a class="getstarted" href="{{ route('frontend.auth.login') }}">LOGIN</a></li>
+                @endguest
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
 
     </div>
-  </header><!-- End Header -->
+</header><!-- End Header -->
 
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="hero d-flex align-items-center">
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="hero d-flex align-items-center">
 
     <div class="container">
         @include('includes.partials.messages')
-      <div class="row">
-        <div class="col-lg-6 d-flex flex-column justify-content-center">
-            <h1 style="color: #9b9a9d" data-aos="fade-up">A <span style="color: #fc8a18">TO</span> B
-              BUSINESS
-              SOLUTIONS</h1>
-          <h2 data-aos="fade-up" data-aos-delay="400">Local & International Delivery</h2>
-          <div data-aos="fade-up" data-aos-delay="600">
-            <div class="text-center text-lg-start">
-              <a href="#about" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-                <span>Get Quote</span>
-                <i class="bi bi-arrow-right"></i>
-              </a>
+        <div class="row">
+            <div class="col-lg-6 d-flex flex-column justify-content-center">
+                <h1 style="color: #9b9a9d" data-aos="fade-up">A <span style="color: #fc8a18">TO</span> B
+                    BUSINESS
+                    SOLUTIONS</h1>
+                <h2 data-aos="fade-up" data-aos-delay="400">Local & International Delivery</h2>
+                <div data-aos="fade-up" data-aos-delay="600">
+                    <div class="text-center text-lg-start">
+                        <a href="#about"
+                           class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+                            <span>Get Quote</span>
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
-          </div>
+            <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
+                <img src="/assets/img/vehicles/7.5 Tonne.jpg" class="img-fluid" alt="">
+            </div>
         </div>
-        <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
-          <img src="/assets/img/vehicles/7.5 Tonne.jpg" class="img-fluid" alt="">
-        </div>
-      </div>
     </div>
 
-  </section><!-- End Hero -->
+</section><!-- End Hero -->
 
-  <main id="main">
+<main id="main">
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
 
-      <div class="container" data-aos="fade-up">
-        <div class="row gx-0">
+        <div class="container" data-aos="fade-up">
+            <div class="row gx-0">
 
-          <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
-            <div class="content">
-              <h3>with our instant quote tool you can be sure what you'll be paying</h3>
-                <form id="quote_form">
-                    <div class="row">
-                        <div class="mb-3 col-lg-9">
-                            <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up from</label>
-                            <input type="text" class="form-control" id="geoPickup" placeholder="Type Your Address" required>
+                <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="content">
+                        <h3>with our instant quote tool you can be sure what you'll be paying</h3>
+                        <form id="quote_form">
+                            <div class="row">
+                                <div class="mb-3 col-lg-9">
+                                    <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up
+                                        from</label>
+                                    <input type="text" class="form-control" id="geoPickup"
+                                           placeholder="Type Your Address" required>
+                                </div>
+                                <div class="mb-3 col-lg-9">
+                                    <label for="exampleFormControlInput1" class="form-label text-capitalize">drop off
+                                        at</label>
+                                    <input type="text" class="form-control" id="geoDropOff"
+                                           placeholder="Type Your Address" required>
+                                </div>
+                                <div class="mb-3 col-lg-4">
+                                    <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up
+                                        time</label>
+                                    <input id="pickup_time" type="time" class="form-control" required>
+                                </div>
+                                <div class="mb-3 col-lg-5">
+                                    <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up
+                                        date</label>
+                                    <input id="pickup_date" type="date" class="form-control" required>
+                                </div>
+                                <div class="mb-3 col-lg-4">
+                                    <label for="exampleFormControlInput1" class="form-label text-capitalize">drop off
+                                        time</label>
+                                    <input id="drop_off_time" type="time" class="form-control" required>
+                                </div>
+                                <div class="mb-3 col-lg-5">
+                                    <label for="exampleFormControlInput1" class="form-label text-capitalize">drop off
+                                        date</label>
+                                    <input id="drop_off_date" type="date" class="form-control" required>
+                                </div>
+                            </div>
+
+                            <div class="text-center text-lg-start">
+                                <button id="quote" type="submit"
+                                        class="btn btn-read-more d-inline-flex align-items-center justify-content-center align-self-center">
+                                    <span>Quote Me!</span>
+                                    <i class="bi bi-cash-coin"></i>
+                                </button>
+                            </div>
+                        </form>
+                        <div class="mt-3 text-center">
+                            <button id="clear_map" type="button" class="btn btn-outline-primary">
+                                <span>Clear Map!</span>
+                            </button>
                         </div>
-                        <div class="mb-3 col-lg-9">
-                            <label for="exampleFormControlInput1" class="form-label text-capitalize">drop off at</label>
-                            <input type="text" class="form-control" id="geoDropOff" placeholder="Type Your Address" required>
-                        </div>
-                        <div class="mb-3 col-lg-4">
-                            <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up time</label>
-                            <input id="pickup_time" type="time" class="form-control" required>
-                        </div>
-                        <div class="mb-3 col-lg-5">
-                            <label for="exampleFormControlInput1" class="form-label text-capitalize">pick up date</label>
-                            <input id="pickup_date" type="date" class="form-control" required>
-                        </div>
-                        <div class="mb-3 col-lg-4">
-                            <label for="exampleFormControlInput1" class="form-label text-capitalize">drop off time</label>
-                            <input id="drop_off_time" type="time" class="form-control" required>
-                        </div>
-                        <div class="mb-3 col-lg-5">
-                            <label for="exampleFormControlInput1" class="form-label text-capitalize">drop off date</label>
-                            <input id="drop_off_date" type="date" class="form-control" required>
-                        </div>
+
                     </div>
-
-              <div class="text-center text-lg-start">
-                  <button id="quote" type="submit" class="btn btn-read-more d-inline-flex align-items-center justify-content-center align-self-center">
-                      <span>Quote Me!</span>
-                      <i class="bi bi-cash-coin"></i>
-                  </button>
-              </div>
-                </form>
-                <div class="mt-3 text-center">
-                    <button id="clear_map" type="button" class="btn btn-outline-primary">
-                        <span>Clear Map!</span>
-                    </button>
                 </div>
-
+                <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
+                    {{--            <img src="assets/img/quote.png" class="img-fluid" alt="">--}}
+                    <div id='map' style='width: 500px; height: 400px;'></div>
+                </div>
             </div>
-          </div>
-          <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
-{{--            <img src="assets/img/quote.png" class="img-fluid" alt="">--}}
-              <div id='map' style='width: 500px; height: 400px;'></div>
-          </div>
         </div>
-      </div>
     </section>
 
-        <section id="vehicle" class="testimonials">
-          <div id="vehicles" class="container" style="display: none">
+    <section id="vehicle" class="testimonials">
+        <div id="vehicles" class="container" style="display: none">
 
-              <header class="section-header">
-                  <p>Choose your vehicle</p>
-              </header>
+            <header class="section-header">
+                <p>Choose your vehicle</p>
+            </header>
 
-              <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="200">
-                  <div class="swiper-wrapper">
-                      @foreach($vehicle as $vehicles)
-                          <div class="swiper-slide vehicleModal"
-                               data-type="{{ $vehicles->type }}"
-                               data-id="{{ $vehicles->id }}"
-                               data-mileage-cost="{{ $vehicles->per_mile }}"
-                               data-max-weight="{{ $vehicles->max_weight }}"
-                               data-pallets="{{ $vehicles->pallets }}"
-                               data-min-charge="{{ $vehicles->min_charge }}"
-                          >
-                              <div class="testimonial-item">
-                                  <p>Length: @if($vehicles->length == 0.00) 'N/A' @else {{$vehicles->length}}m @endif</p>
-                                  <p>Height: @if($vehicles->height == 0.00) 'N/A' @else {{$vehicles->height}}m @endif</p>
-                                  <p>Width: @if($vehicles->width == 0.00) 'N/A' @else {{$vehicles->width}}m @endif</p>
-                                  <p>Payload: {{ $vehicles->pallets }}</p>
-                                  <p>Max Weight: {{ $vehicles->weight }}</p>
-                                  <div class="profile mt-auto">
-                                      <img width="250px" src="assets/img/vehicles/{{ $vehicles->type }}.jpg" class="" alt="">
-                                      <h3>{{ $vehicles->type }}</h3>
-                                      <h4></h4>
-                                  </div>
-                              </div>
-                          </div><!-- End testimonial item -->
-                      @endforeach
-                  </div>
-                  <!-- If we need navigation buttons -->
-                  <div class="swiper-button-prev"></div>
-                  <div class="swiper-button-next"></div>
-              </div>
+            <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="200">
+                <div class="swiper-wrapper">
+                    @foreach($vehicle as $vehicles)
+                        <div class="swiper-slide vehicleModal"
+                             data-type="{{ $vehicles->type }}"
+                             data-id="{{ $vehicles->id }}"
+                             data-mileage-cost="{{ $vehicles->per_mile }}"
+                             data-max-weight="{{ $vehicles->max_weight }}"
+                             data-pallets="{{ $vehicles->pallets }}"
+                             data-min-charge="{{ $vehicles->min_charge }}"
+                        >
+                            <div class="testimonial-item">
+                                <p>Length: @if($vehicles->length == 0.00) 'N/A' @else {{$vehicles->length}}m @endif</p>
+                                <p>Height: @if($vehicles->height == 0.00) 'N/A' @else {{$vehicles->height}}m @endif</p>
+                                <p>Width: @if($vehicles->width == 0.00) 'N/A' @else {{$vehicles->width}}m @endif</p>
+                                <p>Payload: {{ $vehicles->pallets }}</p>
+                                <p>Max Weight: {{ $vehicles->weight }}</p>
+                                <div class="profile mt-auto">
+                                    <img width="250px" src="assets/img/vehicles/{{ $vehicles->type }}.jpg" class=""
+                                         alt="">
+                                    <h3>{{ $vehicles->type }}</h3>
+                                    <h4></h4>
+                                </div>
+                            </div>
+                        </div><!-- End testimonial item -->
+                    @endforeach
+                </div>
+                <!-- If we need navigation buttons -->
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
 
-          </div>
+        </div>
     </section><!-- End About Section -->
 {{--    <!-- ======= Values Section ======= -->--}}
 {{--    <section id="values" class="values">--}}
@@ -1209,250 +1223,237 @@
 
 {{--    </section><!-- End Recent Blog Posts Section -->--}}
 
-{{--    <!-- ======= Contact Section ======= -->--}}
-{{--    <section id="contact" class="contact">--}}
+<!-- ======= Contact Section ======= -->
+    <section id="info" class="contact">
 
-{{--      <div class="container" data-aos="fade-up">--}}
+        <div class="container" data-aos="fade-up">
 
-{{--        <header class="section-header">--}}
-{{--          <h2>Contact</h2>--}}
-{{--          <p>Contact Us</p>--}}
-{{--        </header>--}}
+            <header class="section-header">
+                <h2>Please enter your booking information below</h2>
+                <p>Your Booking Information</p>
+            </header>
+            <form action="/checkoutPost" method="post" class="php-email-form">
+                @csrf
+                <input id="miles_input" name="miles_input" hidden>
+                <input id="id_input" name="type_id" hidden>
+                <input id="type_input" name="type_input" hidden>
+                <input id="time_input" name="time_input" hidden>
+                <input id="date_input" name="date_input" hidden>
+                <input id="time_off_input" name="time_off_input" hidden>
+                <input id="date_off_input" name="date_off_input" hidden>
+                <input id="pickup_input" name="pickup_input" hidden>
+                <input id="dropoff_input" name="dropoff_input" hidden>
+                <input id="pickup_postcode_input" name="pickup_postcode_input" hidden>
+                <input id="drop_off_postcode_input" name="drop_off_postcode_input" hidden>
+                <div class="row gy-4">
 
-{{--        <div class="row gy-4">--}}
+                    <div class="col-lg-6">
 
-{{--          <div class="col-lg-6">--}}
+                        <div class="row gy-4">
 
-{{--            <div class="row gy-4">--}}
-{{--              <div class="col-md-6">--}}
-{{--                <div class="info-box">--}}
-{{--                  <i class="bi bi-geo-alt"></i>--}}
-{{--                  <h3>Address</h3>--}}
-{{--                  <p>A108 Adam Street,<br>New York, NY 535022</p>--}}
-{{--                </div>--}}
-{{--              </div>--}}
-{{--              <div class="col-md-6">--}}
-{{--                <div class="info-box">--}}
-{{--                  <i class="bi bi-telephone"></i>--}}
-{{--                  <h3>Call Us</h3>--}}
-{{--                  <p>+1 5589 55488 55<br>+1 6678 254445 41</p>--}}
-{{--                </div>--}}
-{{--              </div>--}}
-{{--              <div class="col-md-6">--}}
-{{--                <div class="info-box">--}}
-{{--                  <i class="bi bi-envelope"></i>--}}
-{{--                  <h3>Email Us</h3>--}}
-{{--                  <p>info@example.com<br>contact@example.com</p>--}}
-{{--                </div>--}}
-{{--              </div>--}}
-{{--              <div class="col-md-6">--}}
-{{--                <div class="info-box">--}}
-{{--                  <i class="bi bi-clock"></i>--}}
-{{--                  <h3>Open Hours</h3>--}}
-{{--                  <p>Monday - Friday<br>9:00AM - 05:00PM</p>--}}
-{{--                </div>--}}
-{{--              </div>--}}
-{{--            </div>--}}
+                            <div class="col-md-6">
+                                <input type="text" name="ref" class="form-control" placeholder="Booking Reference" >
+                            </div>
 
-{{--          </div>--}}
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" name="pickup_contact" placeholder="Pickup Contact Name & Number" >
+                            </div>
 
-{{--          <div class="col-lg-6">--}}
-{{--            <form action="forms/contact.php" method="post" class="php-email-form">--}}
-{{--              <div class="row gy-4">--}}
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" name="delivery_contact" placeholder="Delivery Contact Name & Number" >
+                            </div>
 
-{{--                <div class="col-md-6">--}}
-{{--                  <input type="text" name="name" class="form-control" placeholder="Your Name" required>--}}
-{{--                </div>--}}
+                            <div class="col-md-12">
+                                <textarea class="form-control" name="delivery_info" rows="3" placeholder="Delivery Instructions"></textarea>
+                            </div>
 
-{{--                <div class="col-md-6 ">--}}
-{{--                  <input type="email" class="form-control" name="email" placeholder="Your Email" required>--}}
-{{--                </div>--}}
+                        </div>
 
-{{--                <div class="col-md-12">--}}
-{{--                  <input type="text" class="form-control" name="subject" placeholder="Subject" required>--}}
-{{--                </div>--}}
+                    </div>
 
-{{--                <div class="col-md-12">--}}
-{{--                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>--}}
-{{--                </div>--}}
+                    <div class="col-lg-6">
 
-{{--                <div class="col-md-12 text-center">--}}
-{{--                  <div class="loading">Loading</div>--}}
-{{--                  <div class="error-message"></div>--}}
-{{--                  <div class="sent-message">Your message has been sent. Thank you!</div>--}}
+                        <div class="row gy-4">
 
-{{--                  <button type="submit">Send Message</button>--}}
-{{--                </div>--}}
+                            <div class="col-md-6">
+                                <input type="text" name="size" class="form-control" placeholder="Size" >
+                            </div>
 
-{{--              </div>--}}
-{{--            </form>--}}
+                            <div class="col-md-6 ">
+                                <input type="text" class="form-control" name="weight" placeholder="Weight" >
+                            </div>
 
-{{--          </div>--}}
+                            <div class="col-md-12">
+                                <textarea class="form-control" name="notes" rows="6" placeholder="Notes"></textarea>
+                            </div>
 
-{{--        </div>--}}
+                            <div class="col-md-12">
+                                <input type="checkbox" value="1" name="confirm" id="confirm" >
+                                <label for="confirm">Confirm that the delivery does not include any dangerous goods (as defined in the Carriage of Dangerous Goods by Road Regulations 1996).</label>
+                            </div>
 
-{{--      </div>--}}
+                        </div>
+                    </div>
+{{--                    Confirm that the delivery does not include any dangerous goods (as defined in the Carriage of Dangerous Goods by Road Regulations 1996).--}}
+                    <div class="col-md-12 text-center">
+                        <button id="book" style="display: none; background: #fc8a18; border-color: #fc8a18" type="submit">Book Now</button>
+                    </div>
+                </div>
+            </form>
+        </div>
 
-{{--    </section><!-- End Contact Section -->--}}
+    </section><!-- End Contact Section -->
 
-      <!-- Modal -->
-      <div class="modal fade" id="vehicleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h5 class="modal-title" id="">Your Quote</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <form action="/checkoutPost" method="post">
-                      @csrf
-                      <input id="miles_input" name="miles_input" hidden>
-                      <input id="id_input" name="type_id" hidden>
-                      <input id="type_input" name="type_input" hidden>
-                      <input id="time_input" name="time_input" hidden>
-                      <input id="date_input" name="date_input" hidden>
-                      <input id="time_off_input" name="time_off_input" hidden>
-                      <input id="date_off_input" name="date_off_input" hidden>
-                      <input id="pickup_input" name="pickup_input" hidden>
-                      <input id="dropoff_input" name="dropoff_input" hidden>
-                      <input id="pickup_postcode_input" name="pickup_postcode_input" hidden>
-                      <input id="drop_off_postcode_input" name="drop_off_postcode_input" hidden>
-                      <div class="modal-body">
-                          <h3>You have chosen a <span id="typeLabel"></span> which can take a load of upto <span id="max_weight"></span></h3>
-                          <h4>Your Route Mileage: <span id="miles"></span></h4>
-                          <h4>Cost <span id="cost"></span> +VAT</h4>
-                          <h4>Pickup Time <span id="time"></span> Date <span id="date"></span></h4>
-                          <h4>Drop Off Time <span id="drop_time"></span> Date <span id="drop_date"></span></h4>
-                          <p>Click the "Checkout" button to book.</p>
-                      </div>
-                      <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Decline</button>
-                          <button type="submit" class="btn btn-primary" style="background: #fc8a18; border-color: #fc8a18">Book Now</button>
-                      </div>
-                  </form>
-              </div>
-          </div>
-      </div>
+    <!-- Modal -->
+    <div class="modal fade" id="vehicleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="">Your Quote</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
 
-      <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h5 class="modal-title" id="">Please Login or Register</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body text-center">
-                      <a class="btn btn-secondary" href="/register">Register</a>
-                      <a class="btn btn-primary" href="/login">Login</a>
-                  </div>
-              </div>
-          </div>
-      </div>
+                    <div class="modal-body">
+                        <h3>You have chosen a <span id="typeLabel"></span> which can take a load of upto <span
+                                id="max_weight"></span></h3>
+                        <h4>Your Route Mileage: <span id="miles"></span></h4>
+                        <h4>Cost <span id="cost"></span> +VAT</h4>
+                        <h4>Pickup Time <span id="time"></span> Date <span id="date"></span></h4>
+                        <h4>Drop Off Time <span id="drop_time"></span> Date <span id="drop_date"></span></h4>
+                        <p>Click the "Checkout" button to book.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Decline</button>
+                        <button id="next" type="button" class="btn btn-primary"
+                                style="background: #fc8a18; border-color: #fc8a18">NEXT
+                        </button>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="">Please Login or Register</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <a class="btn btn-secondary" href="/register">Register</a>
+                    <a class="btn btn-primary" href="/login">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
+</main><!-- End #main -->
 
-  </main><!-- End #main -->
+<!-- ======= Footer ======= -->
+<footer id="footer" class="footer">
 
-  <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
+    {{--    <div class="footer-newsletter">--}}
+    {{--      <div class="container">--}}
+    {{--        <div class="row justify-content-center">--}}
+    {{--          <div class="col-lg-12 text-center">--}}
+    {{--            <h4>Our Newsletter</h4>--}}
+    {{--            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>--}}
+    {{--          </div>--}}
+    {{--          <div class="col-lg-6">--}}
+    {{--            <form action="" method="post">--}}
+    {{--              <input type="email" name="email"><input type="submit" value="Subscribe">--}}
+    {{--            </form>--}}
+    {{--          </div>--}}
+    {{--        </div>--}}
+    {{--      </div>--}}
+    {{--    </div>--}}
 
-{{--    <div class="footer-newsletter">--}}
-{{--      <div class="container">--}}
-{{--        <div class="row justify-content-center">--}}
-{{--          <div class="col-lg-12 text-center">--}}
-{{--            <h4>Our Newsletter</h4>--}}
-{{--            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>--}}
-{{--          </div>--}}
-{{--          <div class="col-lg-6">--}}
-{{--            <form action="" method="post">--}}
-{{--              <input type="email" name="email"><input type="submit" value="Subscribe">--}}
-{{--            </form>--}}
-{{--          </div>--}}
-{{--        </div>--}}
-{{--      </div>--}}
-{{--    </div>--}}
+    {{--    <div class="footer-top">--}}
+    {{--      <div class="container">--}}
+    {{--        <div class="row gy-4">--}}
+    {{--          <div class="col-lg-5 col-md-12 footer-info">--}}
+    {{--            <a href="index.html" class="logo d-flex align-items-center">--}}
+    {{--              <img src="assets/img/logo.webp" alt="">--}}
+    {{--              <span>Group 4 Logistics</span>--}}
+    {{--            </a>--}}
+    {{--            <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>--}}
+    {{--            <div class="social-links mt-3">--}}
+    {{--              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>--}}
+    {{--              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>--}}
+    {{--              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>--}}
+    {{--              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>--}}
+    {{--            </div>--}}
+    {{--          </div>--}}
 
-{{--    <div class="footer-top">--}}
-{{--      <div class="container">--}}
-{{--        <div class="row gy-4">--}}
-{{--          <div class="col-lg-5 col-md-12 footer-info">--}}
-{{--            <a href="index.html" class="logo d-flex align-items-center">--}}
-{{--              <img src="assets/img/logo.webp" alt="">--}}
-{{--              <span>Group 4 Logistics</span>--}}
-{{--            </a>--}}
-{{--            <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>--}}
-{{--            <div class="social-links mt-3">--}}
-{{--              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>--}}
-{{--              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>--}}
-{{--              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>--}}
-{{--              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>--}}
-{{--            </div>--}}
-{{--          </div>--}}
+    {{--          <div class="col-lg-2 col-6 footer-links">--}}
+    {{--            <h4>Useful Links</h4>--}}
+    {{--            <ul>--}}
+    {{--              <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>--}}
+    {{--              <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>--}}
+    {{--              <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>--}}
+    {{--              <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>--}}
+    {{--              <li><i class="bi bi-chevron-right"></i> <a href="#">Privacy policy</a></li>--}}
+    {{--            </ul>--}}
+    {{--          </div>--}}
 
-{{--          <div class="col-lg-2 col-6 footer-links">--}}
-{{--            <h4>Useful Links</h4>--}}
-{{--            <ul>--}}
-{{--              <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>--}}
-{{--              <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>--}}
-{{--              <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>--}}
-{{--              <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>--}}
-{{--              <li><i class="bi bi-chevron-right"></i> <a href="#">Privacy policy</a></li>--}}
-{{--            </ul>--}}
-{{--          </div>--}}
+    {{--          <div class="col-lg-2 col-6 footer-links">--}}
+    {{--            <h4>Our Services</h4>--}}
+    {{--            <ul>--}}
+    {{--              <li><i class="bi bi-chevron-right"></i> <a href="#">Web Design</a></li>--}}
+    {{--              <li><i class="bi bi-chevron-right"></i> <a href="#">Web Development</a></li>--}}
+    {{--              <li><i class="bi bi-chevron-right"></i> <a href="#">Product Management</a></li>--}}
+    {{--              <li><i class="bi bi-chevron-right"></i> <a href="#">Marketing</a></li>--}}
+    {{--              <li><i class="bi bi-chevron-right"></i> <a href="#">Graphic Design</a></li>--}}
+    {{--            </ul>--}}
+    {{--          </div>--}}
 
-{{--          <div class="col-lg-2 col-6 footer-links">--}}
-{{--            <h4>Our Services</h4>--}}
-{{--            <ul>--}}
-{{--              <li><i class="bi bi-chevron-right"></i> <a href="#">Web Design</a></li>--}}
-{{--              <li><i class="bi bi-chevron-right"></i> <a href="#">Web Development</a></li>--}}
-{{--              <li><i class="bi bi-chevron-right"></i> <a href="#">Product Management</a></li>--}}
-{{--              <li><i class="bi bi-chevron-right"></i> <a href="#">Marketing</a></li>--}}
-{{--              <li><i class="bi bi-chevron-right"></i> <a href="#">Graphic Design</a></li>--}}
-{{--            </ul>--}}
-{{--          </div>--}}
+    {{--          <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">--}}
+    {{--            <h4>Contact Us</h4>--}}
+    {{--            <p>--}}
+    {{--              A108 Adam Street <br>--}}
+    {{--              New York, NY 535022<br>--}}
+    {{--              United States <br><br>--}}
+    {{--              <strong>Phone:</strong> +1 5589 55488 55<br>--}}
+    {{--              <strong>Email:</strong> info@example.com<br>--}}
+    {{--            </p>--}}
 
-{{--          <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">--}}
-{{--            <h4>Contact Us</h4>--}}
-{{--            <p>--}}
-{{--              A108 Adam Street <br>--}}
-{{--              New York, NY 535022<br>--}}
-{{--              United States <br><br>--}}
-{{--              <strong>Phone:</strong> +1 5589 55488 55<br>--}}
-{{--              <strong>Email:</strong> info@example.com<br>--}}
-{{--            </p>--}}
+    {{--          </div>--}}
 
-{{--          </div>--}}
-
-{{--        </div>--}}
-{{--      </div>--}}
-{{--    </div>--}}
+    {{--        </div>--}}
+    {{--      </div>--}}
+    {{--    </div>--}}
 
     <div class="container">
-      <div class="copyright">
-        &copy; Copyright {{ \Carbon\Carbon::today()->format('Y') }}<strong><span> Group 4 Logistics</span></strong>. All Rights Reserved
-          <br>
-          <a href="/terms">Terms & Conditions</a>
-          <br>
-          <a href="/pp">Privacy Policy</a>
-      </div>
-      <div class="credits">
-        Developed by <a href="https://cosbywebdevelopment.co.uk/">Cosby Web Development</a>
-      </div>
+        <div class="copyright">
+            &copy; Copyright {{ \Carbon\Carbon::today()->format('Y') }}<strong><span> Group 4 Logistics</span></strong>.
+            All Rights Reserved
+            <br>
+            <a href="/terms">Terms & Conditions</a>
+            <br>
+            <a href="/pp">Privacy Policy</a>
+        </div>
+        <div class="credits">
+            Developed by <a href="https://cosbywebdevelopment.co.uk/">Cosby Web Development</a>
+        </div>
     </div>
-  </footer><!-- End Footer -->
+</footer><!-- End Footer -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+<!-- Vendor JS Files -->
+<script src="assets/vendor/purecounter/purecounter.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+{{--<script src="assets/vendor/php-email-form/validate.js"></script>--}}
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+<!-- Template Main JS File -->
+<script src="assets/js/main.js"></script>
 
 <script>
     let autoPickup;
@@ -1469,7 +1470,7 @@
     let pickupPostcode;
     let dropOffPostcode;
 
-    $('.vehicleModal').click(function(event) {
+    $('.vehicleModal').click(function (event) {
         let type = $(this).data('type');
         let id = $(this).data('id');
         let mileageCost = $(this).data('mileage-cost');
@@ -1478,12 +1479,12 @@
         let minCharge = $(this).data('min-charge');
         let cost = miles.toFixed(2) * mileageCost;
         //console.log(cost)
-        if(cost < minCharge){
+        if (cost < minCharge) {
             cost = minCharge
             cost = Number(cost)
         }
         $("#pickup_input").val($("#geoPickup").val() + ', ' + pickupPostcode)
-        $("#dropoff_input").val($("#geoDropOff").val()+ ', ' + dropOffPostcode)
+        $("#dropoff_input").val($("#geoDropOff").val() + ', ' + dropOffPostcode)
         $("#pickup_postcode_input").val(pickupPostcode)
         $("#drop_off_postcode_input").val(dropOffPostcode)
         $("#time_input").val(pickupTime)
@@ -1506,7 +1507,7 @@
         $('#vehicleModal').modal('show');
     });
 
-    $("#clear_map").click(function (){
+    $("#clear_map").click(function () {
         location.reload();
         // let offset = 60;
         // // Our scroll target : the top position of the
@@ -1514,39 +1515,51 @@
     })
 
     @auth
-        @if ($logged_in_user->isUser())
+    @if ($logged_in_user->isUser())
 
-            $("#quote_form").submit(function (e){
-                e.preventDefault()
+    $("#quote_form").submit(function (e) {
+        e.preventDefault()
 
-                // set pick up time and date
-                pickupTime = $("#pickup_time").val()
-                pickupDate = $("#pickup_date").val()
-                dropOffTime = $("#drop_off_time").val()
-                dropOffDate = $("#drop_off_date").val()
-                // An offset to push the content down from the top.
-                let offset = 60;
-                // Our scroll target : the top position of the
-                let target = $('#vehicle').offset().top - offset;
-                // The magic...smooth scrollin' goodness.
-                $('html, body').animate({scrollTop:target}, 600);
-                $("#vehicles").show('fade')//.attr('data-aos','fade-down')
-            })
+        // set pick up time and date
+        pickupTime = $("#pickup_time").val()
+        pickupDate = $("#pickup_date").val()
+        dropOffTime = $("#drop_off_time").val()
+        dropOffDate = $("#drop_off_date").val()
+        // An offset to push the content down from the top.
+        let offset = 60;
+        // Our scroll target : the top position of the
+        let target = $('#vehicle').offset().top - offset;
+        // The magic...smooth scrollin' goodness.
+        $('html, body').animate({scrollTop: target}, 600);
+        $("#vehicles").show('fade')//.attr('data-aos','fade-down')
+    })
 
-        @endif
+    @endif
 
-        @else
-            $("#quote_form").submit(function (e){
-                e.preventDefault()
-            // window.location.href = '/login';
-            // open modal
-            $('#loginModal').modal('show');
-            })
+    @else
+    $("#quote_form").submit(function (e) {
+        e.preventDefault()
+        // window.location.href = '/login';
+        // open modal
+        $('#loginModal').modal('show');
+    })
     @endauth
+
+    $("#next").click(function (){
+        $('#vehicleModal').modal('hide');
+        // An offset to push the content down from the top.
+        let offset = 60;
+        // Our scroll target : the top position of the
+        let target = $('#info').offset().top - offset;
+        // The magic...smooth scrollin' goodness.
+        $('html, body').animate({scrollTop: target}, 600);
+        // show 'book now' btn
+        $("#book").show()
+    })
 
 
     // google api places
-    function initAutocomplete(){
+    function initAutocomplete() {
         autoPickup = new google.maps.places.Autocomplete(
             document.getElementById('geoPickup'),
             {
@@ -1566,7 +1579,7 @@
         autoDropOff.addListener('place_changed', onPlaceDropOff);
     }
 
-    function onPlacePickup(){
+    function onPlacePickup() {
         let place = autoPickup.getPlace();
         // get postcode
         for (var i = 0; i < place.address_components.length; i++) {
@@ -1577,7 +1590,7 @@
             }
         }
         console.log(pickupPostcode)
-        if(!place.geometry.location.lat){
+        if (!place.geometry.location.lat) {
             // user did not select an address
             document.getElementById('geoPickup').placeholder = 'Enter a place';
         } else {
@@ -1586,12 +1599,12 @@
             geoPickupLong = place.geometry.location.lng();
 
             // function to set start param
-            setRoute([geoPickupLong,geoPickupLat]);
+            setRoute([geoPickupLong, geoPickupLat]);
             //console.log([geoPickupLat,geoPickupLong])
         }
     }
 
-    function onPlaceDropOff(){
+    function onPlaceDropOff() {
         let place2 = autoDropOff.getPlace();
         // get postcode
         for (var b = 0; b < place2.address_components.length; b++) {
@@ -1603,14 +1616,14 @@
         }
         console.log(dropOffPostcode)
 
-        if(!place2.geometry){
+        if (!place2.geometry) {
             // user did not select an address
             document.getElementById('geoDropOff').placeholder = 'Enter a place';
         } else {
             document.getElementById('geoDropOff').innerHTML = place2.name;
             geoDropOffLat = place2.geometry.location.lat();
             geoDropOffLong = place2.geometry.location.lng();
-            endRoute([geoDropOffLong,geoDropOffLat]);
+            endRoute([geoDropOffLong, geoDropOffLat]);
         }
     }
 
@@ -1622,12 +1635,13 @@
         center: [-1.1941504496901416, 53.3], // starting position [lng, lat]
         zoom: 5 // starting zoom
     });
+
     // create a function to make a directions request
     async function getRoute(end) {
 
         const query = await fetch(
             `https://api.mapbox.com/directions/v5/mapbox/driving/${geoPickupLong},${geoPickupLat};${end[0]},${end[1]}?steps=true&geometries=geojson&access_token=${mapboxgl.accessToken}`,
-            { method: 'GET' }
+            {method: 'GET'}
         );
         //console.log(query)
         const json = await query.json();
@@ -1710,56 +1724,56 @@
                 'circle-color': '#3887be'
             }
         });
-    };
+    }
 
-    function endRoute(finish){
+    function endRoute(finish) {
 
-            const coords = finish;
-            //console.log(coords)
-            const end = {
-                type: 'FeatureCollection',
-                features: [
-                    {
-                        type: 'Feature',
-                        properties: {},
-                        geometry: {
-                            type: 'Point',
-                            coordinates: coords
-                        }
+        const coords = finish;
+        //console.log(coords)
+        const end = {
+            type: 'FeatureCollection',
+            features: [
+                {
+                    type: 'Feature',
+                    properties: {},
+                    geometry: {
+                        type: 'Point',
+                        coordinates: coords
                     }
-                ]
-            };
-            if (map.getLayer('end')) {
-                map.getSource('end').setData(end);
-            } else {
-                map.addLayer({
-                    id: 'end',
-                    type: 'circle',
-                    source: {
-                        type: 'geojson',
-                        data: {
-                            type: 'FeatureCollection',
-                            features: [
-                                {
-                                    type: 'Feature',
-                                    properties: {},
-                                    geometry: {
-                                        type: 'Point',
-                                        coordinates: coords
-                                    }
-                                }
-                            ]
-                        }
-                    },
-                    paint: {
-                        'circle-radius': 5,
-                        'circle-color': '#f30'
-                    }
-                });
-            }
-            getRoute(coords);
-
+                }
+            ]
         };
+        if (map.getLayer('end')) {
+            map.getSource('end').setData(end);
+        } else {
+            map.addLayer({
+                id: 'end',
+                type: 'circle',
+                source: {
+                    type: 'geojson',
+                    data: {
+                        type: 'FeatureCollection',
+                        features: [
+                            {
+                                type: 'Feature',
+                                properties: {},
+                                geometry: {
+                                    type: 'Point',
+                                    coordinates: coords
+                                }
+                            }
+                        ]
+                    }
+                },
+                paint: {
+                    'circle-radius': 5,
+                    'circle-color': '#f30'
+                }
+            });
+        }
+        getRoute(coords);
+
+    }
 
 </script>
 
