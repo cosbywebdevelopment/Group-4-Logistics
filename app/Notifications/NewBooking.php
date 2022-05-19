@@ -61,7 +61,7 @@ class NewBooking extends Notification
             ->line('Size: '.$this->order['size'])
             ->line('Weight: '.$this->order['weight'])
             ->line('Notes: '.$this->order['notes'])
-            ->line('Confirm that the delivery does not include any dangerous goods (as defined in the Carriage of Dangerous Goods by Road Regulations 1996): '.($this->order['confirm']) ? 'Yes' : 'No')
+            ->line('Confirmed No Dangerous Goods: '.($this->order['confirm']) ? 'Yes' : 'No')
 
             ->line('Cost : £'.$this->order['cost']/100)
             ->line('Thank you for using G4Logistics!');
