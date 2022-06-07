@@ -18,7 +18,8 @@
             <table class="table table-responsive-sm">
                 <thead>
                 <tr>
-                    <th>Type</th>
+                    <th style="width: 100px">Display</th>
+                    <th style="width: 100px">Type</th>
                     <th style="width: 100px">Length</th>
                     <th style="width: 100px">Height</th>
                     <th style="width: 100px">Width</th>
@@ -39,6 +40,17 @@
                         @method('PATCH')
                         @csrf
                         <tr>
+                            <td>
+                                <select name="display" class="form-control form-select" aria-label="Default select example">
+                                    @if($products->display == 1)
+                                        <option value="1" selected>Yes</option>
+                                        <option value="0">No</option>
+                                    @else
+                                        <option value="0" selected>No</option>
+                                        <option value="1" >Yes</option>
+                                    @endif
+                                </select>
+                            </td>
                             <td><input name="type" class="form-control" value="{{ $products->type }}"></td>
                             <td><input name="length" class="form-control" value="{{ $products->length }}"></td>
                             <td><input name="height" class="form-control" value="{{ $products->height }}"></td>
