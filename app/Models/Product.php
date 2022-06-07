@@ -19,6 +19,7 @@ class Product extends Model
         'per_mile',
         'collection_5',
         'collection_weekend',
+        'display',
 
     ];
 
