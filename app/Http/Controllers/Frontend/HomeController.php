@@ -33,7 +33,7 @@ class HomeController
      */
     public function index()
     {
-        $vehicle = Product::all();
+        $vehicle = Product::where('display', 1)->get();
         return view('frontend.index', compact('vehicle'));
     }
 
