@@ -61,34 +61,24 @@
 
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a class="nav-link scrollto" href="/#hero">Home</a></li>
-                <li><a class="nav-link scrollto" href="/#about">Quote Tool</a></li>
-                <li><a class="nav-link scrollto" href="/#services">Services</a></li>
-                <li><a class="nav-link scrollto" href="/#portfolio">Portfolio</a></li>
-                <li><a class="nav-link scrollto" href="/#team">Team</a></li>
-                {{--          <li><a href="blog.html">Blog</a></li>--}}
-                <li class="dropdown"><a href="#"><span>Join Us</span> <i class="bi bi-chevron-down"></i></a>
-                    <ul>
-                        @auth
-                            @if ($logged_in_user->isUser())
-                                <li><a href="{{ route('frontend.user.dashboard') }}">@lang('Dashboard')</a></li>
-                            @endif
+                <li><a class="nav-link scrollto" href="/#hero">HOME</a></li>
+                <li><a class="nav-link scrollto" href="/#about">QUOTE</a></li>
+                @auth
+                    @if ($logged_in_user->isUser())
+                        <li><a class="nav-link " href="{{ route('frontend.user.dashboard') }}">DASHBOARD</a></li>
+                    @endif
 
-                            <li><a href="{{ route('frontend.user.account') }}">@lang('Account')</a></li>
-                        @else
-                            <li><a href="{{ route('frontend.auth.login') }}">@lang('Login')</a></li>
+                    <li><a class="nav-link " href="{{ route('frontend.user.account') }}">ACCOUNT</a></li>
+                @else
 
-                            @if (config('boilerplate.access.user.registration'))
-                                <li><a href="{{ route('frontend.auth.register') }}">@lang('Register')</a></li>
-                            @endif
-                        @endauth
-                    </ul>
-                </li>
-                <li><a class="nav-link scrollto" href="/#contact">Contact</a></li>
-{{--                <li>--}}
-{{--                    <a class="nav-link active" href="/checkout">Checkout</a>--}}
-{{--                </li>--}}
-                <li><a class="getstarted scrollto" href="#about">Get Started</a></li>
+
+                    @if (config('boilerplate.access.user.registration'))
+                        <li><a class="nav-link " href="{{ route('frontend.auth.register') }}">REGISTER</a></li>
+                    @endif
+                @endauth
+                @guest
+                    <li><a class="getstarted" href="{{ route('frontend.auth.login') }}">LOGIN</a></li>
+                @endguest
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
