@@ -57,8 +57,8 @@
                         <div class="form-group row">
                             <label for="email" class="col-md-2 col-form-label">Credit</label>
 
-                            <div class="col-md-10">
-                                <select name="credit" class="form-select" aria-label="Default select example">
+                            <div class="col-md-1">
+                                <select name="credit" class="form-control form-select" aria-label="Default select example">
                                         @if($user->credit == 1)
                                             <option value="1" selected>Yes</option>
                                             <option value="0">No</option>
