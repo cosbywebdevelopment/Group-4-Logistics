@@ -64,7 +64,6 @@
         <a href="/" class="logo d-flex align-items-center">
             <img src="assets/img/logo.webp" alt="">
         </a>
-
         <nav id="navbar" class="navbar">
             <ul>
                 <li><a class="nav-link scrollto active" href="#hero">HOME</a></li>
@@ -77,8 +76,6 @@
 
                     <li><a class="nav-link " href="{{ route('frontend.user.account') }}">ACCOUNT</a></li>
                 @else
-
-
                     @if (config('boilerplate.access.user.registration'))
                         <li><a class="nav-link " href="{{ route('frontend.auth.register') }}">REGISTER</a></li>
                     @endif
@@ -209,7 +206,13 @@
                              data-max-weight="{{ $vehicles->max_weight }}"
                              data-pallets="{{ $vehicles->pallets }}"
                              data-min-charge="{{ $vehicles->min_charge }}"
+                             @if($logged_in_user)
+                                 @if($logged_in_user->credit)
+                                    data-discount="{{ $logged_in_user->discount }}"
+                                @endif
+                             @endif
                         >
+
                             <div class="testimonial-item">
                                 <p>Length: @if($vehicles->length == 0.00) 'N/A' @else {{$vehicles->length}}m @endif</p>
                                 <p>Height: @if($vehicles->height == 0.00) 'N/A' @else {{$vehicles->height}}m @endif</p>
@@ -1317,6 +1320,7 @@
                         <h3>You have chosen a <span id="typeLabel"></span> which can take a load of upto <span
                                 id="max_weight"></span></h3>
                         <h4>Your Route Mileage: <span id="miles"></span></h4>
+                        <h4 id="discount"></h4>
                         <h4>Cost <span id="cost"></span> +VAT</h4>
                         <h4>Pickup Time <span id="time"></span> Date <span id="date"></span></h4>
                         <h4>Drop Off Time <span id="drop_time"></span> Date <span id="drop_date"></span></h4>
@@ -1469,6 +1473,7 @@
     let miles = 0;
     let pickupPostcode;
     let dropOffPostcode;
+    let dis;
 
     $('.vehicleModal').click(function (event) {
         let type = $(this).data('type');
@@ -1477,12 +1482,19 @@
         let maxWeight = $(this).data('max-weight');
         let pallets = $(this).data('pallets');
         let minCharge = $(this).data('min-charge');
+        let discount = $(this).data('discount');
         let cost = miles.toFixed(2) * mileageCost;
         //console.log(cost)
+        console.log(discount)
         if (cost < minCharge) {
             cost = minCharge
             cost = Number(cost)
+        } else if (discount > 0){
+            dis = cost * discount / 100
+            cost = cost - dis
+            cost = Number(cost)
         }
+        //console.log(cost)
         $("#pickup_input").val($("#geoPickup").val() + ', ' + pickupPostcode)
         $("#dropoff_input").val($("#geoDropOff").val() + ', ' + dropOffPostcode)
         $("#pickup_postcode_input").val(pickupPostcode)
@@ -1503,6 +1515,10 @@
         $("#drop_date").text(dropOffDate);
         $("#miles").text(miles.toFixed(2));
         $("#miles_input").val(miles.toFixed(2));
+        if(dis > 0){
+            $("#discount").text(discount + '% Discount has been applied to your quote');
+        }
+
         $("#cost").text('£' + cost.toFixed(2));
         $('#vehicleModal').modal('show');
     });
