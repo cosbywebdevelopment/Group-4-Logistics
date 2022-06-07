@@ -1485,7 +1485,7 @@
         let discount = $(this).data('discount');
         let cost = miles.toFixed(2) * mileageCost;
         //console.log(cost)
-        console.log(discount)
+        //console.log(discount)
         if (cost < minCharge) {
             cost = minCharge
             cost = Number(cost)
