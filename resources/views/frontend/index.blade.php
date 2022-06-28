@@ -44,6 +44,15 @@
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 {{--    <link rel="stylesheet" type="text/css" href="./style.css" />--}}
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-217353091-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-217353091-1');
+    </script>
 
 <!-- =======================================================
     * Template Name: FlexStart - v1.9.0
