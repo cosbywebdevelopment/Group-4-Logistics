@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ appName() }}</title>
     <meta name="description" content="@yield('meta_description', appName())">
+    <meta name="msvalidate.01" content="BA85530A8410E4786D952AAF8EC2FFE3" />
+    <meta name="meta-title" content="{{ appName() }}">
+    <meta name="author" content="Cosby Web Development">
     {{--        <meta name="author" content="@yield('meta_author', 'Anthony Rappa')">--}}
     @yield('meta')
 
@@ -53,6 +56,8 @@
 
         gtag('config', 'UA-217353091-1');
     </script>
+
+
 
 <!-- =======================================================
     * Template Name: FlexStart - v1.9.0
@@ -105,10 +110,13 @@
         @include('includes.partials.messages')
         <div class="row">
             <div class="col-lg-6 d-flex flex-column justify-content-center">
-                <h1 style="color: #9b9a9d" data-aos="fade-up">A <span style="color: #fc8a18">TO</span> B
-                    BUSINESS
-                    SOLUTIONS</h1>
-                <h2 data-aos="fade-up" data-aos-delay="400">Local & International Delivery</h2>
+                <h1 style="color: #9b9a9d" data-aos="fade-up">NATIONWIDE COURIER SERVICE
+{{--                    <span style="color: #fc8a18">TO</span> B--}}
+{{--                    BUSINESS--}}
+{{--                    SOLUTIONS--}}
+                </h1>
+{{--                <h2 data-aos="fade-up" data-aos-delay="400">Local & International Delivery</h2>--}}
+                <h2 data-aos="fade-up" data-aos-delay="400">Sameday & Nextday Dedicated Deliveries</h2>
                 <div data-aos="fade-up" data-aos-delay="600">
                     <div class="text-center text-lg-start">
                         <a href="#about"
