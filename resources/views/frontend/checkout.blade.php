@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ appName() }}</title>
     <meta name="description" content="@yield('meta_description', appName())">
+    <meta name="msvalidate.01" content="BA85530A8410E4786D952AAF8EC2FFE3" />
+    <meta name="meta-title" content="{{ appName() }}">
+    <meta name="author" content="Cosby Web Development">
     {{--        <meta name="author" content="@yield('meta_author', 'Anthony Rappa')">--}}
     @yield('meta')
 
