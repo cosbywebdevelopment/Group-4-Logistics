@@ -1551,19 +1551,26 @@
 
     $("#quote_form").submit(function (e) {
         e.preventDefault()
+        if(pickupPostcode == null || dropOffPostcode == null){
+            alert('Please enter a proper address Eg: 44 bridge street.......')
+            // clear map
+            location.reload();
+        } else {
+            console.log(pickupPostcode)
+            // set pick up time and date
+            pickupTime = $("#pickup_time").val()
+            pickupDate = $("#pickup_date").val()
+            dropOffTime = $("#drop_off_time").val()
+            dropOffDate = $("#drop_off_date").val()
+            // An offset to push the content down from the top.
+            let offset = 60;
+            // Our scroll target : the top position of the
+            let target = $('#vehicle').offset().top - offset;
+            // The magic...smooth scrollin' goodness.
+            $('html, body').animate({scrollTop: target}, 600);
+            $("#vehicles").show('fade')//.attr('data-aos','fade-down')
+        }
 
-        // set pick up time and date
-        pickupTime = $("#pickup_time").val()
-        pickupDate = $("#pickup_date").val()
-        dropOffTime = $("#drop_off_time").val()
-        dropOffDate = $("#drop_off_date").val()
-        // An offset to push the content down from the top.
-        let offset = 60;
-        // Our scroll target : the top position of the
-        let target = $('#vehicle').offset().top - offset;
-        // The magic...smooth scrollin' goodness.
-        $('html, body').animate({scrollTop: target}, 600);
-        $("#vehicles").show('fade')//.attr('data-aos','fade-down')
     })
 
     @endif
